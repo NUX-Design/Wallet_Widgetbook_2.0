@@ -1,0 +1,16 @@
+{
+    "name": "wi-wallet-flutter-design-system",
+    "version": "2.0.0",
+    "description": "Flutter framework for building financial applications",
+    "type": "module",
+    "scripts": {
+        "generate-schema": "node scripts/generate-schema.js",
+        "generate-schema:watch": "nodemon --exec 'npm run generate-schema' --watch CODEBASE_CONTEXT.md --watch WIDGETS_GUIDE.md"
+    },
+    "devDependencies": {
+        "nodemon": "^3.0.1"
+    },
+    "dependencies": {
+        "glob": "^13.0.0"
+    }
+}

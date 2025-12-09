@@ -9,6 +9,7 @@ class FullAmountInput extends StatefulWidget {
   final String? initialValue;
   final ValueChanged<String>? onChanged;
   final String infoText;
+  final bool enabled;
 
   const FullAmountInput({
     super.key,
@@ -16,6 +17,7 @@ class FullAmountInput extends StatefulWidget {
     this.initialValue,
     this.onChanged,
     this.infoText = 'ท่านต้องฝากเงินอย่างน้อย 100 THB',
+    this.enabled = true,
   });
 
   @override
@@ -31,7 +33,9 @@ class _FullAmountInputState extends State<FullAmountInput> {
   @override
   void initState() {
     super.initState();
-    _controller = widget.controller ?? TextEditingController(text: widget.initialValue ?? '');
+    _controller =
+        widget.controller ??
+        TextEditingController(text: widget.initialValue ?? '');
     _hasText = _controller.text.isNotEmpty;
     _controller.addListener(_onTextChanged);
     _focusNode.addListener(_onFocusChanged);
@@ -50,12 +54,14 @@ class _FullAmountInputState extends State<FullAmountInput> {
   }
 
   bool get _isError {
+    if (!widget.enabled) return false;
     if (!_hasFocus && !_hasText) return false;
     final value = double.tryParse(_controller.text) ?? 0;
     return value < 100;
   }
 
   bool get _isSuccess {
+    if (!widget.enabled) return false;
     final value = double.tryParse(_controller.text) ?? 0;
     return value >= 100;
   }
@@ -73,10 +79,13 @@ class _FullAmountInputState extends State<FullAmountInput> {
 
   @override
   Widget build(BuildContext context) {
-    final brightnessKey = Theme.of(context).brightness == Brightness.light ? 'light' : 'dark';
-    
+    final brightnessKey =
+        Theme.of(context).brightness == Brightness.light ? 'light' : 'dark';
+
     Color borderColor;
-    if (_isError) {
+    if (!widget.enabled) {
+      borderColor = ThemeColors.get(brightnessKey, 'stroke/base/200');
+    } else if (_isError) {
       borderColor = ThemeColors.get(brightnessKey, 'text/base/danger');
     } else if (_isSuccess && _hasFocus) {
       borderColor = ThemeColors.get(brightnessKey, 'primary/400');
@@ -84,7 +93,17 @@ class _FullAmountInputState extends State<FullAmountInput> {
       borderColor = ThemeColors.get(brightnessKey, 'stroke/base/200');
     }
 
-    final backgroundColor = ThemeColors.get(brightnessKey, 'fill/base/300');
+    final backgroundColor =
+        widget.enabled
+            ? ThemeColors.get(brightnessKey, 'fill/base/300')
+            : ThemeColors.get(brightnessKey, 'fill/base/100');
+
+    final textColor =
+        widget.enabled
+            ? ((_hasText || _hasFocus)
+                ? ThemeColors.get(brightnessKey, 'text/base/600')
+                : ThemeColors.get(brightnessKey, 'text/base/400'))
+            : ThemeColors.get(brightnessKey, 'text/base/400');
 
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
@@ -96,10 +115,7 @@ class _FullAmountInputState extends State<FullAmountInput> {
           decoration: BoxDecoration(
             color: backgroundColor,
             borderRadius: BorderRadius.circular(8),
-            border: Border.all(
-              color: borderColor,
-              width: 1,
-            ),
+            border: Border.all(color: borderColor, width: 1),
           ),
           child: Row(
             children: [
@@ -108,22 +124,22 @@ class _FullAmountInputState extends State<FullAmountInput> {
                 style: GoogleFonts.notoSansThai(
                   fontSize: 15,
                   height: 1.33,
-                  color: (_hasText || _hasFocus)
-                      ? ThemeColors.get(brightnessKey, 'text/base/600')
-                      : ThemeColors.get(brightnessKey, 'text/base/400'),
+                  color: textColor,
                 ),
               ),
               Expanded(
                 child: TextField(
                   controller: _controller,
                   focusNode: _focusNode,
+                  enabled: widget.enabled,
                   cursorColor: ThemeColors.get(brightnessKey, 'text/base/600'),
                   style: GoogleFonts.notoSansThai(
                     fontSize: 15,
                     height: 1.33,
-                    color: _hasText
-                        ? ThemeColors.get(brightnessKey, 'text/base/600')
-                        : ThemeColors.get(brightnessKey, 'text/base/400'),
+                    color:
+                        widget.enabled && _hasText
+                            ? ThemeColors.get(brightnessKey, 'text/base/600')
+                            : ThemeColors.get(brightnessKey, 'text/base/400'),
                   ),
                   decoration: InputDecoration(
                     border: InputBorder.none,
@@ -136,14 +152,16 @@ class _FullAmountInputState extends State<FullAmountInput> {
                       color: ThemeColors.get(brightnessKey, 'text/base/400'),
                     ),
                   ),
-                  keyboardType: const TextInputType.numberWithOptions(decimal: true),
+                  keyboardType: const TextInputType.numberWithOptions(
+                    decimal: true,
+                  ),
                   inputFormatters: [
                     FilteringTextInputFormatter.allow(RegExp(r'^\d*\.?\d*')),
                   ],
                   onChanged: widget.onChanged,
                 ),
               ),
-              if (_hasText)
+              if (_hasText && widget.enabled)
                 GestureDetector(
                   onTap: () {
                     _controller.clear();
@@ -172,9 +190,12 @@ class _FullAmountInputState extends State<FullAmountInput> {
               fontSize: 10,
               height: 1.2,
               fontWeight: FontWeight.w600,
-              color: _isError
-                  ? ThemeColors.get(brightnessKey, 'text/base/danger')
-                  : _isSuccess
+              color:
+                  !widget.enabled
+                      ? ThemeColors.get(brightnessKey, 'text/base/400')
+                      : _isError
+                      ? ThemeColors.get(brightnessKey, 'text/base/danger')
+                      : _isSuccess
                       ? ThemeColors.get(brightnessKey, 'text/base/success')
                       : ThemeColors.get(brightnessKey, 'text/base/400'),
             ),

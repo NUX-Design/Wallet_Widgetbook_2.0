@@ -720,6 +720,38 @@ Then open `http://<YOUR_IP>:8000` on any device on the same Wi‑Fi.
 
 ---
 
+## 🤖 AI Integration (Wi Wallet MCP)
+
+This project allows you to turn your Design System into a context for AI Developers (Cursor, Claude Desktop, etc.) via **Model Context Protocol (MCP)**.
+
+### 1. Auto-generate JSON Schema
+
+Convert `GUIDE.md`, `spec.md`, and project structure into a single `docs/schema.json` file that AI can easily understand.
+
+**Run command:**
+```bash
+npm run generate-schema
+```
+
+**Features:**
+*   **Auto-Scan**: Finds all `lib/widgets/**/*.{md,MD}` files (GUIDE, spec, CONTEXT).
+*   **Implementation Details**: Automatically extracts localization and theme import paths.
+*   **Smart Merge**: Combines data from the main guide and individual files.
+
+### 2. Wi Wallet MCP Server
+
+A local server that feeds the Design System Knowledge to your AI Assistant.
+
+**To Start Server:**
+The server is usually configured in your IDE (e.g., Cursor MCP settings), pointing to `mcp-server/index.js`.
+
+**Capabilities:**
+*   **Get Design System Info**: Ask AI about tokens, colors, or project structure.
+*   **List/Get Widgets**: Ask AI "What widgets do we have?" or "How to use FullAmountInput?".
+*   **Auto-Reload**: The server automatically reloads `schema.json` on every request. You can update docs, run `generate-schema`, and the AI gets the new info immediately!
+
+---
+
 ## 📦 Dependencies
 
 ```yaml
