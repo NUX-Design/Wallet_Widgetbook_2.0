@@ -1,3 +1,6 @@
+
+<img width="1920" height="1080" alt="Cover" src="https://github.com/user-attachments/assets/4e1ae36e-fff9-42f7-9646-a0ad7d8689f4" />
+
 # Flutter Foundation App 🚀
 
 [![Flutter](https://img.shields.io/badge/Flutter-3.7.2+-02569B?logo=flutter)](https://flutter.dev)
