@@ -72,11 +72,13 @@ class _AnnouncementPreviewState extends State<AnnouncementPreview> {
   late List<String> _messages;
 
   @override
-  void initState() {
-    super.initState();
+  void didChangeDependencies() {
+    super.didChangeDependencies();
     _messages = [
       'Your account has been verified successfully. All features are now fully accessible from 01/06/2022 at 8:00 AM (Thailand time).',
-      'We are currently upgrading our security infrastructure. Services will resume by 31/05/2022 at 5:00 PM (Thailand time).',
+      AppLocalizations.of(
+        context,
+      )!.homeAnnounceVerifyFaceToReceive('100.00', 'THB'),
       'This is a very long announcement message that is intended to test the text truncation functionality of the widget. It should be long enough to exceed three lines when displayed on a standard mobile screen width. If it works correctly, you should see an ellipsis at the end of the third line.',
     ];
   }

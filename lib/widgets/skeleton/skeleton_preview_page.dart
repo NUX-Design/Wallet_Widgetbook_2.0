@@ -70,7 +70,7 @@ class _SkeletonPreviewPageState extends State<SkeletonPreviewPage> {
     });
     // Simulate network delay but return immediately to hide the refresh indicator
     // so the skeleton can be seen clearly.
-    Future.delayed(const Duration(seconds: 2), () {
+    Future.delayed(const Duration(seconds: 10), () {
       if (mounted) {
         setState(() {
           _isLoading = false;

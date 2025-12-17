@@ -10,7 +10,8 @@ class ThemeProvider extends ChangeNotifier {
   ThemeMode get themeMode => _themeMode;
 
   void toggleTheme() {
-    _themeMode = _themeMode == ThemeMode.light ? ThemeMode.dark : ThemeMode.light;
+    _themeMode =
+        _themeMode == ThemeMode.light ? ThemeMode.dark : ThemeMode.light;
     notifyListeners();
   }
 }
@@ -63,7 +64,12 @@ class MyApp extends StatelessWidget {
 class PreviewButtons extends StatelessWidget {
   const PreviewButtons({super.key});
 
-  DropdownMenuItem<Locale> _buildDropdownItem(BuildContext context, Locale locale, String text, String brightnessKey) {
+  DropdownMenuItem<Locale> _buildDropdownItem(
+    BuildContext context,
+    Locale locale,
+    String text,
+    String brightnessKey,
+  ) {
     return DropdownMenuItem(
       value: locale,
       child: Text(
@@ -87,7 +93,8 @@ class PreviewButtons extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final brightnessKey = Theme.of(context).brightness == Brightness.light ? 'light' : 'dark';
+    final brightnessKey =
+        Theme.of(context).brightness == Brightness.light ? 'light' : 'dark';
     return Scaffold(
       backgroundColor: ThemeColors.get(brightnessKey, 'fill/base/300'),
       appBar: AppBar(
@@ -98,7 +105,9 @@ class PreviewButtons extends StatelessWidget {
             builder: (context, themeProvider, _) {
               return IconButton(
                 icon: Icon(
-                  themeProvider.themeMode == ThemeMode.light ? Icons.dark_mode : Icons.light_mode,
+                  themeProvider.themeMode == ThemeMode.light
+                      ? Icons.dark_mode
+                      : Icons.light_mode,
                 ),
                 onPressed: () => themeProvider.toggleTheme(),
               );
@@ -121,18 +130,52 @@ class PreviewButtons extends StatelessWidget {
                   child: DropdownButton<Locale>(
                     value: _getCurrentLocale(context),
                     isExpanded: true,
-                    icon: Icon(Icons.language, color: ThemeColors.get(brightnessKey, 'text/base/600')),
-                    dropdownColor: ThemeColors.get(brightnessKey, 'fill/base/200'),
+                    icon: Icon(
+                      Icons.language,
+                      color: ThemeColors.get(brightnessKey, 'text/base/600'),
+                    ),
+                    dropdownColor: ThemeColors.get(
+                      brightnessKey,
+                      'fill/base/200',
+                    ),
                     items: [
-                      _buildDropdownItem(context, const Locale('en'), 'English', brightnessKey),
-                      _buildDropdownItem(context, const Locale('th'), 'ภาษาไทย', brightnessKey),
-                      _buildDropdownItem(context, const Locale('zh'), '中文', brightnessKey),
-                      _buildDropdownItem(context, const Locale('ru'), 'Русский', brightnessKey),
-                      _buildDropdownItem(context, const Locale('my'), 'မြန်မာ', brightnessKey),
+                      _buildDropdownItem(
+                        context,
+                        const Locale('en'),
+                        'English',
+                        brightnessKey,
+                      ),
+                      _buildDropdownItem(
+                        context,
+                        const Locale('th'),
+                        'ภาษาไทย',
+                        brightnessKey,
+                      ),
+                      _buildDropdownItem(
+                        context,
+                        const Locale('zh'),
+                        '中文',
+                        brightnessKey,
+                      ),
+                      _buildDropdownItem(
+                        context,
+                        const Locale('ru'),
+                        'Русский',
+                        brightnessKey,
+                      ),
+                      _buildDropdownItem(
+                        context,
+                        const Locale('my'),
+                        'မြန်မာ',
+                        brightnessKey,
+                      ),
                     ],
                     onChanged: (Locale? newLocale) {
                       if (newLocale != null) {
-                        Provider.of<LocaleProvider>(context, listen: false).setLocale(newLocale);
+                        Provider.of<LocaleProvider>(
+                          context,
+                          listen: false,
+                        ).setLocale(newLocale);
                       }
                     },
                   ),
@@ -146,7 +189,6 @@ class PreviewButtons extends StatelessWidget {
                   borderRadius: BorderRadius.circular(16),
                 ),
                 child: Column(
-      
                   children: [
                     Text(
                       'Primary Enabled',
@@ -162,7 +204,9 @@ class PreviewButtons extends StatelessWidget {
                       enabled: true,
                       onPressed: () {
                         ScaffoldMessenger.of(context).showSnackBar(
-                          const SnackBar(content: Text('Primary button pressed')),
+                          const SnackBar(
+                            content: Text('Primary button pressed'),
+                          ),
                         );
                       },
                     ),
@@ -181,7 +225,9 @@ class PreviewButtons extends StatelessWidget {
                       enabled: true,
                       onPressed: () {
                         ScaffoldMessenger.of(context).showSnackBar(
-                          const SnackBar(content: Text('Secondary button pressed')),
+                          const SnackBar(
+                            content: Text('Secondary button pressed'),
+                          ),
                         );
                       },
                     ),
@@ -214,7 +260,9 @@ class PreviewButtons extends StatelessWidget {
                       enabled: true,
                       onPressed: () {
                         ScaffoldMessenger.of(context).showSnackBar(
-                          const SnackBar(content: Text('Amount button pressed')),
+                          const SnackBar(
+                            content: Text('Amount button pressed'),
+                          ),
                         );
                       },
                     ),

@@ -38,7 +38,9 @@ class _MobileCodeInputState extends State<MobileCodeInput> {
   @override
   void initState() {
     super.initState();
-    _controller = widget.controller ?? TextEditingController(text: widget.initialValue ?? '');
+    _controller =
+        widget.controller ??
+        TextEditingController(text: widget.initialValue ?? '');
     _hasText = _controller.text.isNotEmpty;
     _controller.addListener(_onTextChanged);
     _focusNode.addListener(_onFocusChanged);
@@ -69,111 +71,110 @@ class _MobileCodeInputState extends State<MobileCodeInput> {
 
   @override
   Widget build(BuildContext context) {
-    final brightnessKey = Theme.of(context).brightness == Brightness.light ? 'light' : 'dark';
-    
-    final borderColor = _hasFocus
-        ? ThemeColors.get(brightnessKey, 'primary/400')
-        : ThemeColors.get(brightnessKey, 'stroke/base/200');
+    final brightnessKey =
+        Theme.of(context).brightness == Brightness.light ? 'light' : 'dark';
+
+    final borderColor =
+        _hasFocus
+            ? ThemeColors.get(brightnessKey, 'primary/400')
+            : ThemeColors.get(brightnessKey, 'stroke/base/200');
     final backgroundColor = ThemeColors.get(brightnessKey, 'fill/base/300');
 
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         Container(
-      width: double.infinity,
-      height: 48,
-      padding: const EdgeInsets.all(12),
-      decoration: BoxDecoration(
-        color: backgroundColor,
-        borderRadius: BorderRadius.circular(12),
-        border: Border.all(
-          color: borderColor,
-          width: 1,
-        ),
-      ),
-      child: Row(
-        children: [
-          GestureDetector(
-            onTap: widget.onCountryCodeTap,
-            child: Row(
-              mainAxisSize: MainAxisSize.min,
-              children: [
-                SvgPicture.asset(
-                  widget.flagAsset,
-                  width: 32,
-                  height: 24,
+          width: double.infinity,
+          height: 48,
+          padding: const EdgeInsets.all(12),
+          decoration: BoxDecoration(
+            color: backgroundColor,
+            borderRadius: BorderRadius.circular(12),
+            border: Border.all(color: borderColor, width: 1),
+          ),
+          child: Row(
+            children: [
+              GestureDetector(
+                onTap: widget.onCountryCodeTap,
+                child: Row(
+                  mainAxisSize: MainAxisSize.min,
+                  children: [
+                    SvgPicture.asset(widget.flagAsset, width: 32, height: 24),
+                    const SizedBox(width: 4),
+                    Text(
+                      widget.countryCode,
+                      style: GoogleFonts.notoSansThai(
+                        fontSize: 15,
+                        height: 1.33,
+                        color: ThemeColors.get(brightnessKey, 'text/base/600'),
+                      ),
+                    ),
+                    SvgPicture.asset(
+                      'lib/assets/images/arrow-down-01.svg',
+                      width: 24,
+                      height: 24,
+                      colorFilter: ColorFilter.mode(
+                        ThemeColors.get(brightnessKey, 'text/base/600'),
+                        BlendMode.srcIn,
+                      ),
+                    ),
+                  ],
                 ),
-                const SizedBox(width: 4),
-                Text(
-                  widget.countryCode,
+              ),
+              const SizedBox(width: 8),
+              Expanded(
+                child: TextField(
+                  controller: _controller,
+                  focusNode: _focusNode,
+                  cursorColor: ThemeColors.get(brightnessKey, 'text/base/600'),
                   style: GoogleFonts.notoSansThai(
                     fontSize: 15,
                     height: 1.33,
-                    color: ThemeColors.get(brightnessKey, 'text/base/600'),
+                    color:
+                        _hasText
+                            ? ThemeColors.get(brightnessKey, 'text/base/600')
+                            : ThemeColors.get(brightnessKey, 'text/base/400'),
+                  ),
+                  decoration: InputDecoration(
+                    border: InputBorder.none,
+                    contentPadding: EdgeInsets.zero,
+                    isDense: true,
+                    hintText:
+                        AppLocalizations.of(
+                          context,
+                        )!.placeholderDepositMobileNumber,
+                    hintStyle: GoogleFonts.notoSansThai(
+                      fontSize: 15,
+                      height: 1.33,
+                      color: ThemeColors.get(brightnessKey, 'text/base/400'),
+                    ),
+                  ),
+                  keyboardType: TextInputType.phone,
+                  inputFormatters: [
+                    FilteringTextInputFormatter.digitsOnly,
+                    LengthLimitingTextInputFormatter(widget.maxLength),
+                  ],
+                  onChanged: widget.onChanged,
+                ),
+              ),
+              if (_hasText)
+                GestureDetector(
+                  onTap: () {
+                    _controller.clear();
+                    widget.onChanged?.call('');
+                  },
+                  child: SvgPicture.asset(
+                    'lib/assets/images/cancel-circle.svg',
+                    width: 16,
+                    height: 16,
+                    colorFilter: ColorFilter.mode(
+                      ThemeColors.get(brightnessKey, 'stroke/base/600'),
+                      BlendMode.srcIn,
+                    ),
                   ),
                 ),
-                SvgPicture.asset(
-                  'lib/assets/images/arrow-down-01.svg',
-                  width: 24,
-                  height: 24,
-                  colorFilter: ColorFilter.mode(
-                    ThemeColors.get(brightnessKey, 'text/base/600'),
-                    BlendMode.srcIn,
-                  ),
-                ),
-              ],
-            ),
+            ],
           ),
-          const SizedBox(width: 8),
-          Expanded(
-            child: TextField(
-              controller: _controller,
-              focusNode: _focusNode,
-              cursorColor: ThemeColors.get(brightnessKey, 'text/base/600'),
-              style: GoogleFonts.notoSansThai(
-                fontSize: 15,
-                height: 1.33,
-                color: _hasText
-                    ? ThemeColors.get(brightnessKey, 'text/base/600')
-                    : ThemeColors.get(brightnessKey, 'text/base/400'),
-              ),
-              decoration: InputDecoration(
-                border: InputBorder.none,
-                contentPadding: EdgeInsets.zero,
-                isDense: true,
-                hintText: AppLocalizations.of(context)!.mobileNumberPlaceholder,
-                hintStyle: GoogleFonts.notoSansThai(
-                  fontSize: 15,
-                  height: 1.33,
-                  color: ThemeColors.get(brightnessKey, 'text/base/400'),
-                ),
-              ),
-              keyboardType: TextInputType.phone,
-              inputFormatters: [
-                FilteringTextInputFormatter.digitsOnly,
-                LengthLimitingTextInputFormatter(widget.maxLength),
-              ],
-              onChanged: widget.onChanged,
-            ),
-          ),
-          if (_hasText)
-            GestureDetector(
-              onTap: () {
-                _controller.clear();
-                widget.onChanged?.call('');
-              },
-              child: SvgPicture.asset(
-                'lib/assets/images/cancel-circle.svg',
-                width: 16,
-                height: 16,
-                colorFilter: ColorFilter.mode(
-                  ThemeColors.get(brightnessKey, 'stroke/base/600'),
-                  BlendMode.srcIn,
-                ),
-              ),
-            ),
-        ],
-      ),
         ),
         const SizedBox(height: 4),
         Align(

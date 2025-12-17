@@ -1,5 +1,5 @@
 
-<img width="1920" height="1080" alt="Cover" src="https://github.com/user-attachments/assets/4e1ae36e-fff9-42f7-9646-a0ad7d8689f4" />
+<img width="1920" height="1080" alt="Cover" src="https://github.com/user-attachments/assets/4e0d1102-da06-4f92-bbfc-20123db01353" />
 
 # Flutter Foundation App 🚀
 
@@ -55,6 +55,7 @@ cd Wi_Wallet_Flutter_Widget_2.0
 flutter pub get
 
 # Generate localization files
+dart run tool/generate_arb.dart
 flutter gen-l10n
 
 # Run the app
@@ -89,32 +90,33 @@ output-class: AppLocalizations
 output-dir: lib/generated/intl
 ```
 
-**Step 3:** Create ARB files in `lib/l10n/`
+**Step 3:** Update `localization.json` at project root
 
 ```json
-// lib/l10n/app_en.arb
-{
-  "app_name": "My App",
-  "@app_name": {
+[
+  {
+    "Name": "app_name",
+    "EN": "My App",
+    "TH": "แอปของฉัน",
     "description": "Application name"
   },
-  "home": "Home",
-  "settings": "Settings"
-}
-```
-
-```json
-// lib/l10n/app_th.arb
-{
-  "app_name": "แอปของฉัน",
-  "home": "หน้าหลัก",
-  "settings": "ตั้งค่า"
-}
+  {
+    "Name": "home",
+    "EN": "Home",
+    "TH": "หน้าหลัก"
+  },
+  {
+    "Name": "settings",
+    "EN": "Settings",
+    "TH": "ตั้งค่า"
+  }
+]
 ```
 
 **Step 4:** Generate localization files
 
 ```bash
+dart run tool/generate_arb.dart
 flutter gen-l10n
 ```
 
@@ -718,6 +720,38 @@ Then open `http://<YOUR_IP>:8000` on any device on the same Wi‑Fi.
   - `preview_lottie_skeleton.dart`
   - `preview_snack_bar.dart`
 
+
+---
+
+## 🤖 AI Integration (Wi Wallet MCP)
+
+This project allows you to turn your Design System into a context for AI Developers (Cursor, Claude Desktop, etc.) via **Model Context Protocol (MCP)**.
+
+### 1. Auto-generate JSON Schema
+
+Convert `GUIDE.md`, `spec.md`, and project structure into a single `docs/schema.json` file that AI can easily understand.
+
+**Run command:**
+```bash
+npm run generate-schema
+```
+
+**Features:**
+*   **Auto-Scan**: Finds all `lib/widgets/**/*.{md,MD}` files (GUIDE, spec, CONTEXT).
+*   **Implementation Details**: Automatically extracts localization and theme import paths.
+*   **Smart Merge**: Combines data from the main guide and individual files.
+
+### 2. Wi Wallet MCP Server
+
+A local server that feeds the Design System Knowledge to your AI Assistant.
+
+**To Start Server:**
+The server is usually configured in your IDE (e.g., Cursor MCP settings), pointing to `mcp-server/index.js`.
+
+**Capabilities:**
+*   **Get Design System Info**: Ask AI about tokens, colors, or project structure.
+*   **List/Get Widgets**: Ask AI "What widgets do we have?" or "How to use FullAmountInput?".
+*   **Auto-Reload**: The server automatically reloads `schema.json` on every request. You can update docs, run `generate-schema`, and the AI gets the new info immediately!
 
 ---
 

@@ -26,6 +26,59 @@ Complete guide to using all available widgets in this foundation.
 
 ---
 
+## 🌍 Localization
+
+This project uses a centralized `localization.json` file.
+
+### 1. How to use in Widgets
+
+Access localized strings using `AppLocalizations.of(context)!`:
+
+```dart
+import 'package:your_app/generated/intl/app_localizations.dart';
+
+Text(
+  AppLocalizations.of(context)!.welcomeMessage,
+  style: TextStyle(...),
+)
+```
+
+### 2. Using Placeholders
+
+For strings with placeholders like `{amount} {currency}`:
+
+```dart
+// JSON: "{amount} {currency}"
+Text(
+  AppLocalizations.of(context)!.balanceValue(
+    '500.00',
+    'THB',
+  ),
+)
+```
+
+### 3. Date & Time
+
+For date/time placeholders, format the date string **before** passing it to localization:
+
+```dart
+// JSON: "{date} {time}"
+final now = DateTime.now();
+final dateStr = DateFormat('dd MMM yyyy').format(now);
+final timeStr = DateFormat('HH:mm').format(now);
+
+Text(
+  AppLocalizations.of(context)!.transactionDate(
+    dateStr,
+    timeStr,
+  ),
+)
+```
+
+See [Localization Guide](lib/l10n/localization_i10n.md) for full workflow.
+
+---
+
 ## NavigatorBar
 
 Bottom navigation bar with floating center button.
@@ -424,26 +477,33 @@ Transaction review card component.
 ### Import
 
 ```dart
-import 'package:your_app/widgets/card_review_transaction.dart';
+import 'package:your_app/widgets/card/card_review_transaction.dart';
 ```
 
 ### Usage
 
 ```dart
+final l10n = AppLocalizations.of(context)!;
+
 CardReviewTransaction(
-  totalAmount: '5,000.00',
-  feeAmount: '0.00',
+  totalAmount: l10n.transactionDetailTotalAmountThb('5,000.00', 'THB'),
+  feeAmount: l10n.transactionDetailFeeAmountThb('0.00', 'THB'),
   currency: 'THB',
-  fromLabel: 'From',
-  fromValue: 'Your Wi Wallet',
-  mobileLabel: 'Mobile Number',
-  mobileValue: '081-141-1234',
-  toLabel: 'To',
-  toValue: 'Siam Commercial Bank',
-  accountNameLabel: 'Account Name',
-  accountNameValue: 'Victor Von Doom',
-  accountNumberLabel: 'Account Number',
-  accountNumberValue: '1234567890',
+  fromLabel: l10n.transferDrawerDetailFrom,
+  fromValue: l10n.transferDrawerDetailValueYourWallet,
+  mobileLabel: l10n.transferDrawerDetailMobileNumber,
+  mobileValue: l10n.transferDrawerDetailMobileNumberValue('081-141-1234'),
+  toLabel: l10n.transferDrawerDetailTo,
+  toValue: l10n.transferDrawerDetailToValue(l10n.valueDrawerScb),
+  accountNameLabel: l10n.transferDrawerDetailAccountName,
+  accountNameValue: l10n.transferDrawerDetailAccountNameValue('Victor Von Doom'),
+  accountNumberLabel: l10n.transferDrawerDetailAccountNumber,
+  accountNumberValue: l10n.transferDrawerDetailAccountNumberValue('1234567890'),
+  dateLabel: l10n.transactionDetailTextLabelDate,
+  dateValue: l10n.transactionDetailTextValueDate(
+    DateFormat('dd-MM-yyyy').format(DateTime.now()),
+    DateFormat('HH:mm:ss').format(DateTime.now()),
+  ),
 )
 ```
 
@@ -453,8 +513,11 @@ CardReviewTransaction(
 - Fee information
 - Transaction details (from/to)
 - Account information
+- Date & Time display
 - Theme-aware
 - Responsive design
+
+See [Card Review Transaction Guide](lib/widgets/card/CARD_REVIEW_TRANSACTION_GUIDE.md) for full details on API integration and formatting.
 
 ---
 

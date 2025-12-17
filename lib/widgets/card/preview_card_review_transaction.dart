@@ -5,13 +5,15 @@ import 'package:mcp_test_app/generated/intl/app_localizations.dart';
 import 'package:mcp_test_app/widgets/card/card_review_transaction.dart';
 import 'package:provider/provider.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:intl/intl.dart';
 
 class ThemeProvider extends ChangeNotifier {
   ThemeMode _themeMode = ThemeMode.dark;
   ThemeMode get themeMode => _themeMode;
 
   void toggleTheme() {
-    _themeMode = _themeMode == ThemeMode.light ? ThemeMode.dark : ThemeMode.light;
+    _themeMode =
+        _themeMode == ThemeMode.light ? ThemeMode.dark : ThemeMode.light;
     notifyListeners();
   }
 }
@@ -87,8 +89,8 @@ class CardReviewTransactionPreview extends StatelessWidget {
       child: Text(
         text,
         style: Theme.of(context).textTheme.bodyMedium?.copyWith(
-              color: ThemeColors.get(brightnessKey, 'text/base/600'),
-            ),
+          color: ThemeColors.get(brightnessKey, 'text/base/600'),
+        ),
       ),
     );
   }
@@ -105,7 +107,8 @@ class CardReviewTransactionPreview extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final brightnessKey = Theme.of(context).brightness == Brightness.light ? 'light' : 'dark';
+    final brightnessKey =
+        Theme.of(context).brightness == Brightness.light ? 'light' : 'dark';
     final l10n = AppLocalizations.of(context)!;
     return Scaffold(
       backgroundColor: ThemeColors.get(brightnessKey, 'fill/base/100'),
@@ -117,7 +120,9 @@ class CardReviewTransactionPreview extends StatelessWidget {
             builder: (context, themeProvider, _) {
               return IconButton(
                 icon: Icon(
-                  themeProvider.themeMode == ThemeMode.light ? Icons.dark_mode : Icons.light_mode,
+                  themeProvider.themeMode == ThemeMode.light
+                      ? Icons.dark_mode
+                      : Icons.light_mode,
                 ),
                 onPressed: () => themeProvider.toggleTheme(),
               );
@@ -139,18 +144,52 @@ class CardReviewTransactionPreview extends StatelessWidget {
                 child: DropdownButton<Locale>(
                   value: _getCurrentLocale(context),
                   isExpanded: true,
-                  icon: Icon(Icons.language, color: ThemeColors.get(brightnessKey, 'text/base/600')),
-                  dropdownColor: ThemeColors.get(brightnessKey, 'fill/base/200'),
+                  icon: Icon(
+                    Icons.language,
+                    color: ThemeColors.get(brightnessKey, 'text/base/600'),
+                  ),
+                  dropdownColor: ThemeColors.get(
+                    brightnessKey,
+                    'fill/base/200',
+                  ),
                   items: [
-                    _buildDropdownItem(context, const Locale('en'), 'English', brightnessKey),
-                    _buildDropdownItem(context, const Locale('th'), 'ภาษาไทย', brightnessKey),
-                    _buildDropdownItem(context, const Locale('zh'), '中文', brightnessKey),
-                    _buildDropdownItem(context, const Locale('ru'), 'Русский', brightnessKey),
-                    _buildDropdownItem(context, const Locale('my'), 'မြန်မာ', brightnessKey),
+                    _buildDropdownItem(
+                      context,
+                      const Locale('en'),
+                      'English',
+                      brightnessKey,
+                    ),
+                    _buildDropdownItem(
+                      context,
+                      const Locale('th'),
+                      'ภาษาไทย',
+                      brightnessKey,
+                    ),
+                    _buildDropdownItem(
+                      context,
+                      const Locale('zh'),
+                      '中文',
+                      brightnessKey,
+                    ),
+                    _buildDropdownItem(
+                      context,
+                      const Locale('ru'),
+                      'Русский',
+                      brightnessKey,
+                    ),
+                    _buildDropdownItem(
+                      context,
+                      const Locale('my'),
+                      'မြန်မာ',
+                      brightnessKey,
+                    ),
                   ],
                   onChanged: (Locale? newLocale) {
                     if (newLocale != null) {
-                      Provider.of<LocaleProvider>(context, listen: false).setLocale(newLocale);
+                      Provider.of<LocaleProvider>(
+                        context,
+                        listen: false,
+                      ).setLocale(newLocale);
                     }
                   },
                 ),
@@ -158,19 +197,32 @@ class CardReviewTransactionPreview extends StatelessWidget {
             ),
             const SizedBox(height: 16),
             CardReviewTransaction(
-              totalAmount: l10n.cardReviewTotalAmountMock,
-              feeAmount: l10n.cardReviewFeeAmountMock,
-              currency: l10n.cardReviewCurrencyMock,
-              fromLabel: l10n.cardReviewFromLabel,
-              fromValue: l10n.cardReviewFromValueMock,
-              mobileLabel: l10n.cardReviewMobileLabel,
-              mobileValue: l10n.cardReviewMobileValueMock,
-              toLabel: l10n.cardReviewToLabel,
-              toValue: l10n.cardReviewToValueMock,
-              accountNameLabel: l10n.cardReviewAccountNameLabel,
-              accountNameValue: l10n.cardReviewAccountNameValueMock,
-              accountNumberLabel: l10n.cardReviewAccountNumberLabel,
-              accountNumberValue: l10n.cardReviewAccountNumberValueMock,
+              totalAmount: l10n.transactionDetailTotalAmountThb(
+                '100.00',
+                'THB',
+              ),
+              feeAmount: l10n.transactionDetailFeeAmountThb('100.00', 'THB'),
+              fromLabel: l10n.transferDrawerDetailFrom,
+              fromValue: l10n.transferDrawerDetailValueYourWallet,
+              mobileLabel: l10n.transferDrawerDetailMobileNumber,
+              mobileValue: l10n.transferDrawerDetailMobileNumberValue(
+                '081-141-6859',
+              ),
+              toLabel: l10n.transferDrawerDetailTo,
+              toValue: l10n.transferDrawerDetailToValue(l10n.valueDrawerScb),
+              accountNameLabel: l10n.transferDrawerDetailAccountName,
+              accountNameValue: l10n.transferDrawerDetailAccountNameValue(
+                'Niwat Yahuadong',
+              ),
+              accountNumberLabel: l10n.transferDrawerDetailAccountNumber,
+              accountNumberValue: l10n.transferDrawerDetailAccountNumberValue(
+                '123456789',
+              ),
+              dateLabel: l10n.transactionDetailTextLabelDate,
+              dateValue: l10n.transactionDetailTextValueDate(
+                DateFormat('dd-MM-yyyy').format(DateTime.now()),
+                DateFormat('HH:mm:ss').format(DateTime.now()),
+              ),
             ),
           ],
         ),

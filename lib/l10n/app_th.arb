@@ -1,175 +1,900 @@
 {
   "@@locale": "th",
-  "welcome_message": "ยินดีต้อนรับ",
-  "@welcome_message": {
-    "description": "Greeting headline on the home screen"
+  "headerDeposit": "ฝากเงิน",
+  "@headerDeposit": {
+    "description": " "
   },
-  "greeting": "สวัสดีครับ/ค่ะ",
-  "@greeting": {
-    "description": "Short greeting text"
+  "labelDepositAmount": "จำนวนเงิน",
+  "@labelDepositAmount": {
+    "description": " "
   },
-  "farewell": "ลาก่อนครับ/ค่ะ",
-  "@farewell": {
-    "description": "Farewell text"
+  "infomationDeposit": "ท่านต้องฝากเงินอย่างน้อย {amount} {currency}",
+  "@infomationDeposit": {
+    "description": " ",
+    "placeholders": {
+      "amount": {},
+      "currency": {}
+    }
   },
-  "app_name": "แอปทดสอบ",
-  "@app_name": {
-    "description": "Application name shown in titles"
+  "depositTextButtonAmount": "{amount}",
+  "@depositTextButtonAmount": {
+    "description": " ",
+    "placeholders": {
+      "amount": {}
+    }
   },
-  "light_theme": "สว่าง",
-  "@light_theme": {
-    "description": "Label for light theme option"
+  "titleDepositFrom": "จาก",
+  "@titleDepositFrom": {
+    "description": " "
   },
-  "dark_theme": "มืด",
-  "@dark_theme": {
-    "description": "Label for dark theme option"
+  "labelDepositMobileBanking": "Mobile Banking",
+  "@labelDepositMobileBanking": {
+    "description": " "
+  },
+  "valueDepositSCB": "Siam Commercial Bank",
+  "@valueDepositSCB": {
+    "description": " "
+  },
+  "valueDepositBbl": "Bangkok Bank Mobile Banking",
+  "@valueDepositBbl": {
+    "description": " "
+  },
+  "valueDepositBay": "Bank of Ayudhya",
+  "@valueDepositBay": {
+    "description": " "
+  },
+  "titleDepositTo": "ถึง",
+  "@titleDepositTo": {
+    "description": " "
+  },
+  "labelDepositWiWallet": "Wi Wallet ของท่าน",
+  "@labelDepositWiWallet": {
+    "description": " "
+  },
+  "labelDepositTotalBalance": "ยอดเงินรวม:",
+  "@labelDepositTotalBalance": {
+    "description": " "
+  },
+  "textButtonDepositConfirm": "ยืนยัน",
+  "@textButtonDepositConfirm": {
+    "description": " "
+  },
+  "titleDrawerMobileNumber": "เบอร์มือถือ",
+  "@titleDrawerMobileNumber": {
+    "description": " "
+  },
+  "placeholderDrawerSearch": "ค้นหา",
+  "@placeholderDrawerSearch": {
+    "description": " "
+  },
+  "labelHomeTotalBalance": "ยอดเงินรวม",
+  "@labelHomeTotalBalance": {
+    "description": " "
+  },
+  "textButtonHomeManage": "จัดการ",
+  "@textButtonHomeManage": {
+    "description": " "
+  },
+  "titleHomeCards": "บัตร",
+  "@titleHomeCards": {
+    "description": " "
+  },
+  "titleHomeServices": "บริการ",
+  "@titleHomeServices": {
+    "description": " "
+  },
+  "shortcutMenuHomeTransfer": "โอนเงิน",
+  "@shortcutMenuHomeTransfer": {
+    "description": " "
+  },
+  "shortcutMenuHomeMore": "เพิ่มเติม",
+  "@shortcutMenuHomeMore": {
+    "description": " "
+  },
+  "shortcutMenuHomeBill": "บิล",
+  "@shortcutMenuHomeBill": {
+    "description": " "
+  },
+  "shortcutMenuHomeWiCoin": "Wi Coin",
+  "@shortcutMenuHomeWiCoin": {
+    "description": " "
+  },
+  "titleHomeHighlight": "Highlight",
+  "@titleHomeHighlight": {
+    "description": " "
   },
   "navigatorHome": "หน้าหลัก",
   "@navigatorHome": {
-    "description": "Navigation label for Home tab"
+    "description": " "
   },
   "navigatorHomeDeposit": "ฝากเงิน",
   "@navigatorHomeDeposit": {
-    "description": "Navigation label for Deposit tab"
+    "description": " "
   },
   "navigatorHomeConvert": "แปลงเงิน",
   "@navigatorHomeConvert": {
-    "description": "Navigation label for Convert tab"
+    "description": " "
   },
   "navigatorHomeSetting": "ตั้งค่า",
   "@navigatorHomeSetting": {
-    "description": "Navigation label for Setting tab"
+    "description": " "
   },
-  "transfer": "โอนเงิน",
-  "@transfer": {
-    "description": "Action label for transferring funds"
+  "labelHomeViewAll": "ดูทั้งหมด",
+  "@labelHomeViewAll": {
+    "description": " "
   },
-  "top_up": "เติมเงิน",
-  "@top_up": {
-    "description": "Action label for topping up balance"
+  "homeAnnounceVerifyFaceToReceive": "You have received {amount} {currency}. Please verify face to receive this amount which will incur fee in your wallet.",
+  "@homeAnnounceVerifyFaceToReceive": {
+    "description": " ",
+    "placeholders": {
+      "amount": {},
+      "currency": {}
+    }
   },
-  "bill": "บิล",
-  "@bill": {
-    "description": "Action label for paying bills"
+  "titleDrawerDepositChannel": "ช่องทางฝากเงิน",
+  "@titleDrawerDepositChannel": {
+    "description": " "
   },
-  "announcement": "ประกาศ",
-  "@announcement": {
-    "description": "Section title for announcements"
+  "labelDrawerMobileBanking": "Mobile Banking",
+  "@labelDrawerMobileBanking": {
+    "description": " "
   },
-  "viewAll": "ดูทั้งหมด",
-  "@viewAll": {
-    "description": "Button text to view all items"
+  "valueDrawerScb": "Siam Commercial Bank",
+  "@valueDrawerScb": {
+    "description": " "
   },
-  "labelHomeTotalBalance": "ยอดคงเหลือ",
-  "@labelHomeTotalBalance": {
-    "description": "Label for available balance section"
+  "valueDrawerBbl": "Bangkok Bank Mobile Banking",
+  "@valueDrawerBbl": {
+    "description": " "
   },
-  "homeDrawerDetailTotalBalance": "ยอดคงเหลือ",
+  "valueDrawerBay": "Bank of Ayudhya",
+  "@valueDrawerBay": {
+    "description": " "
+  },
+  "valueDrawerKbank": "Kasikorn Bank",
+  "@valueDrawerKbank": {
+    "description": " "
+  },
+  "titleDepositEnterMobileNumber": "กรอกเบอร์มือถือ",
+  "@titleDepositEnterMobileNumber": {
+    "description": " "
+  },
+  "descriptionDepositEnterMobileNumberKbank": "ใส่หมายเลขโทรศัพท์มือถือที่ลงทะเบียนในบัญชีธนาคารกสิกรไทยสำหรับการฝากเงิน",
+  "@descriptionDepositEnterMobileNumberKbank": {
+    "description": " "
+  },
+  "placeholderDepositMobileNumber": "เบอร์มือถือ",
+  "@placeholderDepositMobileNumber": {
+    "description": " "
+  },
+  "titleModalError": "ข้อผิดพลาด",
+  "@titleModalError": {
+    "description": " "
+  },
+  "descriptionModalErrorSystem": "ขออภัย ระบบพบข้อผิดพลาด กรุณาลองใหม่อีกครั้ง",
+  "@descriptionModalErrorSystem": {
+    "description": " "
+  },
+  "textButtonModalOk": "ตกลง",
+  "@textButtonModalOk": {
+    "description": " "
+  },
+  "titleDepositKplusWaitingForPayment": "รอการชำระเงิน",
+  "@titleDepositKplusWaitingForPayment": {
+    "description": " "
+  },
+  "descriptionDepositKplusNotification": "กรุณารอการแจ้งเตือนเพื่อเปิดแอปพลิเคชัน K PLUS หากท่านไม่ได้รับการแจ้งเตือน ท่านสามารถตรวจสอบกล่องข้อความใน K PLUS ของท่านได้",
+  "@descriptionDepositKplusNotification": {
+    "description": " "
+  },
+  "infomationDepositKplusTimeLimit": "กรุณาดำเนินการให้เสร็จสิ้นภายในเวลา {time} นาที",
+  "@infomationDepositKplusTimeLimit": {
+    "description": " ",
+    "placeholders": {
+      "time": {}
+    }
+  },
+  "valueDepositKplus": "Kasikorn Bank",
+  "@valueDepositKplus": {
+    "description": " "
+  },
+  "labelDepositKplusTransactionType": "ประเภทธุรกรรม",
+  "@labelDepositKplusTransactionType": {
+    "description": " "
+  },
+  "labelDepositKplus": "ฝากเงิน",
+  "@labelDepositKplus": {
+    "description": " "
+  },
+  "labelDepositKplusMobileNumber": "เบอร์มือถือ",
+  "@labelDepositKplusMobileNumber": {
+    "description": " "
+  },
+  "labelDepositKplusTransactionNo": "เลขที่รายการ",
+  "@labelDepositKplusTransactionNo": {
+    "description": " "
+  },
+  "labelDepositKplusDateTime": "วันที่และเวลา",
+  "@labelDepositKplusDateTime": {
+    "description": " "
+  },
+  "textButtonDepositKplusOpen": "เปิด KPLUS",
+  "@textButtonDepositKplusOpen": {
+    "description": " "
+  },
+  "fieldValueDepositKplus": "ฝากเงิน",
+  "@fieldValueDepositKplus": {
+    "description": " "
+  },
+  "titleDrawerEmptyNoResultsFound": "ไม่พบผลการค้นหา",
+  "@titleDrawerEmptyNoResultsFound": {
+    "description": " "
+  },
+  "descriptionDrawerEmptyTryAgain": "กรุณาลองใหม่อีกครั้ง",
+  "@descriptionDrawerEmptyTryAgain": {
+    "description": " "
+  },
+  "inboxTabMenuGeneral": "General",
+  "@inboxTabMenuGeneral": {
+    "description": " "
+  },
+  "inboxTabMenuForYou": "For You",
+  "@inboxTabMenuForYou": {
+    "description": " "
+  },
+  "inboxDetailHeaderTitleReceive": "Receive",
+  "@inboxDetailHeaderTitleReceive": {
+    "description": " "
+  },
+  "inboxTextButtonVerifyFace": "Verify Face",
+  "@inboxTextButtonVerifyFace": {
+    "description": " "
+  },
+  "identityVerificationHeaderTitle": "Identity Verification",
+  "@identityVerificationHeaderTitle": {
+    "description": " "
+  },
+  "identityVerificationTitleTakePhoto": "Take photos of face again.",
+  "@identityVerificationTitleTakePhoto": {
+    "description": " "
+  },
+  "identityVerificationDesTakePhotoCannotMakeInTime": "You cannot make it in time. Please follow the instruction and take new photos.",
+  "@identityVerificationDesTakePhotoCannotMakeInTime": {
+    "description": " "
+  },
+  "identityVerificationTextButtonRetake": "Retake",
+  "@identityVerificationTextButtonRetake": {
+    "description": " "
+  },
+  "identityVerificationDesTakePhotoTheSystem": "The system has detected an irregularity.\nEnsure your face is within the frame and no one else is near the camera.",
+  "@identityVerificationDesTakePhotoTheSystem": {
+    "description": " "
+  },
+  "identityVerificationTitleFaceUnsuccess": "Face verification unsuccessful",
+  "@identityVerificationTitleFaceUnsuccess": {
+    "description": " "
+  },
+  "identityVerificationDesFaceUnsuccess": "Your face verification has failed due to a mismatch with the document photo.\nFor more information, please contact customer service available 24 hours daily.",
+  "@identityVerificationDesFaceUnsuccess": {
+    "description": " "
+  },
+  "identityVerificationTextButtonContact": "Contact Us",
+  "@identityVerificationTextButtonContact": {
+    "description": " "
+  },
+  "homeAlertInfoVerifyAccountToReceiveSuccess": "เงินเข้าบัญชีของท่านเรียบร้อยแล้ว!",
+  "@homeAlertInfoVerifyAccountToReceiveSuccess": {
+    "description": " "
+  },
+  "homeAlertInfoVerifyAccountToReceiveFail": "Sorry, this transaction cannot be made.",
+  "@homeAlertInfoVerifyAccountToReceiveFail": {
+    "description": " "
+  },
+  "identityVerificationTitleFaceVerification": "Face Verification",
+  "@identityVerificationTitleFaceVerification": {
+    "description": " "
+  },
+  "identityVerificationDesFaceVerifacation": "Prepare for your face liveness capture.\nFollow instructions below.",
+  "@identityVerificationDesFaceVerifacation": {
+    "description": " "
+  },
+  "identityVerificationDesFaceVerifacationOneStep": "Do not wear hats, glasses, masks or headphones.",
+  "@identityVerificationDesFaceVerifacationOneStep": {
+    "description": " "
+  },
+  "identityVerificationDesFaceVerifacationTwoStep": "Make sure that your background is not too bright or too dark and avoid backlighting.",
+  "@identityVerificationDesFaceVerifacationTwoStep": {
+    "description": " "
+  },
+  "identityVerificationDesFaceVerifacationThreeStep": "Keep the face within the frame.",
+  "@identityVerificationDesFaceVerifacationThreeStep": {
+    "description": " "
+  },
+  "identityVerificationTextButtonOpenCamera": "Open Camera",
+  "@identityVerificationTextButtonOpenCamera": {
+    "description": " "
+  },
+  "transactionDetailHeaderTitle": "Detail",
+  "@transactionDetailHeaderTitle": {
+    "description": " "
+  },
+  "transactionDetailAlertInfoSavedSuccess": "Receipt saved successfully",
+  "@transactionDetailAlertInfoSavedSuccess": {
+    "description": " "
+  },
+  "transactionDetailAlertInfoErrorSystem": "Sorry, system has encountered error. Please try again.",
+  "@transactionDetailAlertInfoErrorSystem": {
+    "description": " "
+  },
+  "transactionDetailHeaderTitleTypeReceive": "Receive",
+  "@transactionDetailHeaderTitleTypeReceive": {
+    "description": " "
+  },
+  "transactionDetailHeaderTitleTypeTransfer": "Transfer",
+  "@transactionDetailHeaderTitleTypeTransfer": {
+    "description": " "
+  },
+  "transactionDetailTotalAmountThb": "{amount} {currency}",
+  "@transactionDetailTotalAmountThb": {
+    "description": " ",
+    "placeholders": {
+      "amount": {},
+      "currency": {}
+    }
+  },
+  "transactionDetailFeeAmountThb": "Fee {amount} {currency}",
+  "@transactionDetailFeeAmountThb": {
+    "description": " ",
+    "placeholders": {
+      "amount": {},
+      "currency": {}
+    }
+  },
+  "transactionDetailTextLabelFrom": "From",
+  "@transactionDetailTextLabelFrom": {
+    "description": " "
+  },
+  "transactionDetailTextLabelTo": "To",
+  "@transactionDetailTextLabelTo": {
+    "description": " "
+  },
+  "transactionDetailTextLabelStampDate": "Date&Time:",
+  "@transactionDetailTextLabelStampDate": {
+    "description": " "
+  },
+  "transactionDetailTextLabelTransId": "Transaction ID",
+  "@transactionDetailTextLabelTransId": {
+    "description": " "
+  },
+  "transactionDetailDesRecheckInfo": "Please verify the information and keep the slip for evidence.",
+  "@transactionDetailDesRecheckInfo": {
+    "description": " "
+  },
+  "transactionDetailDesCustomerContact": "Customer service contact 02-026-6679 operates 24 hours daily.",
+  "@transactionDetailDesCustomerContact": {
+    "description": " "
+  },
+  "transactionDetailTextInfoScanVerify": "Scan to Verify",
+  "@transactionDetailTextInfoScanVerify": {
+    "description": " "
+  },
+  "transactionDetailTextButtonSaveReceipt": "Save Receipt",
+  "@transactionDetailTextButtonSaveReceipt": {
+    "description": " "
+  },
+  "transactionDetailTextButtonGoHome": "Go to Home",
+  "@transactionDetailTextButtonGoHome": {
+    "description": " "
+  },
+  "transactionDetailTextCredit": "Powered by WiPay",
+  "@transactionDetailTextCredit": {
+    "description": " "
+  },
+  "transactionDetailHeaderTotal": "Total",
+  "@transactionDetailHeaderTotal": {
+    "description": " "
+  },
+  "transactionDetailHeaderAmountThb": "{amount} {currency}",
+  "@transactionDetailHeaderAmountThb": {
+    "description": " ",
+    "placeholders": {
+      "amount": {},
+      "currency": {}
+    }
+  },
+  "transactionDetailHeaderFeeAmountThb": "Fee {amount} {currency}",
+  "@transactionDetailHeaderFeeAmountThb": {
+    "description": " ",
+    "placeholders": {
+      "amount": {},
+      "currency": {}
+    }
+  },
+  "transactionDetailTextLabelType": "Transaction Type",
+  "@transactionDetailTextLabelType": {
+    "description": " "
+  },
+  "transactionDetailTextValueHoldAmount": "Hold Amount",
+  "@transactionDetailTextValueHoldAmount": {
+    "description": " "
+  },
+  "transactionDetailTextLabelPaymentChannel": "Payment Channel",
+  "@transactionDetailTextLabelPaymentChannel": {
+    "description": " "
+  },
+  "transactionDetailTextValueWallet": "Wi Wallet",
+  "@transactionDetailTextValueWallet": {
+    "description": " "
+  },
+  "transactionDetailTextLabelDate": "Date&Time",
+  "@transactionDetailTextLabelDate": {
+    "description": " "
+  },
+  "transactionDetailTextValueDate": "{date} {time}",
+  "@transactionDetailTextValueDate": {
+    "description": " ",
+    "placeholders": {
+      "date": {},
+      "time": {}
+    }
+  },
+  "settingMainMenuHistory": "History",
+  "@settingMainMenuHistory": {
+    "description": " "
+  },
+  "settingHeaderTitle": "Setting",
+  "@settingHeaderTitle": {
+    "description": " "
+  },
+  "settingMainMenuFingerprint": "Fingerprint / Face Recognition",
+  "@settingMainMenuFingerprint": {
+    "description": " "
+  },
+  "settingMainMenuOtp": "OTP Channel",
+  "@settingMainMenuOtp": {
+    "description": " "
+  },
+  "settingMainMenuChangePin": "Change PIN",
+  "@settingMainMenuChangePin": {
+    "description": " "
+  },
+  "settingMainMenuSelectLang": "Select Language",
+  "@settingMainMenuSelectLang": {
+    "description": " "
+  },
+  "settingMainMenuLockTrans": "Lock Transactions",
+  "@settingMainMenuLockTrans": {
+    "description": " "
+  },
+  "settingMainMenuTerms": "Terms & Conditions",
+  "@settingMainMenuTerms": {
+    "description": " "
+  },
+  "settingMainMenuContact": "Contact Us",
+  "@settingMainMenuContact": {
+    "description": " "
+  },
+  "settingMainMenuLogout": "Logout",
+  "@settingMainMenuLogout": {
+    "description": " "
+  },
+  "settingValueMainMenuFingerprintOn": "On",
+  "@settingValueMainMenuFingerprintOn": {
+    "description": " "
+  },
+  "settingValueMainMenuFingerprintOff": "Off",
+  "@settingValueMainMenuFingerprintOff": {
+    "description": " "
+  },
+  "settingValueMainMenuOtpSms": "SMS",
+  "@settingValueMainMenuOtpSms": {
+    "description": " "
+  },
+  "settingValueMainMenuOtpEmail": "Email",
+  "@settingValueMainMenuOtpEmail": {
+    "description": " "
+  },
+  "settingValueMainMenuSelectLangEn": "English",
+  "@settingValueMainMenuSelectLangEn": {
+    "description": " "
+  },
+  "settingValueMainMenuLockTransOn": "On",
+  "@settingValueMainMenuLockTransOn": {
+    "description": " "
+  },
+  "settingValueMainMenuLockTransOff": "Off",
+  "@settingValueMainMenuLockTransOff": {
+    "description": " "
+  },
+  "settingMainMenuAppearances": "Appearances",
+  "@settingMainMenuAppearances": {
+    "description": " "
+  },
+  "settingValueMainMenuAppearDark": "Dark",
+  "@settingValueMainMenuAppearDark": {
+    "description": " "
+  },
+  "settingValueMainMenuAppearLight": "Light",
+  "@settingValueMainMenuAppearLight": {
+    "description": " "
+  },
+  "settingTextVerAppWiWallet": "Wi Wallet",
+  "@settingTextVerAppWiWallet": {
+    "description": " "
+  },
+  "historyHeaderTitle": "History",
+  "@historyHeaderTitle": {
+    "description": " "
+  },
+  "identityVerificationTitleError": "Error",
+  "@identityVerificationTitleError": {
+    "description": " "
+  },
+  "identityVerificationDesErrorSystem": "Sorry, system has encountered error.please contact customer service available 24 hours daily.",
+  "@identityVerificationDesErrorSystem": {
+    "description": " "
+  },
+  "identityVerificationTitleCompareFace": "Comparing face...",
+  "@identityVerificationTitleCompareFace": {
+    "description": " "
+  },
+  "identityVerificationDesCompareFace": "Please wait for a moment.",
+  "@identityVerificationDesCompareFace": {
+    "description": " "
+  },
+  "identityVerificationTitleKeepLookingStraight": "Keep looking straight.",
+  "@identityVerificationTitleKeepLookingStraight": {
+    "description": " "
+  },
+  "identityVerificationTitleTurnLeft": "Turn left and hold.",
+  "@identityVerificationTitleTurnLeft": {
+    "description": " "
+  },
+  "identityVerificationTitleTurnRight": "Turn Right and hold.",
+  "@identityVerificationTitleTurnRight": {
+    "description": " "
+  },
+  "historyDrawerSelectMonth": "Select Month",
+  "@historyDrawerSelectMonth": {
+    "description": " "
+  },
+  "transferHeaderTitleTransfer": "โอนเงิน",
+  "@transferHeaderTitleTransfer": {
+    "description": " "
+  },
+  "transferInputLabelAmount": "Amount",
+  "@transferInputLabelAmount": {
+    "description": " "
+  },
+  "transferInputInfoMinimumTransfer": "You need to transfer at least {amount} {currency}.",
+  "@transferInputInfoMinimumTransfer": {
+    "description": " ",
+    "placeholders": {
+      "amount": {},
+      "currency": {}
+    }
+  },
+  "transferInputLabelFrom": "From",
+  "@transferInputLabelFrom": {
+    "description": " "
+  },
+  "transferCardFromTitleYourWiWallet": "Your Wi Wallet",
+  "@transferCardFromTitleYourWiWallet": {
+    "description": " "
+  },
+  "transferCardFromValueTotalBalance": "Total Balance:",
+  "@transferCardFromValueTotalBalance": {
+    "description": " "
+  },
+  "transferCardFromValueAmount": "฿ {amount}",
+  "@transferCardFromValueAmount": {
+    "description": " ",
+    "placeholders": {
+      "amount": {}
+    }
+  },
+  "transferCardLabelTo": "To",
+  "@transferCardLabelTo": {
+    "description": " "
+  },
+  "transferCardToValueSelectAccType": "Select Account Type",
+  "@transferCardToValueSelectAccType": {
+    "description": " "
+  },
+  "transferInputLabelObjective": "Objective",
+  "@transferInputLabelObjective": {
+    "description": " "
+  },
+  "transferInputLabelNote": "(optional)",
+  "@transferInputLabelNote": {
+    "description": " "
+  },
+  "transferInputPlaceholderEnterNote": "Objective of Transfer",
+  "@transferInputPlaceholderEnterNote": {
+    "description": " "
+  },
+  "transferTextButtonReview": "Review",
+  "@transferTextButtonReview": {
+    "description": " "
+  },
+  "transferDrawerHeaderTitleSelectAccType": "Select Account Type",
+  "@transferDrawerHeaderTitleSelectAccType": {
+    "description": " "
+  },
+  "transferDrawerLabelOtherWallet": "Other Wi Wallets",
+  "@transferDrawerLabelOtherWallet": {
+    "description": " "
+  },
+  "transferDrawerSelectValueWallet": "Wi Wallet",
+  "@transferDrawerSelectValueWallet": {
+    "description": " "
+  },
+  "transferDrawerLabelPromptPayThai": "PromptPay Thai",
+  "@transferDrawerLabelPromptPayThai": {
+    "description": " "
+  },
+  "transferDrawerSelectValuePromptPay": "PromptPay",
+  "@transferDrawerSelectValuePromptPay": {
+    "description": " "
+  },
+  "transferDrawerLabelMobileBank": "Mobile Banking",
+  "@transferDrawerLabelMobileBank": {
+    "description": " "
+  },
+  "transferDrawerSelectValueSiamBank": "Siam Commercial Bank",
+  "@transferDrawerSelectValueSiamBank": {
+    "description": " "
+  },
+  "transferDrawerSelectValueBangkokBank": "Bangkok Bank Mobile Banking",
+  "@transferDrawerSelectValueBangkokBank": {
+    "description": " "
+  },
+  "transferDrawerSelectValueBankAyudhya": "Bank of Ayudhya",
+  "@transferDrawerSelectValueBankAyudhya": {
+    "description": " "
+  },
+  "transferDrawerSelectValueKasikornBank": "Kasikorn Bank",
+  "@transferDrawerSelectValueKasikornBank": {
+    "description": " "
+  },
+  "transferInputLabelAccountNumber": "Account Number",
+  "@transferInputLabelAccountNumber": {
+    "description": " "
+  },
+  "transferInputPlaceholderEnterAccount": "Enter account number",
+  "@transferInputPlaceholderEnterAccount": {
+    "description": " "
+  },
+  "transferDrawerHeaderTitleReview": "Review",
+  "@transferDrawerHeaderTitleReview": {
+    "description": " "
+  },
+  "transferDrawerWarningTitleRecheckInfo": "Please recheck information before proceeding",
+  "@transferDrawerWarningTitleRecheckInfo": {
+    "description": " "
+  },
+  "transferDrawerWarningInfoPreventFraud": "To prevent wrong account transfers or fraudulent activities. It cannot be changed once confirmed.",
+  "@transferDrawerWarningInfoPreventFraud": {
+    "description": " "
+  },
+  "transferDrawerDetailTotal": "Total",
+  "@transferDrawerDetailTotal": {
+    "description": " "
+  },
+  "transferDrawerDetailAmountThb": "{amount} {currency}",
+  "@transferDrawerDetailAmountThb": {
+    "description": " ",
+    "placeholders": {
+      "amount": {},
+      "currency": {}
+    }
+  },
+  "transferDrawerDetailFeeAmountThb": "Fee {amount} {currency}",
+  "@transferDrawerDetailFeeAmountThb": {
+    "description": " ",
+    "placeholders": {
+      "amount": {},
+      "currency": {}
+    }
+  },
+  "transferDrawerDetailFrom": "From",
+  "@transferDrawerDetailFrom": {
+    "description": " "
+  },
+  "transferDrawerDetailValueYourWallet": "Your Wi Wallet",
+  "@transferDrawerDetailValueYourWallet": {
+    "description": " "
+  },
+  "transferDrawerDetailMobileNumber": "Mobile Number",
+  "@transferDrawerDetailMobileNumber": {
+    "description": " "
+  },
+  "transferDrawerDetailTo": "To",
+  "@transferDrawerDetailTo": {
+    "description": " "
+  },
+  "transferDrawerDetailToValue": "{bank}",
+  "@transferDrawerDetailToValue": {
+    "description": " ",
+    "placeholders": {
+      "bank": {}
+    }
+  },
+  "transferDrawerDetailAccountName": "Account Name",
+  "@transferDrawerDetailAccountName": {
+    "description": " "
+  },
+  "transferDrawerDetailAccountNameValue": "{accountname}",
+  "@transferDrawerDetailAccountNameValue": {
+    "description": " ",
+    "placeholders": {
+      "accountname": {}
+    }
+  },
+  "transferDrawerDetailMobileNumberValue": "{mobilenumber}",
+  "@transferDrawerDetailMobileNumberValue": {
+    "description": " ",
+    "placeholders": {
+      "mobilenumber": {}
+    }
+  },
+  "transferDrawerDetailAccountNumber": "Account Number",
+  "@transferDrawerDetailAccountNumber": {
+    "description": " "
+  },
+  "transferDrawerDetailAccountNumberValue": "{accountnumber}",
+  "@transferDrawerDetailAccountNumberValue": {
+    "description": " ",
+    "placeholders": {
+      "accountnumber": {}
+    }
+  },
+  "transferDrawerLabelObject": "Objective",
+  "@transferDrawerLabelObject": {
+    "description": " "
+  },
+  "transferDrawerTextButtonConfirm": "Confirm",
+  "@transferDrawerTextButtonConfirm": {
+    "description": " "
+  },
+  "transferModalTitleInsufficientBalance": "Insufficient Balance",
+  "@transferModalTitleInsufficientBalance": {
+    "description": " "
+  },
+  "transferModalDesDepositBalance": "You don’t have enough balance on Wi Wallet. Please deposit the balance.",
+  "@transferModalDesDepositBalance": {
+    "description": " "
+  },
+  "transferModalTextButtonCancel": "Cancel",
+  "@transferModalTextButtonCancel": {
+    "description": " "
+  },
+  "transferModalTextButtonConfirm": "Confirm",
+  "@transferModalTextButtonConfirm": {
+    "description": " "
+  },
+  "transferModalTitleErrorAccountNumber": "Error",
+  "@transferModalTitleErrorAccountNumber": {
+    "description": " "
+  },
+  "transferModalDescriptionErrorIncorrectAccount": "Sorry, the system has encountered an error. The destination account number is incorrect. Please contact customer service, available 24 hours daily.",
+  "@transferModalDescriptionErrorIncorrectAccount": {
+    "description": " "
+  },
+  "transferModalTextButtonOk": "OK",
+  "@transferModalTextButtonOk": {
+    "description": " "
+  },
+  "transferModalTitleErrorSystem": "Error",
+  "@transferModalTitleErrorSystem": {
+    "description": " "
+  },
+  "transferModalDescriptionSystemErrorTry": "Sorry, system has encountered error. Please try again.",
+  "@transferModalDescriptionSystemErrorTry": {
+    "description": " "
+  },
+  "scanHeaderTitle": "Scan",
+  "@scanHeaderTitle": {
+    "description": " "
+  },
+  "scanInfoHoldCamera": "Hold the camera to scan a QR code.",
+  "@scanInfoHoldCamera": {
+    "description": " "
+  },
+  "scanButtonLeftFlash": "Flash",
+  "@scanButtonLeftFlash": {
+    "description": " "
+  },
+  "scanButtonRightPhoto": "Photo",
+  "@scanButtonRightPhoto": {
+    "description": " "
+  },
+  "homeModalTitlePinIncorrectError": "Error",
+  "@homeModalTitlePinIncorrectError": {
+    "description": " "
+  },
+  "homeModalDesPinIncorrectError": "The system encountered an error because you entered the PIN incorrectly too many times. Please contact customer service available 24 hours daily.",
+  "@homeModalDesPinIncorrectError": {
+    "description": " "
+  },
+  "homeModalTextButtonContact": "Contact Us",
+  "@homeModalTextButtonContact": {
+    "description": " "
+  },
+  "homeAlertInfoErrorSystem": "Sorry, system has encountered error. Please try again.",
+  "@homeAlertInfoErrorSystem": {
+    "description": " "
+  },
+  "homeDrawerHeaderTitleBalanceDetail": "Balance Detail",
+  "@homeDrawerHeaderTitleBalanceDetail": {
+    "description": " "
+  },
+  "homeDrawerDetailTotalBalance": "Available Balance",
   "@homeDrawerDetailTotalBalance": {
-    "description": "Label for total balance section"
+    "description": " "
   },
-  "availableBalance": "ยอดคงเหลือ",
-  "@availableBalance": {
-    "description": "Label for available balance section"
+  "homeDrawerDetailAmountTotalBalanceThb": "{amount} {currency}",
+  "@homeDrawerDetailAmountTotalBalanceThb": {
+    "description": " ",
+    "placeholders": {
+      "amount": {},
+      "currency": {}
+    }
   },
-  "primaryButton": "ปุ่มหลัก",
+  "homeDrawerDetailHoldAmount": "Hold Amount*",
+  "@homeDrawerDetailHoldAmount": {
+    "description": " "
+  },
+  "homeDrawerDetailHoldAmountThb": "{amount} {currency}",
+  "@homeDrawerDetailHoldAmountThb": {
+    "description": " ",
+    "placeholders": {
+      "amount": {},
+      "currency": {}
+    }
+  },
+  "homeDrawerDetailLedgerBalance": "Ledger Balance",
+  "@homeDrawerDetailLedgerBalance": {
+    "description": " "
+  },
+  "homeDrawerDetailLedgerBalanceThb": "{amount} {currency}",
+  "@homeDrawerDetailLedgerBalanceThb": {
+    "description": " ",
+    "placeholders": {
+      "amount": {},
+      "currency": {}
+    }
+  },
+  "homeDrawerWarningInfoHoldAmount": "*Hold Amount means they aren't immediately available for use. Please contact our customer support team for more details and to process the next steps.",
+  "@homeDrawerWarningInfoHoldAmount": {
+    "description": " "
+  },
+  "homeDrawerTextButtonBalanceDetailOk": "OK",
+  "@homeDrawerTextButtonBalanceDetailOk": {
+    "description": " "
+  },
+  "historyCardListItemTitleReserveAmount": "Reserve Hold Amount",
+  "@historyCardListItemTitleReserveAmount": {
+    "description": " "
+  },
+  "historyCardListItemTitleHoldAmount": "Hold Amount",
+  "@historyCardListItemTitleHoldAmount": {
+    "description": " "
+  },
+  "announcement": "Announcement",
+  "@announcement": {
+    "description": " "
+  },
+  "primaryButton": "Primary Button",
   "@primaryButton": {
-    "description": "Label for primary button examples"
+    "description": " "
   },
-  "secondaryButton": "ปุ่มรอง",
+  "secondaryButton": "Secondary Button",
   "@secondaryButton": {
-    "description": "Label for secondary button examples"
+    "description": " "
   },
-  "primaryEnabled": "ปุ่มหลักเปิดใช้งาน",
-  "@primaryEnabled": {
-    "description": "Label for enabled primary button"
-  },
-  "secondaryEnabled": "ปุ่มรองเปิดใช้งาน",
-  "@secondaryEnabled": {
-    "description": "Label for enabled secondary button"
-  },
-  "secondaryDisabled": "ปุ่มรองปิดใช้งาน",
-  "@secondaryDisabled": {
-    "description": "Label for disabled secondary button"
-  },
-  "amountEnabled": "ปุ่มจำนวนเงินเปิดใช้งาน",
-  "@amountEnabled": {
-    "description": "Label for amount entry enabled state"
-  },
-  "cardReviewPreviewTitle": "ตัวอย่างตรวจสอบรายการ",
+  "cardReviewPreviewTitle": "Review Transaction",
   "@cardReviewPreviewTitle": {
-    "description": "Title for card review transaction preview"
-  },
-  "cardReviewTotalLabel": "ยอดรวม",
-  "@cardReviewTotalLabel": {
-    "description": "Label for total amount"
-  },
-  "cardReviewTotalAmountMock": "5,000.00",
-  "@cardReviewTotalAmountMock": {
-    "description": "Mock total amount value"
-  },
-  "cardReviewCurrencyMock": "THB",
-  "@cardReviewCurrencyMock": {
-    "description": "Mock currency code"
-  },
-  "cardReviewFeeLabel": "ค่าธรรมเนียม",
-  "@cardReviewFeeLabel": {
-    "description": "Label for fee amount"
-  },
-  "cardReviewFeeAmountMock": "0.00",
-  "@cardReviewFeeAmountMock": {
-    "description": "Mock fee amount value"
-  },
-  "cardReviewFromLabel": "จาก",
-  "@cardReviewFromLabel": {
-    "description": "Label for source account"
-  },
-  "cardReviewFromValueMock": "กระเป๋าเงินของคุณ",
-  "@cardReviewFromValueMock": {
-    "description": "Mock source account value"
-  },
-  "cardReviewMobileLabel": "เบอร์มือถือ",
-  "@cardReviewMobileLabel": {
-    "description": "Label for mobile number"
-  },
-  "cardReviewMobileValueMock": "081-141-1234",
-  "@cardReviewMobileValueMock": {
-    "description": "Mock mobile number value"
-  },
-  "cardReviewToLabel": "ไปยัง",
-  "@cardReviewToLabel": {
-    "description": "Label for destination account"
-  },
-  "cardReviewToValueMock": "ธนาคารไทยพาณิชย์",
-  "@cardReviewToValueMock": {
-    "description": "Mock destination account value"
-  },
-  "cardReviewAccountNameLabel": "ชื่อบัญชี",
-  "@cardReviewAccountNameLabel": {
-    "description": "Label for account name"
-  },
-  "cardReviewAccountNameValueMock": "Victor Von Doom",
-  "@cardReviewAccountNameValueMock": {
-    "description": "Mock account name value"
-  },
-  "cardReviewAccountNumberLabel": "เลขที่บัญชี",
-  "@cardReviewAccountNumberLabel": {
-    "description": "Label for account number"
-  },
-  "cardReviewAccountNumberValueMock": "1234567890",
-  "@cardReviewAccountNumberValueMock": {
-    "description": "Mock account number value"
-  },
-  "mobileNumberPlaceholder": "เบอร์มือถือ",
-  "@mobileNumberPlaceholder": {
-    "description": "Placeholder for mobile number input"
-  },
-  "noResultsFound": "ไม่พบผลการค้นหา",
-  "@noResultsFound": {
-    "description": "Empty state text when no results are found"
-  },
-  "pleaseTryAgain": "กรุณาลองใหม่อีกครั้ง",
-  "@pleaseTryAgain": {
-    "description": "Prompt to retry after a failure"
+    "description": " "
   }
 }

@@ -61,9 +61,11 @@ Thank you for your interest in contributing! 🎉
 
 ### Localization
 
-- Add translations to all ARB files
+### Localization
+
+- Add translations to `localization.json`
+- Run `dart run tool/generate_arb.dart` to update ARB files
 - Use descriptive keys
-- Include `@key` metadata with descriptions
 - Test with all supported languages
 
 ## 🛠️ Development Tools
@@ -74,7 +76,7 @@ We use Widgetbook for UI component development and testing.
 - **Update:** Run `dart run build_runner build` after adding new use cases.
 
 ### Code Generation
-- **Localization:** `flutter gen-l10n`
+- **Localization:** `dart run tool/generate_arb.dart` then `flutter gen-l10n`
 - **Build Runner:** `dart run build_runner build --delete-conflicting-outputs`
 
 ## Testing

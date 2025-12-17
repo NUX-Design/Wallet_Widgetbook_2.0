@@ -104,263 +104,1241 @@ abstract class AppLocalizations {
     Locale('zh'),
   ];
 
-  /// Greeting headline on the home screen
   ///
-  /// In en, this message translates to:
-  /// **'Welcome'**
-  String get welcome_message;
-
-  /// Short greeting text
-  ///
-  /// In en, this message translates to:
-  /// **'Hello'**
-  String get greeting;
-
-  /// Farewell text
-  ///
-  /// In en, this message translates to:
-  /// **'Goodbye'**
-  String get farewell;
-
-  /// Application name shown in titles
-  ///
-  /// In en, this message translates to:
-  /// **'Test App'**
-  String get app_name;
-
-  /// Label for light theme option
-  ///
-  /// In en, this message translates to:
-  /// **'Light'**
-  String get light_theme;
-
-  /// Label for dark theme option
-  ///
-  /// In en, this message translates to:
-  /// **'Dark'**
-  String get dark_theme;
-
-  /// Navigation label for Home tab
-  ///
-  /// In en, this message translates to:
-  /// **'Home'**
-  String get navigatorHome;
-
-  /// Navigation label for Deposit tab
   ///
   /// In en, this message translates to:
   /// **'Deposit'**
-  String get navigatorHomeDeposit;
+  String get headerDeposit;
 
-  /// Navigation label for Convert tab
+  ///
   ///
   /// In en, this message translates to:
-  /// **'Convert'**
-  String get navigatorHomeConvert;
+  /// **'Amount'**
+  String get labelDepositAmount;
 
-  /// Navigation label for Setting tab
+  ///
   ///
   /// In en, this message translates to:
-  /// **'Setting'**
-  String get navigatorHomeSetting;
+  /// **'You need to deposit at least {amount} {currency}.'**
+  String infomationDeposit(Object amount, Object currency);
 
-  /// Action label for transferring funds
+  ///
   ///
   /// In en, this message translates to:
-  /// **'Transfer'**
-  String get transfer;
+  /// **'{amount}'**
+  String depositTextButtonAmount(Object amount);
 
-  /// Action label for topping up balance
+  ///
   ///
   /// In en, this message translates to:
-  /// **'Top Up'**
-  String get top_up;
+  /// **'From'**
+  String get titleDepositFrom;
 
-  /// Action label for paying bills
+  ///
   ///
   /// In en, this message translates to:
-  /// **'Bill'**
-  String get bill;
+  /// **'Mobile Banking'**
+  String get labelDepositMobileBanking;
 
-  /// Section title for announcements
+  ///
   ///
   /// In en, this message translates to:
-  /// **'Announcement'**
-  String get announcement;
+  /// **'Siam Commercial Bank'**
+  String get valueDepositSCB;
 
-  /// Button text to view all items
+  ///
   ///
   /// In en, this message translates to:
-  /// **'View all'**
-  String get viewAll;
+  /// **'Bangkok Bank Mobile Banking'**
+  String get valueDepositBbl;
 
-  /// Label for available balance section
+  ///
   ///
   /// In en, this message translates to:
-  /// **'Available Balance'**
-  String get availableBalance;
+  /// **'Bank of Ayudhya'**
+  String get valueDepositBay;
 
-  /// Label for available balance section
+  ///
+  ///
+  /// In en, this message translates to:
+  /// **'To'**
+  String get titleDepositTo;
+
+  ///
+  ///
+  /// In en, this message translates to:
+  /// **'Your Wi Wallet'**
+  String get labelDepositWiWallet;
+
+  ///
+  ///
+  /// In en, this message translates to:
+  /// **'Total Balance:'**
+  String get labelDepositTotalBalance;
+
+  ///
+  ///
+  /// In en, this message translates to:
+  /// **'Confirm'**
+  String get textButtonDepositConfirm;
+
+  ///
+  ///
+  /// In en, this message translates to:
+  /// **'Mobile Number'**
+  String get titleDrawerMobileNumber;
+
+  ///
+  ///
+  /// In en, this message translates to:
+  /// **'Search'**
+  String get placeholderDrawerSearch;
+
+  ///
   ///
   /// In en, this message translates to:
   /// **'Available Balance'**
   String get labelHomeTotalBalance;
 
-  /// Label for total balance section
+  ///
+  ///
+  /// In en, this message translates to:
+  /// **'Manage'**
+  String get textButtonHomeManage;
+
+  ///
+  ///
+  /// In en, this message translates to:
+  /// **'Cards'**
+  String get titleHomeCards;
+
+  ///
+  ///
+  /// In en, this message translates to:
+  /// **'Services'**
+  String get titleHomeServices;
+
+  ///
+  ///
+  /// In en, this message translates to:
+  /// **'Transfer'**
+  String get shortcutMenuHomeTransfer;
+
+  ///
+  ///
+  /// In en, this message translates to:
+  /// **'More'**
+  String get shortcutMenuHomeMore;
+
+  ///
+  ///
+  /// In en, this message translates to:
+  /// **'Bill'**
+  String get shortcutMenuHomeBill;
+
+  ///
+  ///
+  /// In en, this message translates to:
+  /// **'Wi Coin'**
+  String get shortcutMenuHomeWiCoin;
+
+  ///
+  ///
+  /// In en, this message translates to:
+  /// **'Highlight'**
+  String get titleHomeHighlight;
+
+  ///
+  ///
+  /// In en, this message translates to:
+  /// **'Home'**
+  String get navigatorHome;
+
+  ///
+  ///
+  /// In en, this message translates to:
+  /// **'Deposit'**
+  String get navigatorHomeDeposit;
+
+  ///
+  ///
+  /// In en, this message translates to:
+  /// **'Convert'**
+  String get navigatorHomeConvert;
+
+  ///
+  ///
+  /// In en, this message translates to:
+  /// **'Setting'**
+  String get navigatorHomeSetting;
+
+  ///
+  ///
+  /// In en, this message translates to:
+  /// **'View all'**
+  String get labelHomeViewAll;
+
+  ///
+  ///
+  /// In en, this message translates to:
+  /// **'You have received {amount} {currency}. Please verify face to receive this amount which will incur fee in your wallet.'**
+  String homeAnnounceVerifyFaceToReceive(Object amount, Object currency);
+
+  ///
+  ///
+  /// In en, this message translates to:
+  /// **'Deposit Channel'**
+  String get titleDrawerDepositChannel;
+
+  ///
+  ///
+  /// In en, this message translates to:
+  /// **'Mobile Banking'**
+  String get labelDrawerMobileBanking;
+
+  ///
+  ///
+  /// In en, this message translates to:
+  /// **'Siam Commercial Bank'**
+  String get valueDrawerScb;
+
+  ///
+  ///
+  /// In en, this message translates to:
+  /// **'Bangkok Bank Mobile Banking'**
+  String get valueDrawerBbl;
+
+  ///
+  ///
+  /// In en, this message translates to:
+  /// **'Bank of Ayudhya'**
+  String get valueDrawerBay;
+
+  ///
+  ///
+  /// In en, this message translates to:
+  /// **'Kasikorn Bank'**
+  String get valueDrawerKbank;
+
+  ///
+  ///
+  /// In en, this message translates to:
+  /// **'Enter Mobile Number'**
+  String get titleDepositEnterMobileNumber;
+
+  ///
+  ///
+  /// In en, this message translates to:
+  /// **'Enter the mobile number registered in Kasikorn\nBank account for deposit.'**
+  String get descriptionDepositEnterMobileNumberKbank;
+
+  ///
+  ///
+  /// In en, this message translates to:
+  /// **'Mobile Number'**
+  String get placeholderDepositMobileNumber;
+
+  ///
+  ///
+  /// In en, this message translates to:
+  /// **'Error'**
+  String get titleModalError;
+
+  ///
+  ///
+  /// In en, this message translates to:
+  /// **'Sorry, system has encountered error. Please try again.'**
+  String get descriptionModalErrorSystem;
+
+  ///
+  ///
+  /// In en, this message translates to:
+  /// **'OK'**
+  String get textButtonModalOk;
+
+  ///
+  ///
+  /// In en, this message translates to:
+  /// **'Waiting for Payment'**
+  String get titleDepositKplusWaitingForPayment;
+
+  ///
+  ///
+  /// In en, this message translates to:
+  /// **'Please wait for notification to open\nK PLUS application. If you do not receive the\nnotification, you can check Inbox on your\nK PLUS.'**
+  String get descriptionDepositKplusNotification;
+
+  ///
+  ///
+  /// In en, this message translates to:
+  /// **'Please complete the process\nwithin {time} minutes.'**
+  String infomationDepositKplusTimeLimit(Object time);
+
+  ///
+  ///
+  /// In en, this message translates to:
+  /// **'Kasikorn Bank'**
+  String get valueDepositKplus;
+
+  ///
+  ///
+  /// In en, this message translates to:
+  /// **'Transaction Type'**
+  String get labelDepositKplusTransactionType;
+
+  ///
+  ///
+  /// In en, this message translates to:
+  /// **'Deposit'**
+  String get labelDepositKplus;
+
+  ///
+  ///
+  /// In en, this message translates to:
+  /// **'Mobile Number'**
+  String get labelDepositKplusMobileNumber;
+
+  ///
+  ///
+  /// In en, this message translates to:
+  /// **'Transaction No.'**
+  String get labelDepositKplusTransactionNo;
+
+  ///
+  ///
+  /// In en, this message translates to:
+  /// **'Date & Time'**
+  String get labelDepositKplusDateTime;
+
+  ///
+  ///
+  /// In en, this message translates to:
+  /// **'Open in KPLUS'**
+  String get textButtonDepositKplusOpen;
+
+  ///
+  ///
+  /// In en, this message translates to:
+  /// **'Deposit'**
+  String get fieldValueDepositKplus;
+
+  ///
+  ///
+  /// In en, this message translates to:
+  /// **'No results found'**
+  String get titleDrawerEmptyNoResultsFound;
+
+  ///
+  ///
+  /// In en, this message translates to:
+  /// **'Please try again'**
+  String get descriptionDrawerEmptyTryAgain;
+
+  ///
+  ///
+  /// In en, this message translates to:
+  /// **'General'**
+  String get inboxTabMenuGeneral;
+
+  ///
+  ///
+  /// In en, this message translates to:
+  /// **'For You'**
+  String get inboxTabMenuForYou;
+
+  ///
+  ///
+  /// In en, this message translates to:
+  /// **'Receive'**
+  String get inboxDetailHeaderTitleReceive;
+
+  ///
+  ///
+  /// In en, this message translates to:
+  /// **'Verify Face'**
+  String get inboxTextButtonVerifyFace;
+
+  ///
+  ///
+  /// In en, this message translates to:
+  /// **'Identity Verification'**
+  String get identityVerificationHeaderTitle;
+
+  ///
+  ///
+  /// In en, this message translates to:
+  /// **'Take photos of face again.'**
+  String get identityVerificationTitleTakePhoto;
+
+  ///
+  ///
+  /// In en, this message translates to:
+  /// **'You cannot make it in time. Please follow the instruction and take new photos.'**
+  String get identityVerificationDesTakePhotoCannotMakeInTime;
+
+  ///
+  ///
+  /// In en, this message translates to:
+  /// **'Retake'**
+  String get identityVerificationTextButtonRetake;
+
+  ///
+  ///
+  /// In en, this message translates to:
+  /// **'The system has detected an irregularity.\nEnsure your face is within the frame and no one else is near the camera.'**
+  String get identityVerificationDesTakePhotoTheSystem;
+
+  ///
+  ///
+  /// In en, this message translates to:
+  /// **'Face verification unsuccessful'**
+  String get identityVerificationTitleFaceUnsuccess;
+
+  ///
+  ///
+  /// In en, this message translates to:
+  /// **'Your face verification has failed due to a mismatch with the document photo.\nFor more information, please contact customer service available 24 hours daily.'**
+  String get identityVerificationDesFaceUnsuccess;
+
+  ///
+  ///
+  /// In en, this message translates to:
+  /// **'Contact Us'**
+  String get identityVerificationTextButtonContact;
+
+  ///
+  ///
+  /// In en, this message translates to:
+  /// **'Your account has been credited successfully!'**
+  String get homeAlertInfoVerifyAccountToReceiveSuccess;
+
+  ///
+  ///
+  /// In en, this message translates to:
+  /// **'Sorry, this transaction cannot be made.'**
+  String get homeAlertInfoVerifyAccountToReceiveFail;
+
+  ///
+  ///
+  /// In en, this message translates to:
+  /// **'Face Verification'**
+  String get identityVerificationTitleFaceVerification;
+
+  ///
+  ///
+  /// In en, this message translates to:
+  /// **'Prepare for your face liveness capture.\nFollow instructions below.'**
+  String get identityVerificationDesFaceVerifacation;
+
+  ///
+  ///
+  /// In en, this message translates to:
+  /// **'Do not wear hats, glasses, masks or headphones.'**
+  String get identityVerificationDesFaceVerifacationOneStep;
+
+  ///
+  ///
+  /// In en, this message translates to:
+  /// **'Make sure that your background is not too bright or too dark and avoid backlighting.'**
+  String get identityVerificationDesFaceVerifacationTwoStep;
+
+  ///
+  ///
+  /// In en, this message translates to:
+  /// **'Keep the face within the frame.'**
+  String get identityVerificationDesFaceVerifacationThreeStep;
+
+  ///
+  ///
+  /// In en, this message translates to:
+  /// **'Open Camera'**
+  String get identityVerificationTextButtonOpenCamera;
+
+  ///
+  ///
+  /// In en, this message translates to:
+  /// **'Detail'**
+  String get transactionDetailHeaderTitle;
+
+  ///
+  ///
+  /// In en, this message translates to:
+  /// **'Receipt saved successfully'**
+  String get transactionDetailAlertInfoSavedSuccess;
+
+  ///
+  ///
+  /// In en, this message translates to:
+  /// **'Sorry, system has encountered error. Please try again.'**
+  String get transactionDetailAlertInfoErrorSystem;
+
+  ///
+  ///
+  /// In en, this message translates to:
+  /// **'Receive'**
+  String get transactionDetailHeaderTitleTypeReceive;
+
+  ///
+  ///
+  /// In en, this message translates to:
+  /// **'Transfer'**
+  String get transactionDetailHeaderTitleTypeTransfer;
+
+  ///
+  ///
+  /// In en, this message translates to:
+  /// **'{amount} {currency}'**
+  String transactionDetailTotalAmountThb(Object amount, Object currency);
+
+  ///
+  ///
+  /// In en, this message translates to:
+  /// **'Fee {amount} {currency}'**
+  String transactionDetailFeeAmountThb(Object amount, Object currency);
+
+  ///
+  ///
+  /// In en, this message translates to:
+  /// **'From'**
+  String get transactionDetailTextLabelFrom;
+
+  ///
+  ///
+  /// In en, this message translates to:
+  /// **'To'**
+  String get transactionDetailTextLabelTo;
+
+  ///
+  ///
+  /// In en, this message translates to:
+  /// **'Date&Time:'**
+  String get transactionDetailTextLabelStampDate;
+
+  ///
+  ///
+  /// In en, this message translates to:
+  /// **'Transaction ID'**
+  String get transactionDetailTextLabelTransId;
+
+  ///
+  ///
+  /// In en, this message translates to:
+  /// **'Please verify the information and keep the slip for evidence.'**
+  String get transactionDetailDesRecheckInfo;
+
+  ///
+  ///
+  /// In en, this message translates to:
+  /// **'Customer service contact 02-026-6679 operates 24 hours daily.'**
+  String get transactionDetailDesCustomerContact;
+
+  ///
+  ///
+  /// In en, this message translates to:
+  /// **'Scan to Verify'**
+  String get transactionDetailTextInfoScanVerify;
+
+  ///
+  ///
+  /// In en, this message translates to:
+  /// **'Save Receipt'**
+  String get transactionDetailTextButtonSaveReceipt;
+
+  ///
+  ///
+  /// In en, this message translates to:
+  /// **'Go to Home'**
+  String get transactionDetailTextButtonGoHome;
+
+  ///
+  ///
+  /// In en, this message translates to:
+  /// **'Powered by WiPay'**
+  String get transactionDetailTextCredit;
+
+  ///
+  ///
+  /// In en, this message translates to:
+  /// **'Total'**
+  String get transactionDetailHeaderTotal;
+
+  ///
+  ///
+  /// In en, this message translates to:
+  /// **'{amount} {currency}'**
+  String transactionDetailHeaderAmountThb(Object amount, Object currency);
+
+  ///
+  ///
+  /// In en, this message translates to:
+  /// **'Fee {amount} {currency}'**
+  String transactionDetailHeaderFeeAmountThb(Object amount, Object currency);
+
+  ///
+  ///
+  /// In en, this message translates to:
+  /// **'Transaction Type'**
+  String get transactionDetailTextLabelType;
+
+  ///
+  ///
+  /// In en, this message translates to:
+  /// **'Hold Amount'**
+  String get transactionDetailTextValueHoldAmount;
+
+  ///
+  ///
+  /// In en, this message translates to:
+  /// **'Payment Channel'**
+  String get transactionDetailTextLabelPaymentChannel;
+
+  ///
+  ///
+  /// In en, this message translates to:
+  /// **'Wi Wallet'**
+  String get transactionDetailTextValueWallet;
+
+  ///
+  ///
+  /// In en, this message translates to:
+  /// **'Date&Time'**
+  String get transactionDetailTextLabelDate;
+
+  ///
+  ///
+  /// In en, this message translates to:
+  /// **'{date} {time}'**
+  String transactionDetailTextValueDate(Object date, Object time);
+
+  ///
+  ///
+  /// In en, this message translates to:
+  /// **'History'**
+  String get settingMainMenuHistory;
+
+  ///
+  ///
+  /// In en, this message translates to:
+  /// **'Setting'**
+  String get settingHeaderTitle;
+
+  ///
+  ///
+  /// In en, this message translates to:
+  /// **'Fingerprint / Face Recognition'**
+  String get settingMainMenuFingerprint;
+
+  ///
+  ///
+  /// In en, this message translates to:
+  /// **'OTP Channel'**
+  String get settingMainMenuOtp;
+
+  ///
+  ///
+  /// In en, this message translates to:
+  /// **'Change PIN'**
+  String get settingMainMenuChangePin;
+
+  ///
+  ///
+  /// In en, this message translates to:
+  /// **'Select Language'**
+  String get settingMainMenuSelectLang;
+
+  ///
+  ///
+  /// In en, this message translates to:
+  /// **'Lock Transactions'**
+  String get settingMainMenuLockTrans;
+
+  ///
+  ///
+  /// In en, this message translates to:
+  /// **'Terms & Conditions'**
+  String get settingMainMenuTerms;
+
+  ///
+  ///
+  /// In en, this message translates to:
+  /// **'Contact Us'**
+  String get settingMainMenuContact;
+
+  ///
+  ///
+  /// In en, this message translates to:
+  /// **'Logout'**
+  String get settingMainMenuLogout;
+
+  ///
+  ///
+  /// In en, this message translates to:
+  /// **'On'**
+  String get settingValueMainMenuFingerprintOn;
+
+  ///
+  ///
+  /// In en, this message translates to:
+  /// **'Off'**
+  String get settingValueMainMenuFingerprintOff;
+
+  ///
+  ///
+  /// In en, this message translates to:
+  /// **'SMS'**
+  String get settingValueMainMenuOtpSms;
+
+  ///
+  ///
+  /// In en, this message translates to:
+  /// **'Email'**
+  String get settingValueMainMenuOtpEmail;
+
+  ///
+  ///
+  /// In en, this message translates to:
+  /// **'English'**
+  String get settingValueMainMenuSelectLangEn;
+
+  ///
+  ///
+  /// In en, this message translates to:
+  /// **'On'**
+  String get settingValueMainMenuLockTransOn;
+
+  ///
+  ///
+  /// In en, this message translates to:
+  /// **'Off'**
+  String get settingValueMainMenuLockTransOff;
+
+  ///
+  ///
+  /// In en, this message translates to:
+  /// **'Appearances'**
+  String get settingMainMenuAppearances;
+
+  ///
+  ///
+  /// In en, this message translates to:
+  /// **'Dark'**
+  String get settingValueMainMenuAppearDark;
+
+  ///
+  ///
+  /// In en, this message translates to:
+  /// **'Light'**
+  String get settingValueMainMenuAppearLight;
+
+  ///
+  ///
+  /// In en, this message translates to:
+  /// **'Wi Wallet'**
+  String get settingTextVerAppWiWallet;
+
+  ///
+  ///
+  /// In en, this message translates to:
+  /// **'History'**
+  String get historyHeaderTitle;
+
+  ///
+  ///
+  /// In en, this message translates to:
+  /// **'Error'**
+  String get identityVerificationTitleError;
+
+  ///
+  ///
+  /// In en, this message translates to:
+  /// **'Sorry, system has encountered error.please contact customer service available 24 hours daily.'**
+  String get identityVerificationDesErrorSystem;
+
+  ///
+  ///
+  /// In en, this message translates to:
+  /// **'Comparing face...'**
+  String get identityVerificationTitleCompareFace;
+
+  ///
+  ///
+  /// In en, this message translates to:
+  /// **'Please wait for a moment.'**
+  String get identityVerificationDesCompareFace;
+
+  ///
+  ///
+  /// In en, this message translates to:
+  /// **'Keep looking straight.'**
+  String get identityVerificationTitleKeepLookingStraight;
+
+  ///
+  ///
+  /// In en, this message translates to:
+  /// **'Turn left and hold.'**
+  String get identityVerificationTitleTurnLeft;
+
+  ///
+  ///
+  /// In en, this message translates to:
+  /// **'Turn Right and hold.'**
+  String get identityVerificationTitleTurnRight;
+
+  ///
+  ///
+  /// In en, this message translates to:
+  /// **'Select Month'**
+  String get historyDrawerSelectMonth;
+
+  ///
+  ///
+  /// In en, this message translates to:
+  /// **'Transfer'**
+  String get transferHeaderTitleTransfer;
+
+  ///
+  ///
+  /// In en, this message translates to:
+  /// **'Amount'**
+  String get transferInputLabelAmount;
+
+  ///
+  ///
+  /// In en, this message translates to:
+  /// **'You need to transfer at least {amount} {currency}.'**
+  String transferInputInfoMinimumTransfer(Object amount, Object currency);
+
+  ///
+  ///
+  /// In en, this message translates to:
+  /// **'From'**
+  String get transferInputLabelFrom;
+
+  ///
+  ///
+  /// In en, this message translates to:
+  /// **'Your Wi Wallet'**
+  String get transferCardFromTitleYourWiWallet;
+
+  ///
+  ///
+  /// In en, this message translates to:
+  /// **'Total Balance:'**
+  String get transferCardFromValueTotalBalance;
+
+  ///
+  ///
+  /// In en, this message translates to:
+  /// **'฿ {amount}'**
+  String transferCardFromValueAmount(Object amount);
+
+  ///
+  ///
+  /// In en, this message translates to:
+  /// **'To'**
+  String get transferCardLabelTo;
+
+  ///
+  ///
+  /// In en, this message translates to:
+  /// **'Select Account Type'**
+  String get transferCardToValueSelectAccType;
+
+  ///
+  ///
+  /// In en, this message translates to:
+  /// **'Objective'**
+  String get transferInputLabelObjective;
+
+  ///
+  ///
+  /// In en, this message translates to:
+  /// **'(optional)'**
+  String get transferInputLabelNote;
+
+  ///
+  ///
+  /// In en, this message translates to:
+  /// **'Objective of Transfer'**
+  String get transferInputPlaceholderEnterNote;
+
+  ///
+  ///
+  /// In en, this message translates to:
+  /// **'Review'**
+  String get transferTextButtonReview;
+
+  ///
+  ///
+  /// In en, this message translates to:
+  /// **'Select Account Type'**
+  String get transferDrawerHeaderTitleSelectAccType;
+
+  ///
+  ///
+  /// In en, this message translates to:
+  /// **'Other Wi Wallets'**
+  String get transferDrawerLabelOtherWallet;
+
+  ///
+  ///
+  /// In en, this message translates to:
+  /// **'Wi Wallet'**
+  String get transferDrawerSelectValueWallet;
+
+  ///
+  ///
+  /// In en, this message translates to:
+  /// **'PromptPay Thai'**
+  String get transferDrawerLabelPromptPayThai;
+
+  ///
+  ///
+  /// In en, this message translates to:
+  /// **'PromptPay'**
+  String get transferDrawerSelectValuePromptPay;
+
+  ///
+  ///
+  /// In en, this message translates to:
+  /// **'Mobile Banking'**
+  String get transferDrawerLabelMobileBank;
+
+  ///
+  ///
+  /// In en, this message translates to:
+  /// **'Siam Commercial Bank'**
+  String get transferDrawerSelectValueSiamBank;
+
+  ///
+  ///
+  /// In en, this message translates to:
+  /// **'Bangkok Bank Mobile Banking'**
+  String get transferDrawerSelectValueBangkokBank;
+
+  ///
+  ///
+  /// In en, this message translates to:
+  /// **'Bank of Ayudhya'**
+  String get transferDrawerSelectValueBankAyudhya;
+
+  ///
+  ///
+  /// In en, this message translates to:
+  /// **'Kasikorn Bank'**
+  String get transferDrawerSelectValueKasikornBank;
+
+  ///
+  ///
+  /// In en, this message translates to:
+  /// **'Account Number'**
+  String get transferInputLabelAccountNumber;
+
+  ///
+  ///
+  /// In en, this message translates to:
+  /// **'Enter account number'**
+  String get transferInputPlaceholderEnterAccount;
+
+  ///
+  ///
+  /// In en, this message translates to:
+  /// **'Review'**
+  String get transferDrawerHeaderTitleReview;
+
+  ///
+  ///
+  /// In en, this message translates to:
+  /// **'Please recheck information before proceeding'**
+  String get transferDrawerWarningTitleRecheckInfo;
+
+  ///
+  ///
+  /// In en, this message translates to:
+  /// **'To prevent wrong account transfers or fraudulent activities. It cannot be changed once confirmed.'**
+  String get transferDrawerWarningInfoPreventFraud;
+
+  ///
+  ///
+  /// In en, this message translates to:
+  /// **'Total'**
+  String get transferDrawerDetailTotal;
+
+  ///
+  ///
+  /// In en, this message translates to:
+  /// **'{amount} {currency}'**
+  String transferDrawerDetailAmountThb(Object amount, Object currency);
+
+  ///
+  ///
+  /// In en, this message translates to:
+  /// **'Fee {amount} {currency}'**
+  String transferDrawerDetailFeeAmountThb(Object amount, Object currency);
+
+  ///
+  ///
+  /// In en, this message translates to:
+  /// **'From'**
+  String get transferDrawerDetailFrom;
+
+  ///
+  ///
+  /// In en, this message translates to:
+  /// **'Your Wi Wallet'**
+  String get transferDrawerDetailValueYourWallet;
+
+  ///
+  ///
+  /// In en, this message translates to:
+  /// **'Mobile Number'**
+  String get transferDrawerDetailMobileNumber;
+
+  ///
+  ///
+  /// In en, this message translates to:
+  /// **'To'**
+  String get transferDrawerDetailTo;
+
+  ///
+  ///
+  /// In en, this message translates to:
+  /// **'{bank}'**
+  String transferDrawerDetailToValue(Object bank);
+
+  ///
+  ///
+  /// In en, this message translates to:
+  /// **'Account Name'**
+  String get transferDrawerDetailAccountName;
+
+  ///
+  ///
+  /// In en, this message translates to:
+  /// **'{accountname}'**
+  String transferDrawerDetailAccountNameValue(Object accountname);
+
+  ///
+  ///
+  /// In en, this message translates to:
+  /// **'{mobilenumber}'**
+  String transferDrawerDetailMobileNumberValue(Object mobilenumber);
+
+  ///
+  ///
+  /// In en, this message translates to:
+  /// **'Account Number'**
+  String get transferDrawerDetailAccountNumber;
+
+  ///
+  ///
+  /// In en, this message translates to:
+  /// **'{accountnumber}'**
+  String transferDrawerDetailAccountNumberValue(Object accountnumber);
+
+  ///
+  ///
+  /// In en, this message translates to:
+  /// **'Objective'**
+  String get transferDrawerLabelObject;
+
+  ///
+  ///
+  /// In en, this message translates to:
+  /// **'Confirm'**
+  String get transferDrawerTextButtonConfirm;
+
+  ///
+  ///
+  /// In en, this message translates to:
+  /// **'Insufficient Balance'**
+  String get transferModalTitleInsufficientBalance;
+
+  ///
+  ///
+  /// In en, this message translates to:
+  /// **'You don’t have enough balance on Wi Wallet. Please deposit the balance.'**
+  String get transferModalDesDepositBalance;
+
+  ///
+  ///
+  /// In en, this message translates to:
+  /// **'Cancel'**
+  String get transferModalTextButtonCancel;
+
+  ///
+  ///
+  /// In en, this message translates to:
+  /// **'Confirm'**
+  String get transferModalTextButtonConfirm;
+
+  ///
+  ///
+  /// In en, this message translates to:
+  /// **'Error'**
+  String get transferModalTitleErrorAccountNumber;
+
+  ///
+  ///
+  /// In en, this message translates to:
+  /// **'Sorry, the system has encountered an error. The destination account number is incorrect. Please contact customer service, available 24 hours daily.'**
+  String get transferModalDescriptionErrorIncorrectAccount;
+
+  ///
+  ///
+  /// In en, this message translates to:
+  /// **'OK'**
+  String get transferModalTextButtonOk;
+
+  ///
+  ///
+  /// In en, this message translates to:
+  /// **'Error'**
+  String get transferModalTitleErrorSystem;
+
+  ///
+  ///
+  /// In en, this message translates to:
+  /// **'Sorry, system has encountered error. Please try again.'**
+  String get transferModalDescriptionSystemErrorTry;
+
+  ///
+  ///
+  /// In en, this message translates to:
+  /// **'Scan'**
+  String get scanHeaderTitle;
+
+  ///
+  ///
+  /// In en, this message translates to:
+  /// **'Hold the camera to scan a QR code.'**
+  String get scanInfoHoldCamera;
+
+  ///
+  ///
+  /// In en, this message translates to:
+  /// **'Flash'**
+  String get scanButtonLeftFlash;
+
+  ///
+  ///
+  /// In en, this message translates to:
+  /// **'Photo'**
+  String get scanButtonRightPhoto;
+
+  ///
+  ///
+  /// In en, this message translates to:
+  /// **'Error'**
+  String get homeModalTitlePinIncorrectError;
+
+  ///
+  ///
+  /// In en, this message translates to:
+  /// **'The system encountered an error because you entered the PIN incorrectly too many times. Please contact customer service available 24 hours daily.'**
+  String get homeModalDesPinIncorrectError;
+
+  ///
+  ///
+  /// In en, this message translates to:
+  /// **'Contact Us'**
+  String get homeModalTextButtonContact;
+
+  ///
+  ///
+  /// In en, this message translates to:
+  /// **'Sorry, system has encountered error. Please try again.'**
+  String get homeAlertInfoErrorSystem;
+
+  ///
+  ///
+  /// In en, this message translates to:
+  /// **'Balance Detail'**
+  String get homeDrawerHeaderTitleBalanceDetail;
+
+  ///
   ///
   /// In en, this message translates to:
   /// **'Available Balance'**
   String get homeDrawerDetailTotalBalance;
 
-  /// Label for primary button examples
+  ///
+  ///
+  /// In en, this message translates to:
+  /// **'{amount} {currency}'**
+  String homeDrawerDetailAmountTotalBalanceThb(Object amount, Object currency);
+
+  ///
+  ///
+  /// In en, this message translates to:
+  /// **'Hold Amount*'**
+  String get homeDrawerDetailHoldAmount;
+
+  ///
+  ///
+  /// In en, this message translates to:
+  /// **'{amount} {currency}'**
+  String homeDrawerDetailHoldAmountThb(Object amount, Object currency);
+
+  ///
+  ///
+  /// In en, this message translates to:
+  /// **'Ledger Balance'**
+  String get homeDrawerDetailLedgerBalance;
+
+  ///
+  ///
+  /// In en, this message translates to:
+  /// **'{amount} {currency}'**
+  String homeDrawerDetailLedgerBalanceThb(Object amount, Object currency);
+
+  ///
+  ///
+  /// In en, this message translates to:
+  /// **'*Hold Amount means they aren\'t immediately available for use. Please contact our customer support team for more details and to process the next steps.'**
+  String get homeDrawerWarningInfoHoldAmount;
+
+  ///
+  ///
+  /// In en, this message translates to:
+  /// **'OK'**
+  String get homeDrawerTextButtonBalanceDetailOk;
+
+  ///
+  ///
+  /// In en, this message translates to:
+  /// **'Reserve Hold Amount'**
+  String get historyCardListItemTitleReserveAmount;
+
+  ///
+  ///
+  /// In en, this message translates to:
+  /// **'Hold Amount'**
+  String get historyCardListItemTitleHoldAmount;
+
+  ///
+  ///
+  /// In en, this message translates to:
+  /// **'Announcement'**
+  String get announcement;
+
+  ///
   ///
   /// In en, this message translates to:
   /// **'Primary Button'**
   String get primaryButton;
 
-  /// Label for secondary button examples
+  ///
   ///
   /// In en, this message translates to:
   /// **'Secondary Button'**
   String get secondaryButton;
 
-  /// Label for enabled primary button
+  ///
   ///
   /// In en, this message translates to:
-  /// **'Primary Enabled'**
-  String get primaryEnabled;
-
-  /// Label for enabled secondary button
-  ///
-  /// In en, this message translates to:
-  /// **'Secondary Enabled'**
-  String get secondaryEnabled;
-
-  /// Label for disabled secondary button
-  ///
-  /// In en, this message translates to:
-  /// **'Secondary Disabled'**
-  String get secondaryDisabled;
-
-  /// Label for amount entry enabled state
-  ///
-  /// In en, this message translates to:
-  /// **'Amount Enabled'**
-  String get amountEnabled;
-
-  /// Title for card review transaction preview
-  ///
-  /// In en, this message translates to:
-  /// **'Card Review Transaction'**
+  /// **'Review Transaction'**
   String get cardReviewPreviewTitle;
-
-  /// Label for total amount
-  ///
-  /// In en, this message translates to:
-  /// **'Total'**
-  String get cardReviewTotalLabel;
-
-  /// Mock total amount value
-  ///
-  /// In en, this message translates to:
-  /// **'5,000.00'**
-  String get cardReviewTotalAmountMock;
-
-  /// Mock currency code
-  ///
-  /// In en, this message translates to:
-  /// **'THB'**
-  String get cardReviewCurrencyMock;
-
-  /// Label for fee amount
-  ///
-  /// In en, this message translates to:
-  /// **'Fee'**
-  String get cardReviewFeeLabel;
-
-  /// Mock fee amount value
-  ///
-  /// In en, this message translates to:
-  /// **'0.00'**
-  String get cardReviewFeeAmountMock;
-
-  /// Label for source account
-  ///
-  /// In en, this message translates to:
-  /// **'From'**
-  String get cardReviewFromLabel;
-
-  /// Mock source account value
-  ///
-  /// In en, this message translates to:
-  /// **'Your Wi Wallet'**
-  String get cardReviewFromValueMock;
-
-  /// Label for mobile number
-  ///
-  /// In en, this message translates to:
-  /// **'Mobile Number'**
-  String get cardReviewMobileLabel;
-
-  /// Mock mobile number value
-  ///
-  /// In en, this message translates to:
-  /// **'081-141-1234'**
-  String get cardReviewMobileValueMock;
-
-  /// Label for destination account
-  ///
-  /// In en, this message translates to:
-  /// **'To'**
-  String get cardReviewToLabel;
-
-  /// Mock destination account value
-  ///
-  /// In en, this message translates to:
-  /// **'Siam Commercial Bank'**
-  String get cardReviewToValueMock;
-
-  /// Label for account name
-  ///
-  /// In en, this message translates to:
-  /// **'Account Name'**
-  String get cardReviewAccountNameLabel;
-
-  /// Mock account name value
-  ///
-  /// In en, this message translates to:
-  /// **'Victor Von Doom'**
-  String get cardReviewAccountNameValueMock;
-
-  /// Label for account number
-  ///
-  /// In en, this message translates to:
-  /// **'Account Number'**
-  String get cardReviewAccountNumberLabel;
-
-  /// Mock account number value
-  ///
-  /// In en, this message translates to:
-  /// **'1234567890'**
-  String get cardReviewAccountNumberValueMock;
-
-  /// Placeholder for mobile number input
-  ///
-  /// In en, this message translates to:
-  /// **'Mobile Number'**
-  String get mobileNumberPlaceholder;
-
-  /// Empty state text when no results are found
-  ///
-  /// In en, this message translates to:
-  /// **'No results found'**
-  String get noResultsFound;
-
-  /// Prompt to retry after a failure
-  ///
-  /// In en, this message translates to:
-  /// **'Please try again'**
-  String get pleaseTryAgain;
 }
 
 class _AppLocalizationsDelegate

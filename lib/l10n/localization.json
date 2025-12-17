@@ -1,0 +1,1682 @@
+[
+    {
+        "Name": "headerDeposit",
+        "TH": "ฝากเงิน",
+        "EN": "Deposit",
+        "RU": "Депозит",
+        "ZH": "存款",
+        "MM": "အပ်ငွေ"
+    },
+    {
+        "Name": "labelDepositAmount",
+        "TH": "จำนวนเงิน",
+        "EN": "Amount",
+        "RU": "Сумма",
+        "ZH": "金额",
+        "MM": "ပမာဏ"
+    },
+    {
+        "Name": "infomationDeposit",
+        "TH": "ท่านต้องฝากเงินอย่างน้อย {amount} {currency}",
+        "EN": "You need to deposit at least {amount} {currency}.",
+        "RU": "Вам нужно внести депозит минимум {amount} {currency}",
+        "ZH": "您需要至少存入{amount} {currency}",
+        "MM": "အနည်းဆုံး {amount} {currency} အပ်ရန်လိုအပ်ပါသည်"
+    },
+    {
+        "Name": "depositTextButtonAmount",
+        "TH": "{amount}",
+        "EN": "{amount}",
+        "RU": "{amount}",
+        "ZH": "{amount}",
+        "MM": "{amount}"
+    },
+    {
+        "Name": "titleDepositFrom",
+        "TH": "จาก",
+        "EN": "From",
+        "RU": "От",
+        "ZH": "来自",
+        "MM": "မှ"
+    },
+    {
+        "Name": "labelDepositMobileBanking",
+        "TH": "Mobile Banking",
+        "EN": "Mobile Banking",
+        "RU": "Мобильный банк",
+        "ZH": "手机银行",
+        "MM": "မိုဘိုင်းဘဏ်"
+    },
+    {
+        "Name": "valueDepositSCB",
+        "TH": "Siam Commercial Bank",
+        "EN": "Siam Commercial Bank",
+        "RU": "Siam Commercial Bank",
+        "ZH": "Siam Commercial Bank",
+        "MM": "Siam Commercial Bank"
+    },
+    {
+        "Name": "valueDepositBbl",
+        "TH": "Bangkok Bank Mobile Banking",
+        "EN": "Bangkok Bank Mobile Banking",
+        "RU": "Bangkok Bank Mobile Banking",
+        "ZH": "Bangkok Bank Mobile Banking",
+        "MM": "Bangkok Bank Mobile Banking"
+    },
+    {
+        "Name": "valueDepositBay",
+        "TH": "Bank of Ayudhya",
+        "EN": "Bank of Ayudhya",
+        "RU": "Bank of Ayudhya",
+        "ZH": "Bank of Ayudhya",
+        "MM": "Bank of Ayudhya"
+    },
+    {
+        "Name": "titleDepositTo",
+        "TH": "ถึง",
+        "EN": "To",
+        "RU": "Кому",
+        "ZH": "收款方",
+        "MM": "သို့"
+    },
+    {
+        "Name": "labelDepositWiWallet",
+        "TH": "Wi Wallet ของท่าน",
+        "EN": "Your Wi Wallet",
+        "RU": "Ваш Wi Wallet",
+        "ZH": "您的 Wi Wallet",
+        "MM": "သင်၏ Wi Wallet"
+    },
+    {
+        "Name": "labelDepositTotalBalance",
+        "TH": "ยอดเงินรวม:",
+        "EN": "Total Balance:",
+        "RU": "Общий баланс:",
+        "ZH": "总余额:",
+        "MM": "စုစုပေါင်းလက်ကျန် :"
+    },
+    {
+        "Name": "textButtonDepositConfirm",
+        "TH": "ยืนยัน",
+        "EN": "Confirm",
+        "RU": "Подтвердить",
+        "ZH": "确认",
+        "MM": "အတည်ပြုမည်"
+    },
+    {
+        "Name": "titleDrawerMobileNumber",
+        "TH": "เบอร์มือถือ",
+        "EN": "Mobile Number",
+        "RU": "Мобильный номер",
+        "ZH": "手机号码",
+        "MM": "မိုဘိုင်းနံပါတ်"
+    },
+    {
+        "Name": "placeholderDrawerSearch",
+        "TH": "ค้นหา",
+        "EN": "Search",
+        "RU": "Поиск",
+        "ZH": "搜索",
+        "MM": "ရှာဖွေပါ"
+    },
+    {
+        "Name": "labelHomeTotalBalance",
+        "TH": "ยอดเงินรวม",
+        "EN": "Available Balance",
+        "RU": "Общий баланс",
+        "ZH": "总余额",
+        "MM": "စုစုပေါင်းလက်ကျန် "
+    },
+    {
+        "Name": "textButtonHomeManage",
+        "TH": "จัดการ",
+        "EN": "Manage",
+        "RU": "Управление",
+        "ZH": "管理",
+        "MM": "စီမံခန့်ခွဲ"
+    },
+    {
+        "Name": "titleHomeCards",
+        "TH": "บัตร",
+        "EN": "Cards",
+        "RU": "Карты",
+        "ZH": "卡片",
+        "MM": "ကတ်များ"
+    },
+    {
+        "Name": "titleHomeServices",
+        "TH": "บริการ",
+        "EN": "Services",
+        "RU": "Услуги",
+        "ZH": "服务",
+        "MM": "ဝန်ဆောင်မှုများ"
+    },
+    {
+        "Name": "shortcutMenuHomeTransfer",
+        "TH": "โอนเงิน",
+        "EN": "Transfer",
+        "RU": "Перевести",
+        "ZH": "转账",
+        "MM": "ငွေလွှဲ"
+    },
+    {
+        "Name": "shortcutMenuHomeMore",
+        "TH": "เพิ่มเติม",
+        "EN": "More",
+        "RU": "Еще",
+        "ZH": "更多",
+        "MM": "ထပ်မံ"
+    },
+    {
+        "Name": "shortcutMenuHomeBill",
+        "TH": "บิล",
+        "EN": "Bill",
+        "RU": "Счет",
+        "ZH": "账单",
+        "MM": "ဘီလ်"
+    },
+    {
+        "Name": "shortcutMenuHomeWiCoin",
+        "TH": "Wi Coin",
+        "EN": "Wi Coin",
+        "RU": "Wi Coin",
+        "ZH": "Wi Coin",
+        "MM": "Wi Coin"
+    },
+    {
+        "Name": "titleHomeHighlight",
+        "TH": "Highlight",
+        "EN": "Highlight",
+        "RU": "Выделить",
+        "ZH": "高亮",
+        "MM": "အထင်ကြီး"
+    },
+    {
+        "Name": "navigatorHome",
+        "TH": "หน้าหลัก",
+        "EN": "Home",
+        "RU": "Главная",
+        "ZH": "首页",
+        "MM": "ပင်မစာမျက်နှာ"
+    },
+    {
+        "Name": "navigatorHomeDeposit",
+        "TH": "ฝากเงิน",
+        "EN": "Deposit",
+        "RU": "Депозит",
+        "ZH": "存款",
+        "MM": "အပ်ငွေ"
+    },
+    {
+        "Name": "navigatorHomeConvert",
+        "TH": "แปลงเงิน",
+        "EN": "Convert",
+        "RU": "Конвертировать",
+        "ZH": "兑换",
+        "MM": "ပြောင်းလဲပါ"
+    },
+    {
+        "Name": "navigatorHomeSetting",
+        "TH": "ตั้งค่า",
+        "EN": "Setting",
+        "RU": "Настройки",
+        "ZH": "设置",
+        "MM": "ဆက်တင်"
+    },
+    {
+        "Name": "labelHomeViewAll",
+        "TH": "ดูทั้งหมด",
+        "EN": "View all",
+        "RU": "Посмотреть все",
+        "ZH": "查看全部",
+        "MM": "ချစ်မြတ်စွာ"
+    },
+    {
+        "Name": "homeAnnounceVerifyFaceToReceive",
+        "TH": "You have received {amount} {currency}. Please verify face to receive this amount which will incur fee in your wallet.",
+        "EN": "You have received {amount} {currency}. Please verify face to receive this amount which will incur fee in your wallet.",
+        "RU": "You have received {amount} {currency}. Please verify face to receive this amount which will incur fee in your wallet.",
+        "ZH": "You have received {amount} {currency}. Please verify face to receive this amount which will incur fee in your wallet.",
+        "MM": "You have received {amount} {currency}. Please verify face to receive this amount which will incur fee in your wallet."
+    },
+    {
+        "Name": "titleDrawerDepositChannel",
+        "TH": "ช่องทางฝากเงิน",
+        "EN": "Deposit Channel",
+        "RU": "Канал пополнения",
+        "ZH": "存款渠道",
+        "MM": "အပ်ငွေချချန်နယ်"
+    },
+    {
+        "Name": "labelDrawerMobileBanking",
+        "TH": "Mobile Banking",
+        "EN": "Mobile Banking",
+        "RU": "Мобильный банк",
+        "ZH": "手机银行",
+        "MM": "မိုဘိုင်းဘဏ်"
+    },
+    {
+        "Name": "valueDrawerScb",
+        "TH": "Siam Commercial Bank",
+        "EN": "Siam Commercial Bank",
+        "RU": "Siam Commercial Bank",
+        "ZH": "Siam Commercial Bank",
+        "MM": "Siam Commercial Bank"
+    },
+    {
+        "Name": "valueDrawerBbl",
+        "TH": "Bangkok Bank Mobile Banking",
+        "EN": "Bangkok Bank Mobile Banking",
+        "RU": "Bangkok Bank Mobile Banking",
+        "ZH": "Bangkok Bank Mobile Banking",
+        "MM": "Bangkok Bank Mobile Banking"
+    },
+    {
+        "Name": "valueDrawerBay",
+        "TH": "Bank of Ayudhya",
+        "EN": "Bank of Ayudhya",
+        "RU": "Bank of Ayudhya",
+        "ZH": "Bank of Ayudhya",
+        "MM": "Bank of Ayudhya"
+    },
+    {
+        "Name": "valueDrawerKbank",
+        "TH": "Kasikorn Bank",
+        "EN": "Kasikorn Bank",
+        "RU": "Kasikorn Bank",
+        "ZH": "Kasikorn Bank",
+        "MM": "Kasikorn Bank"
+    },
+    {
+        "Name": "titleDepositEnterMobileNumber",
+        "TH": "กรอกเบอร์มือถือ",
+        "EN": "Enter Mobile Number",
+        "RU": "Введите мобильный номер",
+        "ZH": "输入手机号码",
+        "MM": "မိုဘိုင်းနံပါတ်ကို ထည့်ပါ"
+    },
+    {
+        "Name": "descriptionDepositEnterMobileNumberKbank",
+        "TH": "ใส่หมายเลขโทรศัพท์มือถือที่ลงทะเบียนในบัญชีธนาคารกสิกรไทยสำหรับการฝากเงิน",
+        "EN": "Enter the mobile number registered in Kasikorn\nBank account for deposit.",
+        "RU": "Пожалуйста, введите номер телефона, зарегистрированный в Kasikorn Bank для депозита",
+        "ZH": "请输入在 Kasikorn Bank 注册的手机号码用于存款",
+        "MM": "Kasikorn Bank တွင် မှတ်ပုံတင်ထားသည့် မိုဘိုင်းနံပါတ်ကို အပ်ငွေရန်ရိုက်ထည့်ပါ"
+    },
+    {
+        "Name": "placeholderDepositMobileNumber",
+        "TH": "เบอร์มือถือ",
+        "EN": "Mobile Number",
+        "RU": "Мобильный номер",
+        "ZH": "手机号码",
+        "MM": "မိုဘိုင်းနံပါတ်"
+    },
+    {
+        "Name": "textButtonDepositConfirm",
+        "TH": "ยืนยัน",
+        "EN": "Confirm",
+        "RU": "Подтвердить",
+        "ZH": "确认",
+        "MM": "အတည်ပြုမည်"
+    },
+    {
+        "Name": "titleModalError",
+        "TH": "ข้อผิดพลาด",
+        "EN": "Error",
+        "RU": "Ошибка",
+        "ZH": "错误",
+        "MM": "မှားယွင်းမှု"
+    },
+    {
+        "Name": "descriptionModalErrorSystem",
+        "TH": "ขออภัย ระบบพบข้อผิดพลาด กรุณาลองใหม่อีกครั้ง",
+        "EN": "Sorry, system has encountered error. Please try again.",
+        "RU": "Сожалеем, произошла ошибка системы. Пожалуйста, попробуйте еще раз",
+        "ZH": "很抱歉，系统发生错误。请再试一次",
+        "MM": "စနစ်အမှားပါ။ ထပ်မန်ကြိုးစားပါ"
+    },
+    {
+        "Name": "textButtonModalOk",
+        "TH": "ตกลง",
+        "EN": "OK",
+        "RU": "OK",
+        "ZH": "确定",
+        "MM": "အိုကေ"
+    },
+    {
+        "Name": "titleDepositKplusWaitingForPayment",
+        "TH": "รอการชำระเงิน",
+        "EN": "Waiting for Payment",
+        "RU": "Ожидание платежа",
+        "ZH": "等待付款",
+        "MM": "ငွေပေးချေမှုမျှော်လင့်နေသည်"
+    },
+    {
+        "Name": "descriptionDepositKplusNotification",
+        "TH": "กรุณารอการแจ้งเตือนเพื่อเปิดแอปพลิเคชัน K PLUS หากท่านไม่ได้รับการแจ้งเตือน ท่านสามารถตรวจสอบกล่องข้อความใน K PLUS ของท่านได้",
+        "EN": "Please wait for notification to open\nK PLUS application. If you do not receive the\nnotification, you can check Inbox on your\nK PLUS.",
+        "RU": "Пожалуйста, дождитесь уведомления для открытия приложения K PLUS. Если вы не получили уведомление, вы можете проверить входящие сообщения в вашем K PLUS.",
+        "ZH": "请等待通知以打开K PLUS应用程序。如果您没有收到通知，您可以检查您的K PLUS收件箱。",
+        "MM": "K PLUS app ဖွင့်ရန် အသိပေးချက်ကို စောင့်ပါ။ မရရင် K PLUS app ထဲမှာ Inbox ကိုကြည့်ပါ"
+    },
+    {
+        "Name": "infomationDepositKplusTimeLimit",
+        "TH": "กรุณาดำเนินการให้เสร็จสิ้นภายในเวลา {time} นาที",
+        "EN": "Please complete the process\nwithin {time} minutes.",
+        "RU": "Пожалуйста, завершите процесс в течение {time} минут.",
+        "ZH": "请在 {time} 分钟内完成操作",
+        "MM": "{time} မိနစ်အတွင်း လုပ်ငန်းစဉ်ကို ပြီးမြောက်စေပါ"
+    },
+    {
+        "Name": "valueDepositKplus",
+        "TH": "Kasikorn Bank",
+        "EN": "Kasikorn Bank",
+        "RU": "Kasikorn Bank",
+        "ZH": "Kasikorn Bank",
+        "MM": "Kasikorn Bank"
+    },
+    {
+        "Name": "labelDepositKplusTransactionType",
+        "TH": "ประเภทธุรกรรม",
+        "EN": "Transaction Type",
+        "RU": "Тип транзакции",
+        "ZH": "交易类型",
+        "MM": "ငွေလွှဲအမျိုးအစား"
+    },
+    {
+        "Name": "labelDepositKplus",
+        "TH": "ฝากเงิน",
+        "EN": "Deposit",
+        "RU": "Депозит",
+        "ZH": "存款",
+        "MM": "အပ်ငွေ"
+    },
+    {
+        "Name": "labelDepositKplusMobileNumber",
+        "TH": "เบอร์มือถือ",
+        "EN": "Mobile Number",
+        "RU": "Мобильный номер",
+        "ZH": "手机号码",
+        "MM": "မိုဘိုင်းနံပါတ်"
+    },
+    {
+        "Name": "labelDepositKplusTransactionNo",
+        "TH": "เลขที่รายการ",
+        "EN": "Transaction No.",
+        "RU": "Номер транзакции",
+        "ZH": "交易编号",
+        "MM": "ငွေလွှဲနံပါတ်"
+    },
+    {
+        "Name": "labelDepositKplusDateTime",
+        "TH": "วันที่และเวลา",
+        "EN": "Date & Time",
+        "RU": "Дата и время",
+        "ZH": "日期和时间",
+        "MM": "နေ့စွဲ၊ အချိန်"
+    },
+    {
+        "Name": "textButtonDepositKplusOpen",
+        "TH": "เปิด KPLUS",
+        "EN": "Open in KPLUS",
+        "RU": "Открыть в KPLUS",
+        "ZH": "在 KPLUS 中打开",
+        "MM": "KPLUS တွင်ဖွင့်သည်"
+    },
+    {
+        "Name": "fieldValueDepositKplus",
+        "TH": "ฝากเงิน",
+        "EN": "Deposit",
+        "RU": "Депозит",
+        "ZH": "存款",
+        "MM": "အပ်ငွေ"
+    },
+    {
+        "Name": "titleDrawerEmptyNoResultsFound",
+        "TH": "ไม่พบผลการค้นหา",
+        "EN": "No results found",
+        "RU": "Результаты не найдены",
+        "ZH": "未找到结果",
+        "MM": "ရလဒ်မရှိပါ"
+    },
+    {
+        "Name": "descriptionDrawerEmptyTryAgain",
+        "TH": "กรุณาลองใหม่อีกครั้ง",
+        "EN": "Please try again",
+        "RU": "Пожалуйста, попробуйте еще раз",
+        "ZH": "请再试一次",
+        "MM": "ထပ်မံကြိုးစားကြည့်ပါ"
+    },
+    {
+        "Name": "inboxTabMenuGeneral",
+        "TH": "General",
+        "EN": "General",
+        "RU": "General",
+        "ZH": "General",
+        "MM": "General"
+    },
+    {
+        "Name": "inboxTabMenuForYou",
+        "TH": "For You",
+        "EN": "For You",
+        "RU": "For You",
+        "ZH": "For You",
+        "MM": "For You"
+    },
+    {
+        "Name": "inboxDetailHeaderTitleReceive",
+        "TH": "Receive",
+        "EN": "Receive",
+        "RU": "Receive",
+        "ZH": "Receive",
+        "MM": "Receive"
+    },
+    {
+        "Name": "inboxTextButtonVerifyFace",
+        "TH": "Verify Face",
+        "EN": "Verify Face",
+        "RU": "Verify Face",
+        "ZH": "Verify Face",
+        "MM": "Verify Face"
+    },
+    {
+        "Name": "IdentityVerificationHeaderTitle",
+        "TH": "Identity Verification",
+        "EN": "Identity Verification",
+        "RU": "Identity Verification",
+        "ZH": "Identity Verification",
+        "MM": "Identity Verification"
+    },
+    {
+        "Name": "IdentityVerificationTitleTakePhoto",
+        "TH": "Take photos of face again.",
+        "EN": "Take photos of face again.",
+        "RU": "Take photos of face again.",
+        "ZH": "Take photos of face again.",
+        "MM": "Take photos of face again."
+    },
+    {
+        "Name": "IdentityVerificationDesTakePhotoCannotMakeInTime",
+        "TH": "You cannot make it in time. Please follow the instruction and take new photos.",
+        "EN": "You cannot make it in time. Please follow the instruction and take new photos.",
+        "RU": "You cannot make it in time. Please follow the instruction and take new photos.",
+        "ZH": "You cannot make it in time. Please follow the instruction and take new photos.",
+        "MM": "You cannot make it in time. Please follow the instruction and take new photos."
+    },
+    {
+        "Name": "IdentityVerificationTextButtonRetake",
+        "TH": "Retake",
+        "EN": "Retake",
+        "RU": "Retake",
+        "ZH": "Retake",
+        "MM": "Retake"
+    },
+    {
+        "Name": "IdentityVerificationDesTakePhotoTheSystem",
+        "TH": "The system has detected an irregularity.\nEnsure your face is within the frame and no one else is near the camera.",
+        "EN": "The system has detected an irregularity.\nEnsure your face is within the frame and no one else is near the camera.",
+        "RU": "The system has detected an irregularity.\nEnsure your face is within the frame and no one else is near the camera.",
+        "ZH": "The system has detected an irregularity.\nEnsure your face is within the frame and no one else is near the camera.",
+        "MM": "The system has detected an irregularity.\nEnsure your face is within the frame and no one else is near the camera."
+    },
+    {
+        "Name": "IdentityVerificationTitleFaceUnsuccess",
+        "TH": "Face verification unsuccessful",
+        "EN": "Face verification unsuccessful",
+        "RU": "Face verification unsuccessful",
+        "ZH": "Face verification unsuccessful",
+        "MM": "Face verification unsuccessful"
+    },
+    {
+        "Name": "IdentityVerificationDesFaceUnsuccess",
+        "TH": "Your face verification has failed due to a mismatch with the document photo.\nFor more information, please contact customer service available 24 hours daily.",
+        "EN": "Your face verification has failed due to a mismatch with the document photo.\nFor more information, please contact customer service available 24 hours daily.",
+        "RU": "Your face verification has failed due to a mismatch with the document photo.\nFor more information, please contact customer service available 24 hours daily.",
+        "ZH": "Your face verification has failed due to a mismatch with the document photo.\nFor more information, please contact customer service available 24 hours daily.",
+        "MM": "Your face verification has failed due to a mismatch with the document photo.\nFor more information, please contact customer service available 24 hours daily."
+    },
+    {
+        "Name": "IdentityVerificationTextButtonContact",
+        "TH": "Contact Us",
+        "EN": "Contact Us",
+        "RU": "Contact Us",
+        "ZH": "Contact Us",
+        "MM": "Contact Us"
+    },
+    {
+        "Name": "homeAlertInfoVerifyAccountToReceiveSuccess",
+        "TH": "เงินเข้าบัญชีของท่านเรียบร้อยแล้ว!",
+        "EN": "Your account has been credited successfully!",
+        "RU": "Your account has been credited successfully!",
+        "ZH": "Your account has been credited successfully!",
+        "MM": "Your account has been credited successfully!"
+    },
+    {
+        "Name": "homeAlertInfoVerifyAccountToReceiveFail",
+        "TH": "Sorry, this transaction cannot be made.",
+        "EN": "Sorry, this transaction cannot be made.",
+        "RU": "Sorry, this transaction cannot be made.",
+        "ZH": "Sorry, this transaction cannot be made.",
+        "MM": "Sorry, this transaction cannot be made."
+    },
+    {
+        "Name": "IdentityVerificationTitleFaceVerification",
+        "TH": "Face Verification",
+        "EN": "Face Verification",
+        "RU": "Face Verification",
+        "ZH": "Face Verification",
+        "MM": "Face Verification"
+    },
+    {
+        "Name": "IdentityVerificationDesFaceVerifacation",
+        "TH": "Prepare for your face liveness capture.\nFollow instructions below.",
+        "EN": "Prepare for your face liveness capture.\nFollow instructions below.",
+        "RU": "Prepare for your face liveness capture.\nFollow instructions below.",
+        "ZH": "Prepare for your face liveness capture.\nFollow instructions below.",
+        "MM": "Prepare for your face liveness capture.\nFollow instructions below."
+    },
+    {
+        "Name": "IdentityVerificationDesFaceVerifacationOneStep",
+        "TH": "Do not wear hats, glasses, masks or headphones.",
+        "EN": "Do not wear hats, glasses, masks or headphones.",
+        "RU": "Do not wear hats, glasses, masks or headphones.",
+        "ZH": "Do not wear hats, glasses, masks or headphones.",
+        "MM": "Do not wear hats, glasses, masks or headphones."
+    },
+    {
+        "Name": "IdentityVerificationDesFaceVerifacationTwoStep",
+        "TH": "Make sure that your background is not too bright or too dark and avoid backlighting.",
+        "EN": "Make sure that your background is not too bright or too dark and avoid backlighting.",
+        "RU": "Make sure that your background is not too bright or too dark and avoid backlighting.",
+        "ZH": "Make sure that your background is not too bright or too dark and avoid backlighting.",
+        "MM": "Make sure that your background is not too bright or too dark and avoid backlighting."
+    },
+    {
+        "Name": "IdentityVerificationDesFaceVerifacationThreeStep",
+        "TH": "Keep the face within the frame.",
+        "EN": "Keep the face within the frame.",
+        "RU": "Keep the face within the frame.",
+        "ZH": "Keep the face within the frame.",
+        "MM": "Keep the face within the frame."
+    },
+    {
+        "Name": "IdentityVerificationTextButtonOpenCamera",
+        "TH": "Open Camera",
+        "EN": "Open Camera",
+        "RU": "Open Camera",
+        "ZH": "Open Camera",
+        "MM": "Open Camera"
+    },
+    {
+        "Name": "transactionDetailHeaderTitle",
+        "TH": "Detail",
+        "EN": "Detail",
+        "RU": "Detail",
+        "ZH": "Detail",
+        "MM": "Detail"
+    },
+    {
+        "Name": "transactionDetailAlertInfoSavedSuccess",
+        "TH": "Receipt saved successfully",
+        "EN": "Receipt saved successfully",
+        "RU": "Receipt saved successfully",
+        "ZH": "Receipt saved successfully",
+        "MM": "Receipt saved successfully"
+    },
+    {
+        "Name": "transactionDetailAlertInfoErrorSystem",
+        "TH": "Sorry, system has encountered error. Please try again.",
+        "EN": "Sorry, system has encountered error. Please try again.",
+        "RU": "Sorry, system has encountered error. Please try again.",
+        "ZH": "Sorry, system has encountered error. Please try again.",
+        "MM": "Sorry, system has encountered error. Please try again."
+    },
+    {
+        "Name": "transactionDetailHeaderTitleTypeReceive",
+        "TH": "Receive",
+        "EN": "Receive",
+        "RU": "Receive",
+        "ZH": "Receive",
+        "MM": "Receive"
+    },
+    {
+        "Name": "transactionDetailHeaderTitleTypeTransfer",
+        "TH": "Transfer",
+        "EN": "Transfer",
+        "RU": "Transfer",
+        "ZH": "Transfer",
+        "MM": "Transfer"
+    },
+    {
+        "Name": "transactionDetailTotalAmountThb",
+        "TH": "{amount} {currency}",
+        "EN": "{amount} {currency}",
+        "RU": "{amount} {currency}",
+        "ZH": "{amount} {currency}",
+        "MM": "{amount} {currency}"
+    },
+    {
+        "Name": "transactionDetailFeeAmountThb",
+        "TH": "Fee {amount} {currency}",
+        "EN": "Fee {amount} {currency}",
+        "RU": "Fee {amount} {currency}",
+        "ZH": "Fee {amount} {currency}",
+        "MM": "Fee {amount} {currency}"
+    },
+    {
+        "Name": "transactionDetailTextLabelFrom",
+        "TH": "From",
+        "EN": "From",
+        "RU": "From",
+        "ZH": "From",
+        "MM": "From"
+    },
+    {
+        "Name": "transactionDetailTextLabelTo",
+        "TH": "To",
+        "EN": "To",
+        "RU": "To",
+        "ZH": "To",
+        "MM": "To"
+    },
+    {
+        "Name": "transactionDetailTextLabelStampDate",
+        "TH": "Date&Time:",
+        "EN": "Date&Time:",
+        "RU": "Date&Time:",
+        "ZH": "Date&Time:",
+        "MM": "Date&Time:"
+    },
+    {
+        "Name": "transactionDetailTextLabelTransId",
+        "TH": "Transaction ID:",
+        "EN": "Transaction ID:",
+        "RU": "Transaction ID:",
+        "ZH": "Transaction ID:",
+        "MM": "Transaction ID:"
+    },
+    {
+        "Name": "transactionDetailDesRecheckInfo",
+        "TH": "Please verify the information and keep the slip for evidence.",
+        "EN": "Please verify the information and keep the slip for evidence.",
+        "RU": "Please verify the information and keep the slip for evidence.",
+        "ZH": "Please verify the information and keep the slip for evidence.",
+        "MM": "Please verify the information and keep the slip for evidence."
+    },
+    {
+        "Name": "transactionDetailDesCustomerContact",
+        "TH": "Customer service contact 02-026-6679 operates 24 hours daily.",
+        "EN": "Customer service contact 02-026-6679 operates 24 hours daily.",
+        "RU": "Customer service contact 02-026-6679 operates 24 hours daily.",
+        "ZH": "Customer service contact 02-026-6679 operates 24 hours daily.",
+        "MM": "Customer service contact 02-026-6679 operates 24 hours daily."
+    },
+    {
+        "Name": "transactionDetailTextInfoScanVerify",
+        "TH": "Scan to Verify",
+        "EN": "Scan to Verify",
+        "RU": "Scan to Verify",
+        "ZH": "Scan to Verify",
+        "MM": "Scan to Verify"
+    },
+    {
+        "Name": "transactionDetailTextButtonSaveReceipt",
+        "TH": "Save Receipt",
+        "EN": "Save Receipt",
+        "RU": "Save Receipt",
+        "ZH": "Save Receipt",
+        "MM": "Save Receipt"
+    },
+    {
+        "Name": "transactionDetailTextButtonGoHome",
+        "TH": "Go to Home",
+        "EN": "Go to Home",
+        "RU": "Go to Home",
+        "ZH": "Go to Home",
+        "MM": "Go to Home"
+    },
+    {
+        "Name": "transactionDetailTextCredit",
+        "TH": "Powered by WiPay",
+        "EN": "Powered by WiPay",
+        "RU": "Powered by WiPay",
+        "ZH": "Powered by WiPay",
+        "MM": "Powered by WiPay"
+    },
+    {
+        "Name": "transactionDetailHeaderTotal",
+        "TH": "Total",
+        "EN": "Total",
+        "RU": "Total",
+        "ZH": "Total",
+        "MM": "Total"
+    },
+    {
+        "Name": "transactionDetailHeaderAmountThb",
+        "TH": "{amount} {currency}",
+        "EN": "{amount} {currency}",
+        "RU": "{amount} {currency}",
+        "ZH": "{amount} {currency}",
+        "MM": "{amount} {currency}"
+    },
+    {
+        "Name": "transactionDetailHeaderFeeAmountThb",
+        "TH": "Fee {amount} {currency}",
+        "EN": "Fee {amount} {currency}",
+        "RU": "Fee {amount} {currency}",
+        "ZH": "Fee {amount} {currency}",
+        "MM": "Fee {amount} {currency}"
+    },
+    {
+        "Name": "transactionDetailTextLabelType",
+        "TH": "Transaction Type",
+        "EN": "Transaction Type",
+        "RU": "Transaction Type",
+        "ZH": "Transaction Type",
+        "MM": "Transaction Type"
+    },
+    {
+        "Name": "transactionDetailTextValueHoldAmount",
+        "TH": "Hold Amount",
+        "EN": "Hold Amount",
+        "RU": "Hold Amount",
+        "ZH": "Hold Amount",
+        "MM": "Hold Amount"
+    },
+    {
+        "Name": "transactionDetailTextLabelPaymentChannel",
+        "TH": "Payment Channel",
+        "EN": "Payment Channel",
+        "RU": "Payment Channel",
+        "ZH": "Payment Channel",
+        "MM": "Payment Channel"
+    },
+    {
+        "Name": "transactionDetailTextValueWallet",
+        "TH": "Wi Wallet",
+        "EN": "Wi Wallet",
+        "RU": "Wi Wallet",
+        "ZH": "Wi Wallet",
+        "MM": "Wi Wallet"
+    },
+    {
+        "Name": "transactionDetailTextLabelDate",
+        "TH": "Date&Time",
+        "EN": "Date&Time",
+        "RU": "Date&Time",
+        "ZH": "Date&Time",
+        "MM": "Date&Time"
+    },
+    {
+        "Name": "transactionDetailTextValueDate",
+        "TH": "{date} {time}",
+        "EN": "{date} {time}",
+        "RU": "{date} {time}",
+        "ZH": "{date} {time}",
+        "MM": "{date} {time}"
+    },
+    {
+        "Name": "transactionDetailTextLabelTransId",
+        "TH": "Transaction ID",
+        "EN": "Transaction ID",
+        "RU": "Transaction ID",
+        "ZH": "Transaction ID",
+        "MM": "Transaction ID"
+    },
+    {
+        "Name": "settingMainMenuHistory",
+        "TH": "History",
+        "EN": "History",
+        "RU": "History",
+        "ZH": "History",
+        "MM": "History"
+    },
+    {
+        "Name": "settingHeaderTitle",
+        "TH": "Setting",
+        "EN": "Setting",
+        "RU": "Setting",
+        "ZH": "Setting",
+        "MM": "Setting"
+    },
+    {
+        "Name": "settingMainMenuFingerprint",
+        "TH": "Fingerprint / Face Recognition",
+        "EN": "Fingerprint / Face Recognition",
+        "RU": "Fingerprint / Face Recognition",
+        "ZH": "Fingerprint / Face Recognition",
+        "MM": "Fingerprint / Face Recognition"
+    },
+    {
+        "Name": "settingMainMenuOtp",
+        "TH": "OTP Channel",
+        "EN": "OTP Channel",
+        "RU": "OTP Channel",
+        "ZH": "OTP Channel",
+        "MM": "OTP Channel"
+    },
+    {
+        "Name": "settingMainMenuChangePin",
+        "TH": "Change PIN",
+        "EN": "Change PIN",
+        "RU": "Change PIN",
+        "ZH": "Change PIN",
+        "MM": "Change PIN"
+    },
+    {
+        "Name": "settingMainMenuSelectLang",
+        "TH": "Select Language",
+        "EN": "Select Language",
+        "RU": "Select Language",
+        "ZH": "Select Language",
+        "MM": "Select Language"
+    },
+    {
+        "Name": "settingMainMenuLockTrans",
+        "TH": "Lock Transactions",
+        "EN": "Lock Transactions",
+        "RU": "Lock Transactions",
+        "ZH": "Lock Transactions",
+        "MM": "Lock Transactions"
+    },
+    {
+        "Name": "settingMainMenuTerms",
+        "TH": "Terms & Conditions",
+        "EN": "Terms & Conditions",
+        "RU": "Terms & Conditions",
+        "ZH": "Terms & Conditions",
+        "MM": "Terms & Conditions"
+    },
+    {
+        "Name": "settingMainMenuContact",
+        "TH": "Contact Us",
+        "EN": "Contact Us",
+        "RU": "Contact Us",
+        "ZH": "Contact Us",
+        "MM": "Contact Us"
+    },
+    {
+        "Name": "settingMainMenuLogout",
+        "TH": "Logout",
+        "EN": "Logout",
+        "RU": "Logout",
+        "ZH": "Logout",
+        "MM": "Logout"
+    },
+    {
+        "Name": "settingValueMainMenuFingerprintOn",
+        "TH": "On",
+        "EN": "On",
+        "RU": "On",
+        "ZH": "On",
+        "MM": "On"
+    },
+    {
+        "Name": "settingValueMainMenuFingerprintOff",
+        "TH": "Off",
+        "EN": "Off",
+        "RU": "Off",
+        "ZH": "Off",
+        "MM": "Off"
+    },
+    {
+        "Name": "settingValueMainMenuOtpSms",
+        "TH": "SMS",
+        "EN": "SMS",
+        "RU": "SMS",
+        "ZH": "SMS",
+        "MM": "SMS"
+    },
+    {
+        "Name": "settingValueMainMenuOtpEmail",
+        "TH": "Email",
+        "EN": "Email",
+        "RU": "Email",
+        "ZH": "Email",
+        "MM": "Email"
+    },
+    {
+        "Name": "settingValueMainMenuSelectLangEn",
+        "TH": "English",
+        "EN": "English",
+        "RU": "English",
+        "ZH": "English",
+        "MM": "English"
+    },
+    {
+        "Name": "settingValueMainMenuLockTransOn",
+        "TH": "On",
+        "EN": "On",
+        "RU": "On",
+        "ZH": "On",
+        "MM": "On"
+    },
+    {
+        "Name": "settingValueMainMenuLockTransOff",
+        "TH": "Off",
+        "EN": "Off",
+        "RU": "Off",
+        "ZH": "Off",
+        "MM": "Off"
+    },
+    {
+        "Name": "settingMainMenuAppearances",
+        "TH": "Appearances",
+        "EN": "Appearances",
+        "RU": "Appearances",
+        "ZH": "Appearances",
+        "MM": "Appearances"
+    },
+    {
+        "Name": "settingValueMainMenuAppearDark",
+        "TH": "Dark",
+        "EN": "Dark",
+        "RU": "Dark",
+        "ZH": "Dark",
+        "MM": "Dark"
+    },
+    {
+        "Name": "settingValueMainMenuAppearLight",
+        "TH": "Light",
+        "EN": "Light",
+        "RU": "Light",
+        "ZH": "Light",
+        "MM": "Light"
+    },
+    {
+        "Name": "settingTextVerAppWiWallet",
+        "TH": "Wi Wallet",
+        "EN": "Wi Wallet",
+        "RU": "Wi Wallet",
+        "ZH": "Wi Wallet",
+        "MM": "Wi Wallet"
+    },
+    {
+        "Name": "historyHeaderTitle",
+        "TH": "History",
+        "EN": "History",
+        "RU": "History",
+        "ZH": "History",
+        "MM": "History"
+    },
+    {
+        "Name": "IdentityVerificationTitleError",
+        "TH": "Error",
+        "EN": "Error",
+        "RU": "Error",
+        "ZH": "Error",
+        "MM": "Error"
+    },
+    {
+        "Name": "IdentityVerificationDesErrorSystem",
+        "TH": "Sorry, system has encountered error.please contact customer service available 24 hours daily.",
+        "EN": "Sorry, system has encountered error.please contact customer service available 24 hours daily.",
+        "RU": "Sorry, system has encountered error.please contact customer service available 24 hours daily.",
+        "ZH": "Sorry, system has encountered error.please contact customer service available 24 hours daily.",
+        "MM": "Sorry, system has encountered error.please contact customer service available 24 hours daily."
+    },
+    {
+        "Name": "IdentityVerificationTitleCompareFace",
+        "TH": "Comparing face...",
+        "EN": "Comparing face...",
+        "RU": "Comparing face...",
+        "ZH": "Comparing face...",
+        "MM": "Comparing face..."
+    },
+    {
+        "Name": "IdentityVerificationDesCompareFace",
+        "TH": "Please wait for a moment.",
+        "EN": "Please wait for a moment.",
+        "RU": "Please wait for a moment.",
+        "ZH": "Please wait for a moment.",
+        "MM": "Please wait for a moment."
+    },
+    {
+        "Name": "IdentityVerificationTitleKeepLookingStraight",
+        "TH": "Keep looking straight.",
+        "EN": "Keep looking straight.",
+        "RU": "Keep looking straight.",
+        "ZH": "Keep looking straight.",
+        "MM": "Keep looking straight."
+    },
+    {
+        "Name": "IdentityVerificationTitleTurnLeft",
+        "TH": "Turn left and hold.",
+        "EN": "Turn left and hold.",
+        "RU": "Turn left and hold.",
+        "ZH": "Turn left and hold.",
+        "MM": "Turn left and hold."
+    },
+    {
+        "Name": "IdentityVerificationTitleTurnRight",
+        "TH": "Turn Right and hold.",
+        "EN": "Turn Right and hold.",
+        "RU": "Turn Right and hold.",
+        "ZH": "Turn Right and hold.",
+        "MM": "Turn Right and hold."
+    },
+    {
+        "Name": "historyDrawerSelectMonth",
+        "TH": "Select Month",
+        "EN": "Select Month",
+        "RU": "Select Month",
+        "ZH": "Select Month",
+        "MM": "Select Month"
+    },
+    {
+        "Name": "transferHeaderTitleTransfer",
+        "TH": "โอนเงิน",
+        "EN": "Transfer",
+        "RU": "Transfer",
+        "ZH": "Transfer",
+        "MM": "Transfer"
+    },
+    {
+        "Name": "transferInputLabelAmount",
+        "TH": "Amount",
+        "EN": "Amount",
+        "RU": "Amount",
+        "ZH": "Amount",
+        "MM": "Amount"
+    },
+    {
+        "Name": "transferInputInfoMinimumTransfer",
+        "TH": "You need to transfer at least {amount} {currency}.",
+        "EN": "You need to transfer at least {amount} {currency}.",
+        "RU": "You need to transfer at least {amount} {currency}.",
+        "ZH": "You need to transfer at least {amount} {currency}.",
+        "MM": "You need to transfer at least {amount} {currency}."
+    },
+    {
+        "Name": "transferInputLabelFrom",
+        "TH": "From",
+        "EN": "From",
+        "RU": "From",
+        "ZH": "From",
+        "MM": "From"
+    },
+    {
+        "Name": "transferCardFromTitleYourWiWallet",
+        "TH": "Your Wi Wallet",
+        "EN": "Your Wi Wallet",
+        "RU": "Your Wi Wallet",
+        "ZH": "Your Wi Wallet",
+        "MM": "Your Wi Wallet"
+    },
+    {
+        "Name": "transferCardFromValueTotalBalance",
+        "TH": "Total Balance:",
+        "EN": "Total Balance:",
+        "RU": "Total Balance:",
+        "ZH": "Total Balance:",
+        "MM": "Total Balance:"
+    },
+    {
+        "Name": "transferCardFromValueAmount",
+        "TH": "฿ {amount}",
+        "EN": "฿ {amount}",
+        "RU": "฿ {amount}",
+        "ZH": "฿ {amount}",
+        "MM": "฿ {amount}"
+    },
+    {
+        "Name": "transferCardLabelTo",
+        "TH": "To",
+        "EN": "To",
+        "RU": "To",
+        "ZH": "To",
+        "MM": "To"
+    },
+    {
+        "Name": "transferCardToValueSelectAccType",
+        "TH": "Select Account Type",
+        "EN": "Select Account Type",
+        "RU": "Select Account Type",
+        "ZH": "Select Account Type",
+        "MM": "Select Account Type"
+    },
+    {
+        "Name": "transferInputLabelObjective",
+        "TH": "Objective",
+        "EN": "Objective",
+        "RU": "Objective",
+        "ZH": "Objective",
+        "MM": "Objective"
+    },
+    {
+        "Name": "transferInputLabelNote",
+        "TH": "(optional)",
+        "EN": "(optional)",
+        "RU": "(optional)",
+        "ZH": "(optional)",
+        "MM": "(optional)"
+    },
+    {
+        "Name": "transferInputPlaceholderEnterNote",
+        "TH": "Objective of Transfer",
+        "EN": "Objective of Transfer",
+        "RU": "Objective of Transfer",
+        "ZH": "Objective of Transfer",
+        "MM": "Objective of Transfer"
+    },
+    {
+        "Name": "transferTextButtonReview",
+        "TH": "Review",
+        "EN": "Review",
+        "RU": "Review",
+        "ZH": "Review",
+        "MM": "Review"
+    },
+    {
+        "Name": "transferDrawerHeaderTitleSelectAccType",
+        "TH": "Select Account Type",
+        "EN": "Select Account Type",
+        "RU": "Select Account Type",
+        "ZH": "Select Account Type",
+        "MM": "Select Account Type"
+    },
+    {
+        "Name": "transferDrawerLabelOtherWallet",
+        "TH": "Other Wi Wallets",
+        "EN": "Other Wi Wallets",
+        "RU": "Other Wi Wallets",
+        "ZH": "Other Wi Wallets",
+        "MM": "Other Wi Wallets"
+    },
+    {
+        "Name": "transferDrawerSelectValueWallet",
+        "TH": "Wi Wallet",
+        "EN": "Wi Wallet",
+        "RU": "Wi Wallet",
+        "ZH": "Wi Wallet",
+        "MM": "Wi Wallet"
+    },
+    {
+        "Name": "transferDrawerLabelPromptPayThai",
+        "TH": "PromptPay Thai",
+        "EN": "PromptPay Thai",
+        "RU": "PromptPay Thai",
+        "ZH": "PromptPay Thai",
+        "MM": "PromptPay Thai"
+    },
+    {
+        "Name": "transferDrawerSelectValuePromptPay",
+        "TH": "PromptPay",
+        "EN": "PromptPay",
+        "RU": "PromptPay",
+        "ZH": "PromptPay",
+        "MM": "PromptPay"
+    },
+    {
+        "Name": "transferDrawerLabelMobileBank",
+        "TH": "Mobile Banking",
+        "EN": "Mobile Banking",
+        "RU": "Mobile Banking",
+        "ZH": "Mobile Banking",
+        "MM": "Mobile Banking"
+    },
+    {
+        "Name": "transferDrawerSelectValueSiamBank",
+        "TH": "Siam Commercial Bank",
+        "EN": "Siam Commercial Bank",
+        "RU": "Siam Commercial Bank",
+        "ZH": "Siam Commercial Bank",
+        "MM": "Siam Commercial Bank"
+    },
+    {
+        "Name": "transferDrawerSelectValueBangkokBank",
+        "TH": "Bangkok Bank Mobile Banking",
+        "EN": "Bangkok Bank Mobile Banking",
+        "RU": "Bangkok Bank Mobile Banking",
+        "ZH": "Bangkok Bank Mobile Banking",
+        "MM": "Bangkok Bank Mobile Banking"
+    },
+    {
+        "Name": "transferDrawerSelectValueBankAyudhya",
+        "TH": "Bank of Ayudhya",
+        "EN": "Bank of Ayudhya",
+        "RU": "Bank of Ayudhya",
+        "ZH": "Bank of Ayudhya",
+        "MM": "Bank of Ayudhya"
+    },
+    {
+        "Name": "transferDrawerSelectValueKasikornBank",
+        "TH": "Kasikorn Bank",
+        "EN": "Kasikorn Bank",
+        "RU": "Kasikorn Bank",
+        "ZH": "Kasikorn Bank",
+        "MM": "Kasikorn Bank"
+    },
+    {
+        "Name": "transferInputLabelAccountNumber",
+        "TH": "Account Number",
+        "EN": "Account Number",
+        "RU": "Account Number",
+        "ZH": "Account Number",
+        "MM": "Account Number"
+    },
+    {
+        "Name": "transferInputPlaceholderEnterAccount",
+        "TH": "Enter account number",
+        "EN": "Enter account number",
+        "RU": "Enter account number",
+        "ZH": "Enter account number",
+        "MM": "Enter account number"
+    },
+    {
+        "Name": "transferDrawerHeaderTitleReview",
+        "TH": "Review",
+        "EN": "Review",
+        "RU": "Review",
+        "ZH": "Review",
+        "MM": "Review"
+    },
+    {
+        "Name": "transferDrawerWarningTitleRecheckInfo",
+        "TH": "Please recheck information before proceeding",
+        "EN": "Please recheck information before proceeding",
+        "RU": "Please recheck information before proceeding",
+        "ZH": "Please recheck information before proceeding",
+        "MM": "Please recheck information before proceeding"
+    },
+    {
+        "Name": "transferDrawerWarningInfoPreventFraud",
+        "TH": "To prevent wrong account transfers or fraudulent activities. It cannot be changed once confirmed.",
+        "EN": "To prevent wrong account transfers or fraudulent activities. It cannot be changed once confirmed.",
+        "RU": "To prevent wrong account transfers or fraudulent activities. It cannot be changed once confirmed.",
+        "ZH": "To prevent wrong account transfers or fraudulent activities. It cannot be changed once confirmed.",
+        "MM": "To prevent wrong account transfers or fraudulent activities. It cannot be changed once confirmed."
+    },
+    {
+        "Name": "transferDrawerDetailTotal",
+        "TH": "Total",
+        "EN": "Total",
+        "RU": "Total",
+        "ZH": "Total",
+        "MM": "Total"
+    },
+    {
+        "Name": "transferDrawerDetailAmountThb",
+        "TH": "{amount} {currency}",
+        "EN": "{amount} {currency}",
+        "RU": "{amount} {currency}",
+        "ZH": "{amount} {currency}",
+        "MM": "{amount} {currency}"
+    },
+    {
+        "Name": "transferDrawerDetailFeeAmountThb",
+        "TH": "Fee {amount} {currency}",
+        "EN": "Fee {amount} {currency}",
+        "RU": "Fee {amount} {currency}",
+        "ZH": "Fee {amount} {currency}",
+        "MM": "Fee {amount} {currency}"
+    },
+    {
+        "Name": "transferDrawerDetailFrom",
+        "TH": "From",
+        "EN": "From",
+        "RU": "From",
+        "ZH": "From",
+        "MM": "From"
+    },
+    {
+        "Name": "transferDrawerDetailValueYourWallet",
+        "TH": "Your Wi Wallet",
+        "EN": "Your Wi Wallet",
+        "RU": "Your Wi Wallet",
+        "ZH": "Your Wi Wallet",
+        "MM": "Your Wi Wallet"
+    },
+    {
+        "Name": "transferDrawerDetailMobileNumber",
+        "TH": "Mobile Number",
+        "EN": "Mobile Number",
+        "RU": "Mobile Number",
+        "ZH": "Mobile Number",
+        "MM": "Mobile Number"
+    },
+    {
+        "Name": "transferDrawerDetailTo",
+        "TH": "To",
+        "EN": "To",
+        "RU": "To",
+        "ZH": "To",
+        "MM": "To"
+    },
+    {
+        "Name": "transferDrawerDetailToValue",
+        "TH": "{bank}",
+        "EN": "{bank}",
+        "RU": "{bank}",
+        "ZH": "{bank}",
+        "MM": "{bank}"
+    },
+    {
+        "Name": "transferDrawerDetailAccountName",
+        "TH": "Account Name",
+        "EN": "Account Name",
+        "RU": "Account Name",
+        "ZH": "Account Name",
+        "MM": "Account Name"
+    },
+    {
+        "Name": "transferDrawerDetailAccountNameValue",
+        "TH": "{accountname}",
+        "EN": "{accountname}",
+        "RU": "{accountname}",
+        "ZH": "{accountname}",
+        "MM": "{accountname}"
+    },
+    {
+        "Name": "transferDrawerDetailMobileNumber",
+        "TH": "Mobile Number",
+        "EN": "Mobile Number",
+        "RU": "Mobile Number",
+        "ZH": "Mobile Number",
+        "MM": "Mobile Number"
+    },
+    {
+        "Name": "transferDrawerDetailMobileNumberValue",
+        "TH": "{mobilenumber}",
+        "EN": "{mobilenumber}",
+        "RU": "{mobilenumber}",
+        "ZH": "{mobilenumber}",
+        "MM": "{mobilenumber}"
+    },
+    {
+        "Name": "transferDrawerDetailAccountNumber",
+        "TH": "Account Number",
+        "EN": "Account Number",
+        "RU": "Account Number",
+        "ZH": "Account Number",
+        "MM": "Account Number"
+    },
+    {
+        "Name": "transferDrawerDetailAccountNumberValue",
+        "TH": "{accountnumber}",
+        "EN": "{accountnumber}",
+        "RU": "{accountnumber}",
+        "ZH": "{accountnumber}",
+        "MM": "{accountnumber}"
+    },
+    {
+        "Name": "transferDrawerLabelObject",
+        "TH": "Objective",
+        "EN": "Objective",
+        "RU": "Objective",
+        "ZH": "Objective",
+        "MM": "Objective"
+    },
+    {
+        "Name": "transferDrawerTextButtonConfirm",
+        "TH": "Confirm",
+        "EN": "Confirm",
+        "RU": "Confirm",
+        "ZH": "Confirm",
+        "MM": "Confirm"
+    },
+    {
+        "Name": "transferModalTitleInsufficientBalance",
+        "TH": "Insufficient Balance",
+        "EN": "Insufficient Balance",
+        "RU": "Insufficient Balance",
+        "ZH": "Insufficient Balance",
+        "MM": "Insufficient Balance"
+    },
+    {
+        "Name": "transferModalDesDepositBalance",
+        "TH": "You don’t have enough balance on Wi Wallet. Please deposit the balance.",
+        "EN": "You don’t have enough balance on Wi Wallet. Please deposit the balance.",
+        "RU": "You don’t have enough balance on Wi Wallet. Please deposit the balance.",
+        "ZH": "You don’t have enough balance on Wi Wallet. Please deposit the balance.",
+        "MM": "You don’t have enough balance on Wi Wallet. Please deposit the balance."
+    },
+    {
+        "Name": "transferModalTextButtonCancel",
+        "TH": "Cancel",
+        "EN": "Cancel",
+        "RU": "Cancel",
+        "ZH": "Cancel",
+        "MM": "Cancel"
+    },
+    {
+        "Name": "transferModalTextButtonConfirm",
+        "TH": "Confirm",
+        "EN": "Confirm",
+        "RU": "Confirm",
+        "ZH": "Confirm",
+        "MM": "Confirm"
+    },
+    {
+        "Name": "transferModalTitleErrorAccountNumber",
+        "TH": "Error",
+        "EN": "Error",
+        "RU": "Error",
+        "ZH": "Error",
+        "MM": "Error"
+    },
+    {
+        "Name": "transferModalDescriptionErrorIncorrectAccount",
+        "TH": "Sorry, the system has encountered an error. The destination account number is incorrect. Please contact customer service, available 24 hours daily.",
+        "EN": "Sorry, the system has encountered an error. The destination account number is incorrect. Please contact customer service, available 24 hours daily.",
+        "RU": "Sorry, the system has encountered an error. The destination account number is incorrect. Please contact customer service, available 24 hours daily.",
+        "ZH": "Sorry, the system has encountered an error. The destination account number is incorrect. Please contact customer service, available 24 hours daily.",
+        "MM": "Sorry, the system has encountered an error. The destination account number is incorrect. Please contact customer service, available 24 hours daily."
+    },
+    {
+        "Name": "transferModalTextButtonOk",
+        "TH": "OK",
+        "EN": "OK",
+        "RU": "OK",
+        "ZH": "OK",
+        "MM": "OK"
+    },
+    {
+        "Name": "transferModalTitleErrorSystem",
+        "TH": "Error",
+        "EN": "Error",
+        "RU": "Error",
+        "ZH": "Error",
+        "MM": "Error"
+    },
+    {
+        "Name": "transferModalDescriptionSystemErrorTry",
+        "TH": "Sorry, system has encountered error. Please try again.",
+        "EN": "Sorry, system has encountered error. Please try again.",
+        "RU": "Sorry, system has encountered error. Please try again.",
+        "ZH": "Sorry, system has encountered error. Please try again.",
+        "MM": "Sorry, system has encountered error. Please try again."
+    },
+    {
+        "Name": "transferModalTextButtonOk",
+        "TH": "OK",
+        "EN": "OK",
+        "RU": "OK",
+        "ZH": "OK",
+        "MM": "OK"
+    },
+    {
+        "Name": "scanHeaderTitle",
+        "TH": "Scan",
+        "EN": "Scan",
+        "RU": "Scan",
+        "ZH": "Scan",
+        "MM": "Scan"
+    },
+    {
+        "Name": "scanInfoHoldCamera",
+        "TH": "Hold the camera to scan a QR code.",
+        "EN": "Hold the camera to scan a QR code.",
+        "RU": "Hold the camera to scan a QR code.",
+        "ZH": "Hold the camera to scan a QR code.",
+        "MM": "Hold the camera to scan a QR code."
+    },
+    {
+        "Name": "scanButtonLeftFlash",
+        "TH": "Flash",
+        "EN": "Flash",
+        "RU": "Flash",
+        "ZH": "Flash",
+        "MM": "Flash"
+    },
+    {
+        "Name": "scanButtonRightPhoto",
+        "TH": "Photo",
+        "EN": "Photo",
+        "RU": "Photo",
+        "ZH": "Photo",
+        "MM": "Photo"
+    },
+    {
+        "Name": "homeModalTitlePinIncorrectError",
+        "TH": "Error",
+        "EN": "Error",
+        "RU": "Error",
+        "ZH": "Error",
+        "MM": "Error"
+    },
+    {
+        "Name": "homeModalDesPinIncorrectError",
+        "TH": "The system encountered an error because you entered the PIN incorrectly too many times. Please contact customer service available 24 hours daily.",
+        "EN": "The system encountered an error because you entered the PIN incorrectly too many times. Please contact customer service available 24 hours daily.",
+        "RU": "The system encountered an error because you entered the PIN incorrectly too many times. Please contact customer service available 24 hours daily.",
+        "ZH": "The system encountered an error because you entered the PIN incorrectly too many times. Please contact customer service available 24 hours daily.",
+        "MM": "The system encountered an error because you entered the PIN incorrectly too many times. Please contact customer service available 24 hours daily."
+    },
+    {
+        "Name": "homeModalTextButtonContact",
+        "TH": "Contact Us",
+        "EN": "Contact Us",
+        "RU": "Contact Us",
+        "ZH": "Contact Us",
+        "MM": "Contact Us"
+    },
+    {
+        "Name": "homeAlertInfoErrorSystem",
+        "TH": "Sorry, system has encountered error. Please try again.",
+        "EN": "Sorry, system has encountered error. Please try again.",
+        "RU": "Sorry, system has encountered error. Please try again.",
+        "ZH": "Sorry, system has encountered error. Please try again.",
+        "MM": "Sorry, system has encountered error. Please try again."
+    },
+    {
+        "Name": "homeDrawerHeaderTitleBalanceDetail",
+        "TH": "Balance Detail",
+        "EN": "Balance Detail",
+        "RU": "Balance Detail",
+        "ZH": "Balance Detail",
+        "MM": "Balance Detail"
+    },
+    {
+        "Name": "homeDrawerDetailTotalBalance",
+        "TH": "Available Balance",
+        "EN": "Available Balance",
+        "RU": "Available Balance",
+        "ZH": "Available Balance",
+        "MM": "Available Balance"
+    },
+    {
+        "Name": "homeDrawerDetailAmountTotalBalanceThb",
+        "TH": "{amount} {currency}",
+        "EN": "{amount} {currency}",
+        "RU": "{amount} {currency}",
+        "ZH": "{amount} {currency}",
+        "MM": "{amount} {currency}"
+    },
+    {
+        "Name": "homeDrawerDetailHoldAmount",
+        "TH": "Hold Amount*",
+        "EN": "Hold Amount*",
+        "RU": "Hold Amount*",
+        "ZH": "Hold Amount*",
+        "MM": "Hold Amount*"
+    },
+    {
+        "Name": "homeDrawerDetailHoldAmountThb",
+        "TH": "{amount} {currency}",
+        "EN": "{amount} {currency}",
+        "RU": "{amount} {currency}",
+        "ZH": "{amount} {currency}",
+        "MM": "{amount} {currency}"
+    },
+    {
+        "Name": "homeDrawerDetailLedgerBalance",
+        "TH": "Ledger Balance",
+        "EN": "Ledger Balance",
+        "RU": "Ledger Balance",
+        "ZH": "Ledger Balance",
+        "MM": "Ledger Balance"
+    },
+    {
+        "Name": "homeDrawerDetailLedgerBalanceThb",
+        "TH": "{amount} {currency}",
+        "EN": "{amount} {currency}",
+        "RU": "{amount} {currency}",
+        "ZH": "{amount} {currency}",
+        "MM": "{amount} {currency}"
+    },
+    {
+        "Name": "homeDrawerWarningInfoHoldAmount",
+        "TH": "*Hold Amount means they aren't immediately available for use. Please contact our customer support team for more details and to process the next steps.",
+        "EN": "*Hold Amount means they aren't immediately available for use. Please contact our customer support team for more details and to process the next steps.",
+        "RU": "*Hold Amount means they aren't immediately available for use. Please contact our customer support team for more details and to process the next steps.",
+        "ZH": "*Hold Amount means they aren't immediately available for use. Please contact our customer support team for more details and to process the next steps.",
+        "MM": "*Hold Amount means they aren't immediately available for use. Please contact our customer support team for more details and to process the next steps."
+    },
+    {
+        "Name": "homeDrawerTextButtonBalanceDetailOk",
+        "TH": "OK",
+        "EN": "OK",
+        "RU": "OK",
+        "ZH": "OK",
+        "MM": "OK"
+    },
+    {
+        "Name": "historyCardListItemTitleReserveAmount",
+        "TH": "Reserve Hold Amount",
+        "EN": "Reserve Hold Amount",
+        "RU": "Reserve Hold Amount",
+        "ZH": "Reserve Hold Amount",
+        "MM": "Reserve Hold Amount"
+    },
+    {
+        "Name": "historyCardListItemTitleHoldAmount",
+        "TH": "Hold Amount",
+        "EN": "Hold Amount",
+        "RU": "Hold Amount",
+        "ZH": "Hold Amount",
+        "MM": "Hold Amount"
+    },
+    {
+        "Name": "announcement",
+        "TH": "Announcement",
+        "EN": "Announcement",
+        "RU": "Announcement",
+        "ZH": "Announcement",
+        "MM": "Announcement"
+    },
+    {
+        "Name": "primaryButton",
+        "TH": "Primary Button",
+        "EN": "Primary Button",
+        "RU": "Primary Button",
+        "ZH": "Primary Button",
+        "MM": "Primary Button"
+    },
+    {
+        "Name": "secondaryButton",
+        "TH": "Secondary Button",
+        "EN": "Secondary Button",
+        "RU": "Secondary Button",
+        "ZH": "Secondary Button",
+        "MM": "Secondary Button"
+    },
+    {
+        "Name": "cardReviewPreviewTitle",
+        "TH": "Review Transaction",
+        "EN": "Review Transaction",
+        "RU": "Review Transaction",
+        "ZH": "Review Transaction",
+        "MM": "Review Transaction"
+    }
+]

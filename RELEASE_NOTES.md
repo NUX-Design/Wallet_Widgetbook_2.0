@@ -1,4 +1,4 @@
-# 🚀 Release Notes v2.2.0 - New Widgets & Enhanced Preview System
+# 🚀 Release Notes v25.0.5 - New Widgets & Enhanced Preview System
 
 **Release Date:** December 2025
 **Branch:** `dev`
@@ -39,11 +39,16 @@
 - **Realistic Data:** Previews now use dynamic data to simulate real-world scenarios.
 - **Interactive Controls:** Widgetbook knobs allow testing different states (e.g., loading, error) easily.
 
+### 🌍 Localization Workflow
+- **Centralized Management** - New `localization.json` source of truth for all translations.
+- **Automated Generation** - New `tool/generate_arb.dart` script to auto-generate ARB files.
+- **Documentation** - Added `lib/l10n/localization_i10n.md` guide.
+
 ---
 
 ## 🚀 What's Next
 
-### Planned for v2.3.0
+### Planned for v25.1.0
 - **Navigation System** - Implement go_router integration
 - **API Layer** - Repository pattern implementation
 - **Testing Suite** - Unit and widget test coverage

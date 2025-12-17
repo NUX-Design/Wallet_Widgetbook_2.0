@@ -3,66 +3,7 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:mcp_test_app/assets/hugeicons/huge_icons.dart';
 import 'package:mcp_test_app/config/themes/theme_constants.dart';
 import 'package:mcp_test_app/config/themes/theme_color.dart' as theme;
-import 'package:mcp_test_app/generated/intl/app_localizations.dart';
 import 'package:mcp_test_app/widgets/skeleton/lottie_skeleton.dart';
-
-// Preview widget for AnnouncementStack
-void main() {
-  runApp(const MyApp());
-}
-
-class MyApp extends StatelessWidget {
-  const MyApp({super.key});
-
-  @override
-  Widget build(BuildContext context) {
-    return MaterialApp(
-      title: 'Announcement Preview',
-      theme: ThemeData(useMaterial3: true),
-      home: Scaffold(
-        backgroundColor: Colors.grey[200],
-        body: const Center(child: AnnouncementStackPreview()),
-      ),
-    );
-  }
-}
-
-class AnnouncementStackPreview extends StatelessWidget {
-  const AnnouncementStackPreview({super.key});
-
-  @override
-  Widget build(BuildContext context) {
-    return SingleChildScrollView(
-      child: Column(
-        mainAxisAlignment: MainAxisAlignment.center,
-        children: [
-          Text(
-            AppLocalizations.of(context)!.announcement,
-            style: Theme.of(context).textTheme.headlineMedium?.copyWith(
-              fontSize: 24,
-              fontWeight: FontWeight.w500,
-              color: theme.ThemeColors.get('light', 'text/contrast/600'),
-            ),
-          ),
-          const SizedBox(height: 24),
-          Container(
-            width: 375, // iPhone 8 width
-            padding: const EdgeInsets.all(16),
-            child: AnnouncementStack(
-              messages: const [
-                'The money withdrawal system will return to service as usual. From 31/05/2022 at 4:30 PM (Thailand time) onwards.',
-                'We are currently upgrading our security infrastructure. Services will resume by 31/05/2022 at 5:00 PM (Thailand time).',
-                'Your account has been verified successfully. All features are now fully accessible from 01/06/2022 at 8:00 AM (Thailand time).',
-              ],
-            ),
-          ),
-          const SizedBox(height: 24),
-          Text(AppLocalizations.of(context)!.viewAll),
-        ],
-      ),
-    );
-  }
-}
 
 class AnnouncementStack extends StatefulWidget {
   const AnnouncementStack({
@@ -104,14 +45,7 @@ class _AnnouncementStackState extends State<AnnouncementStack>
     super.initState();
 
     // Initialize messages
-    _messages =
-        widget.messages.isNotEmpty
-            ? List.from(widget.messages)
-            : [
-              'The money withdrawal system will return to service as usual. From 31/05/2022 at 4:30 PM (Thailand time) onwards.',
-              'We are currently upgrading our security infrastructure. Services will resume by 31/05/2022 at 5:00 PM (Thailand time).',
-              'Your account has been verified successfully. All features are now fully accessible from 01/06/2022 at 8:00 AM (Thailand time).',
-            ];
+    _messages = List.from(widget.messages);
 
     // Initialize animations
     _dismissController = AnimationController(

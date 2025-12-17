@@ -5,7 +5,6 @@ import 'package:mcp_test_app/config/themes/theme_color.dart';
 class CardReviewTransaction extends StatelessWidget {
   final String totalAmount;
   final String feeAmount;
-  final String currency;
   final String fromLabel;
   final String fromValue;
   final String mobileLabel;
@@ -16,12 +15,13 @@ class CardReviewTransaction extends StatelessWidget {
   final String accountNameValue;
   final String accountNumberLabel;
   final String accountNumberValue;
+  final String dateLabel;
+  final String dateValue;
 
   const CardReviewTransaction({
     super.key,
     required this.totalAmount,
     this.feeAmount = '0.00',
-    this.currency = 'THB',
     required this.fromLabel,
     required this.fromValue,
     required this.mobileLabel,
@@ -32,11 +32,14 @@ class CardReviewTransaction extends StatelessWidget {
     required this.accountNameValue,
     required this.accountNumberLabel,
     required this.accountNumberValue,
+    required this.dateLabel,
+    required this.dateValue,
   });
 
   @override
   Widget build(BuildContext context) {
-    final brightnessKey = Theme.of(context).brightness == Brightness.light ? 'light' : 'dark';
+    final brightnessKey =
+        Theme.of(context).brightness == Brightness.light ? 'light' : 'dark';
 
     return Container(
       width: double.infinity,
@@ -61,7 +64,7 @@ class CardReviewTransaction extends StatelessWidget {
               ),
               const SizedBox(height: 4),
               Text(
-                '$totalAmount $currency',
+                totalAmount,
                 textAlign: TextAlign.center,
                 style: GoogleFonts.notoSansThai(
                   fontSize: 22,
@@ -75,27 +78,7 @@ class CardReviewTransaction extends StatelessWidget {
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
                   Text(
-                    'Fee',
-                    style: GoogleFonts.notoSansThai(
-                      fontSize: 13,
-                      height: 1.23,
-                      fontWeight: FontWeight.w600,
-                      color: ThemeColors.get(brightnessKey, 'text/base/600'),
-                    ),
-                  ),
-                  const SizedBox(width: 4),
-                  Text(
                     feeAmount,
-                    style: GoogleFonts.notoSansThai(
-                      fontSize: 13,
-                      height: 1.23,
-                      fontWeight: FontWeight.w600,
-                      color: ThemeColors.get(brightnessKey, 'text/base/600'),
-                    ),
-                  ),
-                  const SizedBox(width: 4),
-                  Text(
-                    currency,
                     style: GoogleFonts.notoSansThai(
                       fontSize: 13,
                       height: 1.23,
@@ -134,9 +117,19 @@ class CardReviewTransaction extends StatelessWidget {
               const SizedBox(height: 16),
               _buildDetailRow(toLabel, toValue, brightnessKey),
               const SizedBox(height: 16),
-              _buildDetailRow(accountNameLabel, accountNameValue, brightnessKey),
+              _buildDetailRow(
+                accountNameLabel,
+                accountNameValue,
+                brightnessKey,
+              ),
               const SizedBox(height: 16),
-              _buildDetailRow(accountNumberLabel, accountNumberValue, brightnessKey),
+              _buildDetailRow(
+                accountNumberLabel,
+                accountNumberValue,
+                brightnessKey,
+              ),
+              const SizedBox(height: 16),
+              _buildDetailRow(dateLabel, dateValue, brightnessKey),
             ],
           ),
         ],

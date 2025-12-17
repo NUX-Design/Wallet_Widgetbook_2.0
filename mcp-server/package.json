@@ -1,0 +1,13 @@
+{
+    "name": "wi-wallet-design-system-mcp",
+    "version": "1.0.0",
+    "description": "MCP Server for Wi_Wallet Design System",
+    "type": "module",
+    "scripts": {
+        "start": "node index.js"
+    },
+    "dependencies": {
+        "@modelcontextprotocol/sdk": "^0.6.0",
+        "zod": "^3.22.4"
+    }
+}

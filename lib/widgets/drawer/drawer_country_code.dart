@@ -264,7 +264,7 @@ class _DrawerCountryCodeState extends State<DrawerCountryCode> {
             height: 144,
           ),
           Text(
-            AppLocalizations.of(context)!.noResultsFound,
+            AppLocalizations.of(context)!.titleDrawerEmptyNoResultsFound,
             style: TextStyle(
               fontFamily: 'Noto Sans Thai',
               fontSize: 22,
@@ -276,7 +276,7 @@ class _DrawerCountryCodeState extends State<DrawerCountryCode> {
           ),
           const SizedBox(height: 4),
           Text(
-            AppLocalizations.of(context)!.pleaseTryAgain,
+            AppLocalizations.of(context)!.descriptionDrawerEmptyTryAgain,
             style: TextStyle(
               fontFamily: 'Noto Sans Thai',
               fontSize: 15,

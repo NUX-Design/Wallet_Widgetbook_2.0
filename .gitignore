@@ -104,3 +104,9 @@ firebase-debug.log
 
 # Local configuration
 local.properties
+
+# Optional: ไม่ต้องเก็บ auto-generated file
+docs/schema.json
+
+# Node modules
+node_modules/

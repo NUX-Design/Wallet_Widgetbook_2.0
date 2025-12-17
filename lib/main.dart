@@ -33,7 +33,7 @@ class MyApp extends StatelessWidget {
       builder: (context, themeProvider, localeProvider, child) {
         return MaterialApp(
           onGenerateTitle: (context) {
-            return AppLocalizations.of(context)!.app_name;
+            return AppLocalizations.of(context)!.settingTextVerAppWiWallet;
           },
           localizationsDelegates: [
             AppLocalizations.delegate,
@@ -129,7 +129,7 @@ class _HomePageState extends State<HomePage> {
         elevation: 0,
         titleSpacing: 0,
         title: Text(
-          AppLocalizations.of(context)!.app_name,
+          AppLocalizations.of(context)!.settingTextVerAppWiWallet,
           style: Theme.of(context).textTheme.titleLarge?.copyWith(
             color: ThemeColors.get(brightnessKey, 'text/base/600'),
             fontSize: 20.0,
@@ -169,7 +169,9 @@ class _HomePageState extends State<HomePage> {
                           const Icon(Icons.light_mode, size: 20),
                           const SizedBox(width: 8.0),
                           Text(
-                            AppLocalizations.of(context)!.light_theme,
+                            AppLocalizations.of(
+                              context,
+                            )!.settingValueMainMenuAppearLight,
                             style: Theme.of(
                               context,
                             ).textTheme.bodyMedium?.copyWith(
@@ -210,7 +212,9 @@ class _HomePageState extends State<HomePage> {
                           ),
                           const SizedBox(width: 8.0),
                           Text(
-                            AppLocalizations.of(context)!.dark_theme,
+                            AppLocalizations.of(
+                              context,
+                            )!.settingValueMainMenuAppearDark,
                             style: Theme.of(
                               context,
                             ).textTheme.bodyMedium?.copyWith(
@@ -314,7 +318,18 @@ class _HomePageState extends State<HomePage> {
                         const SizedBox(height: 24),
                         Padding(
                           padding: const EdgeInsets.symmetric(horizontal: 16.0),
-                          child: AnnouncementStack(),
+                          child: AnnouncementStack(
+                            messages: [
+                              'Your account has been verified successfully. All features are now fully accessible from 01/06/2022 at 8:00 AM (Thailand time).',
+                              AppLocalizations.of(
+                                context,
+                              )!.homeAnnounceVerifyFaceToReceive(
+                                '100.00',
+                                'THB',
+                              ),
+                              'This is a very long announcement message that is intended to test the text truncation functionality of the widget. It should be long enough to exceed three lines when displayed on a standard mobile screen width. If it works correctly, you should see an ellipsis at the end of the third line.',
+                            ],
+                          ),
                         ),
                         const SizedBox(height: 16),
                         Padding(
@@ -347,15 +362,24 @@ class _HomePageState extends State<HomePage> {
                             crossAxisAlignment: CrossAxisAlignment.center,
                             children: [
                               ShortcutMenuItem(
-                                label: AppLocalizations.of(context)!.transfer,
+                                label:
+                                    AppLocalizations.of(
+                                      context,
+                                    )!.shortcutMenuHomeTransfer,
                               ),
                               const SizedBox(width: 56),
                               ShortcutMenuItem(
-                                label: AppLocalizations.of(context)!.top_up,
+                                label:
+                                    AppLocalizations.of(
+                                      context,
+                                    )!.shortcutMenuHomeWiCoin,
                               ),
                               const SizedBox(width: 56),
                               ShortcutMenuItem(
-                                label: AppLocalizations.of(context)!.bill,
+                                label:
+                                    AppLocalizations.of(
+                                      context,
+                                    )!.shortcutMenuHomeBill,
                               ),
                             ],
                           ),

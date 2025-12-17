@@ -137,7 +137,8 @@ Widget buildButtonDisabled(BuildContext context) {
 @widgetbook.UseCase(name: 'Default', type: CardReviewTransaction)
 Widget buildCardReviewTransaction(BuildContext context) {
   return const CardReviewTransaction(
-    totalAmount: '100.00',
+    totalAmount: '100.00 THB',
+    feeAmount: 'Fee 0.00 THB',
     fromLabel: 'From',
     fromValue: 'John Doe',
     mobileLabel: 'Mobile',
@@ -148,6 +149,8 @@ Widget buildCardReviewTransaction(BuildContext context) {
     accountNameValue: 'Jane Smith',
     accountNumberLabel: 'Account Number',
     accountNumberValue: '123-4-56789-0',
+    dateLabel: 'Date&Time',
+    dateValue: '06 Oct 2025 12:00',
   );
 }
 
@@ -295,7 +298,8 @@ Widget buildDrawerReviewTransaction(BuildContext context) {
         child: DrawerReviewTransaction(
           warningTitle: 'Warning',
           warningDescription: 'Please review your transaction.',
-          totalAmount: '100.00',
+          totalAmount: '100.00 THB',
+          feeAmount: 'Fee 0.00 THB',
           fromLabel: 'From',
           fromValue: 'John Doe',
           mobileLabel: 'Mobile',
@@ -308,6 +312,8 @@ Widget buildDrawerReviewTransaction(BuildContext context) {
           accountNumberValue: '123-4-56789-0',
           objectLabel: 'Note',
           objectValue: 'Payment for services',
+          dateLabel: 'Date&Time',
+          dateValue: '06 Oct 2025 12:00',
         ),
       ),
     ],

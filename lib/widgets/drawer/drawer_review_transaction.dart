@@ -11,7 +11,6 @@ class DrawerReviewTransaction extends StatelessWidget {
   final String warningDescription;
   final String totalAmount;
   final String feeAmount;
-  final String currency;
   final String fromLabel;
   final String fromValue;
   final String mobileLabel;
@@ -24,6 +23,8 @@ class DrawerReviewTransaction extends StatelessWidget {
   final String accountNumberValue;
   final String objectLabel;
   final String objectValue;
+  final String dateLabel;
+  final String dateValue;
   final String confirmButtonText;
   final VoidCallback? onConfirm;
   final VoidCallback? onClose;
@@ -34,7 +35,6 @@ class DrawerReviewTransaction extends StatelessWidget {
     required this.warningDescription,
     required this.totalAmount,
     this.feeAmount = '0.00',
-    this.currency = 'THB',
     required this.fromLabel,
     required this.fromValue,
     required this.mobileLabel,
@@ -47,6 +47,8 @@ class DrawerReviewTransaction extends StatelessWidget {
     required this.accountNumberValue,
     required this.objectLabel,
     required this.objectValue,
+    required this.dateLabel,
+    required this.dateValue,
     this.confirmButtonText = 'Confirm',
     this.onConfirm,
     this.onClose,
@@ -58,7 +60,6 @@ class DrawerReviewTransaction extends StatelessWidget {
     required String warningDescription,
     required String totalAmount,
     String feeAmount = '0.00',
-    String currency = 'THB',
     required String fromLabel,
     required String fromValue,
     required String mobileLabel,
@@ -71,6 +72,8 @@ class DrawerReviewTransaction extends StatelessWidget {
     required String accountNumberValue,
     required String objectLabel,
     required String objectValue,
+    required String dateLabel,
+    required String dateValue,
     String confirmButtonText = 'Confirm',
     VoidCallback? onConfirm,
   }) {
@@ -89,7 +92,6 @@ class DrawerReviewTransaction extends StatelessWidget {
               warningDescription: warningDescription,
               totalAmount: totalAmount,
               feeAmount: feeAmount,
-              currency: currency,
               fromLabel: fromLabel,
               fromValue: fromValue,
               mobileLabel: mobileLabel,
@@ -102,6 +104,8 @@ class DrawerReviewTransaction extends StatelessWidget {
               accountNumberValue: accountNumberValue,
               objectLabel: objectLabel,
               objectValue: objectValue,
+              dateLabel: dateLabel,
+              dateValue: dateValue,
               confirmButtonText: confirmButtonText,
               onConfirm: onConfirm,
               onClose: () => Navigator.pop(context),
@@ -179,7 +183,6 @@ class DrawerReviewTransaction extends StatelessWidget {
                   CardReviewTransaction(
                     totalAmount: totalAmount,
                     feeAmount: feeAmount,
-                    currency: currency,
                     fromLabel: fromLabel,
                     fromValue: fromValue,
                     mobileLabel: mobileLabel,
@@ -190,6 +193,8 @@ class DrawerReviewTransaction extends StatelessWidget {
                     accountNameValue: accountNameValue,
                     accountNumberLabel: accountNumberLabel,
                     accountNumberValue: accountNumberValue,
+                    dateLabel: dateLabel,
+                    dateValue: dateValue,
                   ),
                   const SizedBox(height: 8),
                   // Object Label

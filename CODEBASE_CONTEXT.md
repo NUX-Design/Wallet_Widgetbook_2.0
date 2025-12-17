@@ -3,7 +3,7 @@
 ## 📋 ภาพรวมโปรเจค
 
 **ชื่อโปรเจค:** flutter_test_app (Wi Wallet Flutter Widget 2.0)  
-**เวอร์ชัน:** 1.0.0+1  
+**เวอร์ชัน:** 25.0.5+1  
 **Flutter SDK:** ^3.7.2  
 **ประเภท:** Multi-platform Flutter Application (iOS, Android, Web, macOS, Linux, Windows)  
 **Repository:** https://github.com/nengniwatyah/Wi_Wallet_Flutter_Widget_2.0
@@ -84,7 +84,10 @@ lib/
 - 🇲🇲 မြန်မာ (my) - Myanmar
 
 ### การตั้งค่า
-- **ARB files:** `lib/l10n/app_{locale}.arb`
+### การตั้งค่า
+- **Source of Truth:** `localization.json` (Root level)
+- **Generation Script:** `tool/generate_arb.dart`
+- **ARB files:** `lib/l10n/app_{locale}.arb` (Generated)
 - **Generated files:** `lib/generated/intl/`
 - **Configuration:** `l10n.yaml` (root level)
 - **Font handling:** GoogleFonts.notoSansThai() สำหรับภาษาไทย
@@ -255,6 +258,10 @@ widgets/{feature}/
 - **Multi-device Testing** - Simultaneous testing across devices
 - **Real Interaction Testing** - Touch, swipe, scroll behaviors
 
+### Card & Announcement Widgets
+- **CardReviewTransaction** - Added API data handling, number formatting, and improved localization support
+- **AnnouncementStack** - Refactored to separate base widget from preview, added skeleton loading support
+
 ### Widgetbook Integration
 - **Centralized Preview** - All widgets cataloged in Widgetbook
 - **Interactive Controls** - Knobs and controls for testing widget states
@@ -289,6 +296,7 @@ widgets/{feature}/
 ### Setup Commands
 ```bash
 flutter pub get                 # Install dependencies
+dart run tool/generate_arb.dart # Generate ARB from JSON
 flutter gen-l10n               # Generate localization
 flutter run                    # Run main app
 flutter test                   # Run tests

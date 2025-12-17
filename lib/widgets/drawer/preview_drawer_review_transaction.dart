@@ -10,7 +10,8 @@ class ThemeProvider extends ChangeNotifier {
   ThemeMode get themeMode => _themeMode;
 
   void toggleTheme() {
-    _themeMode = _themeMode == ThemeMode.light ? ThemeMode.dark : ThemeMode.light;
+    _themeMode =
+        _themeMode == ThemeMode.light ? ThemeMode.dark : ThemeMode.light;
     notifyListeners();
   }
 }
@@ -65,7 +66,8 @@ class DrawerReviewTransactionPreview extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final brightnessKey = Theme.of(context).brightness == Brightness.light ? 'light' : 'dark';
+    final brightnessKey =
+        Theme.of(context).brightness == Brightness.light ? 'light' : 'dark';
 
     return Scaffold(
       backgroundColor: ThemeColors.get(brightnessKey, 'fill/base/100'),
@@ -77,7 +79,9 @@ class DrawerReviewTransactionPreview extends StatelessWidget {
             builder: (context, themeProvider, _) {
               return IconButton(
                 icon: Icon(
-                  themeProvider.themeMode == ThemeMode.light ? Icons.dark_mode : Icons.light_mode,
+                  themeProvider.themeMode == ThemeMode.light
+                      ? Icons.dark_mode
+                      : Icons.light_mode,
                 ),
                 onPressed: () => themeProvider.toggleTheme(),
               );
@@ -93,13 +97,14 @@ class DrawerReviewTransactionPreview extends StatelessWidget {
             children: [
               ElevatedButton(
                 onPressed: () {
+                  final l10n = AppLocalizations.of(context)!;
                   DrawerReviewTransaction.show(
                     context,
-                    warningTitle: 'Please recheck information before proceeding',
-                    warningDescription: 'To prevent wrong account transfers or fraudulent activities. It cannot be changed once confirmed.',
-                    totalAmount: '5,000.00',
-                    feeAmount: '0.00',
-                    currency: 'THB',
+                    warningTitle: l10n.transferDrawerWarningTitleRecheckInfo,
+                    warningDescription:
+                        l10n.transferDrawerWarningInfoPreventFraud,
+                    totalAmount: '5,000.00 THB',
+                    feeAmount: 'Fee 0.00 THB',
                     fromLabel: 'From',
                     fromValue: 'Your Wi Wallet',
                     mobileLabel: 'Mobile Number',
@@ -112,6 +117,8 @@ class DrawerReviewTransactionPreview extends StatelessWidget {
                     accountNumberValue: '1234567890',
                     objectLabel: 'Object',
                     objectValue: 'Personal expenses',
+                    dateLabel: 'Date&Time',
+                    dateValue: '06 Oct 2025 12:00',
                     confirmButtonText: 'Confirm',
                     onConfirm: () {
                       Navigator.pop(context);
@@ -122,7 +129,10 @@ class DrawerReviewTransactionPreview extends StatelessWidget {
                   );
                 },
                 style: ElevatedButton.styleFrom(
-                  padding: const EdgeInsets.symmetric(horizontal: 32, vertical: 16),
+                  padding: const EdgeInsets.symmetric(
+                    horizontal: 32,
+                    vertical: 16,
+                  ),
                 ),
                 child: const Text('Show Review Drawer'),
               ),

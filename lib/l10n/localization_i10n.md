@@ -1,95 +1,110 @@
-# ระบบ Localization (i10n) ในโปรเจกต์ Flutter
+# Workflow ระบบ Localization (i10n) ของโปรเจกต์
 
-ระบบ Internationalization (i10n) ในโปรเจกต์ Flutter นี้ทำงานอย่างเป็นระบบ โดยอาศัยเครื่องมือที่มากับ Flutter เอง ทำให้การจัดการข้อความหลายภาษาง่ายและมีประสิทธิภาพสูง
+เอกสารนี้อธิบายขั้นตอนการทำงานของระบบ Localization ที่ใช้ในโปรเจกต์นี้ ซึ่งมีการปรับแต่งให้ทำงานร่วมกับไฟล์ `localization.json` (ที่ได้จากการ Export Google Sheets) เพื่อความสะดวกในการจัดการภาษา
 
-นี่คือขั้นตอนและส่วนประกอบหลักๆ ของระบบ i10n ที่เห็นในโปรเจกต์ของคุณ:
+## ภาพรวมของ Workflow
 
-### 1. ไฟล์ตั้งค่าหลัก: `l10n.yaml`
-
-ไฟล์นี้เปรียบเสมือน "พิมพ์เขียว" ของระบบแปลภาษาในแอปของคุณ มันจะบอก Flutter ว่า:
-
--   **ไฟล์ภาษาต้นแบบอยู่ที่ไหน:** (`template-arb-file`) โดยปกติจะชี้ไปที่ไฟล์ภาษาอังกฤษ เช่น `app_en.arb`
--   **ไฟล์ภาษาทั้งหมดเก็บไว้ที่ไหน:** (`arb-dir`) ในโปรเจกต์ของคุณคือไดเรกทอรี `lib/l10n`
--   **ไฟล์ Dart ที่จะสร้างขึ้นควรไปอยู่ที่ไหน:** (`output-localization-file`) ซึ่งก็คือ `app_localizations.dart`
--   **คลาส Dart ที่จะถูกสร้างขึ้นควรชื่ออะไร:** (`output-class`) โดยทั่วไปจะชื่อ `AppLocalizations`
-
-### 2. ไฟล์ข้อมูลภาษา: `lib/l10n/*.arb`
-
-ไฟล์ `.arb` (Application Resource Bundle) คือหัวใจของการแปลภาษา เป็นไฟล์ที่เก็บข้อความทั้งหมดในรูปแบบ "key-value"
-
--   `app_en.arb`: เป็นไฟล์ **"ต้นแบบ" (Template)** ภาษาอังกฤษ ทุกข้อความใหม่ที่คุณต้องการเพิ่มในแอป **ต้องเริ่มที่ไฟล์นี้ก่อนเสมอ**
--   `app_th.arb`, `app_my.arb`, `app_ru.arb`, `app_zh.arb`: เป็นไฟล์แปลของภาษาอื่นๆ (ไทย, มาเลย์, รัสเซีย, จีน) โดยจะมี "key" เหมือนกับในไฟล์ `app_en.arb` ทุกประการ แต่ "value" จะเป็นข้อความที่แปลแล้ว
-
-**ตัวอย่างในไฟล์ `app_en.arb`:**
-```json
-{
-  "helloWorld": "Hello World!",
-  "welcomeMessage": "Welcome {userName}"
-}
-```
-
-**ตัวอย่างในไฟล์ `app_th.arb`:**
-```json
-{
-  "helloWorld": "สวัสดีชาวโลก!",
-  "welcomeMessage": "ยินดีต้อนรับ {userName}"
-}
-```
-> สังเกตว่า `{userName}` คือตัวแปร (placeholder) ที่สามารถส่งค่าเข้าไปแทรกในข้อความได้จากโค้ด
-
-### 3. การสร้างโค้ดอัตโนมัติ: `flutter gen-l10n`
-
-นี่คือคำสั่งที่ใช้ในการสร้างไฟล์ภาษา:
-```bash
-flutter gen-l10n
-```
-คำสั่งนี้จะ:
-1.  อ่านไฟล์ `l10n.yaml` เพื่อดูการตั้งค่า
-2.  เข้าไปอ่านไฟล์ `.arb` ทั้งหมดใน `lib/l10n`
-3.  **สร้างไฟล์ Dart อัตโนมัติ** ไปไว้ที่ `lib/generated/intl/`
-4.  ไฟล์ที่สำคัญที่สุดที่ถูกสร้างขึ้นคือ `app_localizations.dart` ซึ่งภายในจะมีคลาสชื่อ `AppLocalizations`
-
-### 4. การนำไปใช้งานในโค้ด: คลาส `AppLocalizations`
-
-แทนที่จะเขียนข้อความลงไปในโค้ดตรงๆ (Hardcode) เช่น `Text("Hello World!")` เราจะเรียกใช้ผ่านคลาสที่ถูกสร้างขึ้นมาแทน:
-
-```dart
-// ก่อนใช้ i10n
-Text("Hello World!");
-
-// หลังใช้ i10n
-Text(AppLocalizations.of(context)!.helloWorld);
-```
-
-**ข้อดีคือ:**
--   **Type-Safe:** ถ้าคุณพิมพ์ชื่อ key ผิด (เช่น `helloWorrld`) โค้ดจะ error ทันทีตอน compile ไม่ต้องรอไปเจอตอนแอปทำงาน
--   **โค้ดสะอาด:** แยกข้อความออกจาก Logic ของโค้ดอย่างชัดเจน
--   **เปลี่ยนภาษาง่าย:** Flutter จะจัดการเลือกข้อความจากภาษาที่ถูกต้องให้เองตามภาษาของเครื่องผู้ใช้
-
-### 5. การตั้งค่าใน `MaterialApp`
-
-เพื่อให้ Flutter รู้จักกับระบบ i10n ของเรา เราต้องไปตั้งค่าในไฟล์ `lib/main.dart` ตรง `MaterialApp` (หรือ `CupertinoApp`) ดังนี้:
-
-```dart
-MaterialApp(
-  // ...
-  localizationsDelegates: AppLocalizations.localizationsDelegates,
-  supportedLocales: AppLocalizations.supportedLocales,
-  // ...
-)
-```
--   `localizationsDelegates`: บอก Flutter ว่าจะโหลดภาษาจากที่ไหน (ซึ่งก็คือจากคลาส `AppLocalizations` ของเรา)
--   `supportedLocales`: บอก Flutter ว่าแอปของเรารองรับภาษาอะไรบ้าง ซึ่งรายการนี้จะถูกสร้างขึ้นอัตโนมัติตามจำนวนไฟล์ `.arb` ที่เรามี
-
-### สรุปขั้นตอนการทำงานทั้งหมด
-
-1.  **กำหนดข้อความ:** เพิ่ม Key-Value ในไฟล์ `app_en.arb` ก่อนเสมอ
-2.  **แปลภาษา:** นำ Key เดียวกันไปใส่ในไฟล์ `.arb` ของภาษาอื่นๆ พร้อมใส่คำแปล
-3.  **สร้างโค้ด:** รันคำสั่ง `flutter gen-l10n`
-4.  **เรียกใช้:** ใช้ `AppLocalizations.of(context)!.yourKey` ในโค้ด Widget
-5.  **ตั้งค่า:** กำหนด `localizationsDelegates` และ `supportedLocales` ใน `MaterialApp`
-
-ระบบนี้ทำให้การเพิ่ม/แก้ไข/ลบข้อความในแอปทำได้จากที่เดียวคือไฟล์ `.arb` และมั่นใจได้ว่าทุกภาษาจะมีข้อความครบถ้วนเหมือนกัน
+1.  **Source of Truth:** `localization.json` (ไฟล์ข้อมูลดิบ)
+2.  **Generation Script:** `tool/generate_arb.dart` (แปลง JSON -> ARB)
+3.  **Intermediate Files:** `lib/l10n/*.arb` (ไฟล์มาตรฐาน Flutter)
+4.  **Flutter Generator:** `flutter gen-l10n` (แปลง ARB -> Dart Code)
+5.  **Usage:** `AppLocalizations` (นำไปใช้ใน Widget)
 
 ---
 
+## ขั้นตอนการทำงาน (Step-by-Step)
+
+กระบวนการนี้เปรียบเสมือน **"สายพานการผลิต" (Pipeline)** ที่แปลงข้อมูลดิบให้กลายเป็นโค้ดที่แอปฯ ใช้งานได้จริง
+
+### 1. อัปเดตข้อมูลภาษา (Source of Truth)
+แก้ไขข้อมูลที่ไฟล์ `localization.json` ที่ Root ของโปรเจกต์ (ไฟล์นี้คือต้นฉบับที่เราดูแล)
+*   **ทำไม:** เพื่อความสะดวกในการจัดการทุกภาษาในไฟล์เดียว ไม่ต้องเปิดแก้หลายไฟล์
+*   **รูปแบบ:** JSON Array ของ Object
+
+**ตัวอย่าง `localization.json`:**
+```json
+[
+  {
+    "Name": "welcomeMessage",
+    "EN": "Welcome {name}",
+    "TH": "ยินดีต้อนรับ {name}",
+    "description": "Greeting message on home screen"
+  }
+]
+```
+
+### 2. แปลงเป็นมาตรฐาน Flutter (Generate ARB)
+รันคำสั่งเพื่อแปลง `localization.json` ให้เป็นไฟล์ `.arb` (Application Resource Bundle)
+
+**คำสั่ง:**
+```bash
+dart run tool/generate_arb.dart
+```
+
+*   **ทำไมต้องทำ:** Flutter ไม่รู้จักไฟล์ JSON ของเราโดยตรง แต่ใช้มาตรฐาน ARB ในการทำงาน
+*   **สิ่งที่เกิดขึ้น:**
+    *   อ่าน `localization.json`
+    *   สร้าง/อัปเดตไฟล์ `lib/l10n/app_en.arb`, `app_th.arb` ฯลฯ
+    *   *ณ จุดนี้: เราได้ไฟล์ข้อมูลมาตรฐานแล้ว แต่โค้ด Dart ยังไม่รู้จักตัวแปรใหม่*
+
+### 3. สร้างโค้ด Dart (Generate Dart Code)
+รันคำสั่งของ Flutter เพื่อสร้างคลาส `AppLocalizations` จากไฟล์ `.arb`
+
+**คำสั่ง:**
+```bash
+flutter gen-l10n
+```
+
+*   **ทำไมต้องทำ:** เพื่อให้เราสามารถเรียกใช้ตัวแปรในโค้ดได้ (เช่น `AppLocalizations.of(context)!.welcomeMessage`)
+*   **สิ่งที่เกิดขึ้น:**
+    *   Flutter อ่านไฟล์ `.arb` ทั้งหมด
+    *   สร้างไฟล์ Dart จริงๆ (Generated Code) ที่มี Getter method สำหรับทุก Key
+    *   *ณ จุดนี้: IDE จะรู้จักตัวแปรใหม่ และ Auto-complete จะทำงาน*
+
+### 4. ตรวจสอบความถูกต้อง (Verify)
+รันคำสั่งตรวจสอบคุณภาพโค้ด
+
+**คำสั่ง:**
+```bash
+flutter analyze
+```
+
+*   **ทำไมต้องทำ:** เพื่อเช็คว่าเราไม่ได้ลบ Key ที่ยังถูกเรียกใช้อยู่ในโค้ด หรือมีการเรียกใช้ Key ที่ไม่มีอยู่จริง
+*   **สิ่งที่เกิดขึ้น:** หากมี Error (เช่น Undefined getter) จะแจ้งเตือนทันที
+
+---
+
+## การนำไปใช้งานใน Widget (Usage)
+
+เมื่อผ่านขั้นตอนข้างต้นแล้ว สามารถเรียกใช้ข้อความในโค้ดได้ทันทีผ่าน `AppLocalizations`
+
+### การเรียกใช้ทั่วไป
+```dart
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
+
+// ใน build method
+Text(AppLocalizations.of(context)!.welcomeMessage('Tony'))
+```
+
+### การตั้งค่าใน `MaterialApp` (ทำครั้งเดียว)
+ในไฟล์ `lib/main.dart`:
+```dart
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
+
+MaterialApp(
+  title: 'Wi Wallet',
+  localizationsDelegates: AppLocalizations.localizationsDelegates,
+  supportedLocales: AppLocalizations.supportedLocales,
+  // ...
+);
+```
+
+---
+
+## สรุปคำสั่งที่ต้องใช้ (Cheatsheet)
+
+เมื่อมีการแก้ `localization.json`:
+
+1.  `dart run tool/generate_arb.dart` (สร้าง ARB)
+2.  `flutter gen-l10n` (สร้าง Dart)
+3.  `flutter analyze` (ตรวจสอบ)

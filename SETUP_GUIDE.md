@@ -17,6 +17,7 @@ Complete guide to set up and customize this foundation for your project.
 git clone https://github.com/yourusername/flutter_test_app.git
 cd flutter_test_app
 flutter pub get
+dart run tool/generate_arb.dart
 flutter gen-l10n
 ```
 
@@ -51,10 +52,16 @@ description: "Your app description"
 
 **2. Update localization files:**
 ```json
-// lib/l10n/app_en.arb
-{
-  "app_name": "Your App Name"
-}
+**2. Update localization files:**
+Edit `lib/l10n/localization.json` and run `dart run tool/generate_arb.dart`.
+```json
+[
+  {
+    "Name": "app_name",
+    "EN": "Your App Name",
+    "TH": "ชื่อแอปของคุณ"
+  }
+]
 ```
 
 **3. Update platform-specific files:**
@@ -103,30 +110,48 @@ static final Map<String, Color> dark = {
 };
 ```
 
-## 🌍 Add New Language
+## 🌍 Localization Workflow
 
-### Step 1: Create ARB File
+We use a **Pipeline** approach to manage translations: `JSON` -> `ARB` -> `Dart Code`.
 
-Create `lib/l10n/app_ja.arb` (for Japanese):
+### Standard Workflow (Every time you change text)
 
+1.  **Update Source (`localization.json`)**
+    *   Edit `lib/l10n/localization.json`. This is the single source of truth.
+    *   Format: JSON Array of Objects.
+
+2.  **Generate ARB (`dart run tool/generate_arb.dart`)**
+    *   Converts JSON to Flutter's standard `.arb` files.
+    *   Handles placeholders and metadata automatically.
+
+3.  **Generate Dart (`flutter gen-l10n`)**
+    *   Creates the `AppLocalizations` class so you can use `AppLocalizations.of(context)!.keyName` in code.
+    *   *Must run this to see changes in IDE.*
+
+4.  **Verify (`flutter analyze`)**
+    *   Checks for missing keys or usage errors.
+
+### Adding a New Language
+
+**Step 1: Update localization.json**
+Add a new column for your language (e.g., `JA`) in `lib/l10n/localization.json`:
 ```json
-{
-  "app_name": "私のアプリ",
-  "home": "ホーム",
-  "settings": "設定",
-  "transfer": "送金",
-  "top_up": "チャージ",
-  "bill": "請求書",
-  "deposit": "入金",
-  "convert": "変換",
-  "setting": "設定",
-  "light_theme": "ライトテーマ",
-  "dark_theme": "ダークテーマ"
-}
+[
+  {
+    "Name": "app_name",
+    "EN": "My App",
+    "JA": "私のアプリ"
+  }
+]
 ```
 
-### Step 2: Update MaterialApp
+**Step 2: Generate ARB Files**
+```bash
+dart run tool/generate_arb.dart
+```
 
+**Step 3: Update MaterialApp**
+Edit `lib/main.dart` (or where `MaterialApp` is defined):
 ```dart
 supportedLocales: const [
   Locale('en'),
@@ -138,8 +163,8 @@ supportedLocales: const [
 ],
 ```
 
-### Step 3: Add Font Support (if needed)
-
+**Step 4: Add Font Support (if needed)**
+If the language requires a specific font (like Japanese), update `theme_data.dart`:
 ```dart
 theme: ThemeData(
   textTheme: locale?.languageCode == 'ja'
@@ -148,8 +173,7 @@ theme: ThemeData(
 ),
 ```
 
-### Step 4: Generate
-
+**Step 5: Generate Code**
 ```bash
 flutter gen-l10n
 ```
@@ -364,6 +388,7 @@ flutter pub upgrade
 ```bash
 flutter clean
 flutter pub get
+dart run tool/generate_arb.dart
 flutter gen-l10n
 flutter run
 ```
