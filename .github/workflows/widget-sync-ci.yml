@@ -1,0 +1,57 @@
+name: Widget Sync CI
+
+on:
+  push:
+    branches: [ "main", "dev" ]
+    paths:
+      - "lib/widgets/**"
+      - "lib/config/themes/**"
+      - "test/**"
+      - "pubspec.yaml"
+      - ".github/workflows/widget-sync-ci.yml"
+  pull_request:
+    branches: [ "main", "dev" ]
+    paths:
+      - "lib/widgets/**"
+      - "lib/config/themes/**"
+      - "test/**"
+      - "pubspec.yaml"
+  workflow_dispatch:
+
+jobs:
+  widget-sync-ci:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Setup Java
+        uses: actions/setup-java@v4
+        with:
+          distribution: 'temurin'
+          java-version: '17'
+
+      - name: Setup Flutter
+        uses: subosito/flutter-action@v2
+        with:
+          channel: 'stable'
+          flutter-version: '3.32.4'
+
+      - name: Install dependencies
+        run: flutter pub get
+
+      - name: Run code generation
+        run: flutter pub run build_runner build --delete-conflicting-outputs
+
+      - name: Check formatting
+        run: dart format --output=none --set-exit-if-changed .
+
+      - name: Analyze project
+        run: flutter analyze --no-fatal-infos
+
+      - name: Run tests
+        run: flutter test
+
+      - name: Build Widgetbook
+        run: flutter build web -t lib/widgetbook.dart
