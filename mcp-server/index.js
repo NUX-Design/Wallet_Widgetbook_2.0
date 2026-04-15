@@ -215,7 +215,7 @@ Widget ${functionName}(BuildContext context) {
 
 // ─── MCP Server ───────────────────────────────────────────────────────────────
 const server = new Server(
-  { name: "wi-wallet-design-system", version: "2.0.0" },
+  { name: "figma-widget-mcp", version: "2.0.0" },
   { capabilities: { tools: {} } }
 );
 
