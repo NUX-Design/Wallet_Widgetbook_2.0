@@ -4,28 +4,28 @@ Bottom-sheet drawer presenting a list of supported deposit channels (mobile bank
 
 ## 📋 Overview
 
-`DrawerDepositChannel` แสดงรายการธนาคารด้วยโลโก้ ชื่อ และลูกศรนำทาง เหมาะสำหรับใช้เป็น modal bottom sheet เมื่อผู้ใช้ต้องเลือกช่องทางฝากเงินก่อนดำเนินการต่อ
+`DrawerDepositChannel` แสดงรายการธนาคารด้วยโลโก้ ชื่อ และปุ่มปิดด้านบน เหมาะสำหรับใช้เป็น modal bottom sheet เมื่อผู้ใช้ต้องเลือกช่องทางฝากเงินก่อนดำเนินการต่อ
 
 ## 🎨 Layout & Design Tokens
 
 https://www.figma.com/design/D7WVaC8n3foVLo6S3HuPn8/New-Wi-Wallet-2.0?node-id=7066-12327&t=sYCnD6dsF9QpTyn1-4
 
-- Height: `MediaQuery.of(context).size.height * 0.80` (ครอบครอง 80% ของจอ)
-- Padding: `EdgeInsets.fromLTRB(16, 16, 16, 16)`
+- Height: `min(MediaQuery.of(context).size.height * 0.80, 640)` เพื่อไม่ให้สูงเกิน design spec
+- Padding: `EdgeInsets.only(top: 16, left: 16, right: 16, bottom: 0)`
 - Border radius: 16 px เฉพาะด้านบน `Radius.circular(16)`
 - Background: `ThemeColors.get(brightnessKey, 'fill/base/100')`
-- Header text: `GoogleFonts.notoSansThai` 15 px, weight 700, สี `text/base/600`
+- Header text: `GoogleFonts.notoSansThai` 15 px, weight 600, สี `text/base/600`
 - Label "Mobile Banking":
   - Background: `fill/base/600`
   - Text: 10 px, weight 600, สี `text/base/600`
 - Bank item container:
   - Height 56 px, padding `EdgeInsets.symmetric(horizontal: 16, vertical: 8)`
   - Background: `fill/base/300`, radius 12 px
-  - Text: 15 px, weight 400, สี `text/base/600`
+  - Text: 13 px, weight 600, สี `text/base/600`
 - Icons:
   - Close button: `cancel-01.svg` 24 px, สี `text/base/600`
-  - Bank logos: SVG assets ต่อธนาคาร (ไม่มีการเติมสีทับ)
-  - Trailing arrow: `arrow-right-01.svg` 24 px, ใช้สีจากไฟล์ SVG
+  - Bank logos: SVG assets ที่ crop จาก Figma export โดยตรงใน `lib/assets/images/figma_banks/`
+  - ไม่มี trailing arrow ในแต่ละแถวตาม Figma
 
 ## 🚀 Usage Example
 
@@ -73,7 +73,8 @@ flutter run lib/widgets/drawer/preview_drawer_deposit_channel.dart
 ไฟล์ preview มี:
 - ปุ่ม "Show Drawer" ที่เรียก `DrawerDepositChannel.show()` method
 - Theme toggle (light/dark) ผ่าน `ThemeProvider`
-- Locale selector ผ่าน `AppLocalizations` (แม้ widget ใช้อังกฤษล้วนในตอนนี้)
+- ใช้ locale อังกฤษเป็นค่าเริ่มต้นเพื่อให้ตรงกับ Figma node นี้
+- เปิด drawer อัตโนมัติครั้งแรกเพื่อใช้ตรวจ visual บน simulator ได้ทันที
 - Overlay style (background blur + barrierColor) จัดการโดย show method
 
 ## 🎯 Properties
@@ -98,11 +99,11 @@ flutter run lib/widgets/drawer/preview_drawer_deposit_channel.dart
 enum BankType { scb, kbank, bbl, krungsri }
 ```
 
-การ mapping ถูกจัดการผ่านเมธอด `_getBankName` และ `_getBankLogo` ที่คืนค่าข้อความและพาธ SVG ตาม enum
+การ mapping ถูกจัดการผ่านเมธอด `_getBankName` และ `_getBankLogo` ที่คืนค่าข้อความและพาธ asset ตาม enum
 
 ## ♻️ Behaviour Notes
 
-- รายการธนาคารถูกจัด hard-coded เป็น 4 ธนาคารและทำซ้ำ 2 รอบเพื่อแสดงพฤติกรรม Scroll; ปรับตามข้อมูลจริงได้ผ่านการสร้างลิสต์ก่อนส่งเข้า `_buildBankItem`.
+- รายการธนาคารถูกจัดเป็น 4 ธนาคารตามลำดับใน Figma: `SCB`, `Bangkok Bank`, `Krungsri`, `Kasikorn`
 - item แต่ละแถวเป็น `GestureDetector` ที่เรียก `onBankSelected?.call(bank)` เมื่อแตะ
 - ตัว drawer ไม่ปิดอัตโนมัติเมื่อเลือก จำเป็นต้องจัดการใน callback (ดูตัวอย่าง preview ที่เรียก `Navigator.pop`)
 - ไม่มีสถานะเลือก/hover ให้เพิ่มได้หากต้องการความชัดเจนเพิ่มเติม
@@ -111,11 +112,11 @@ enum BankType { scb, kbank, bbl, krungsri }
 
 - ใช้ `ThemeColors` เพื่อให้สอดคล้องกับ design tokens ของโปรเจกต์
 - พึ่งพา `GoogleFonts.notoSansThai` เพื่อความคงที่ของ typography
-- อาศัย `SvgPicture.asset` ในการแสดงโลโก้และไอคอนทั้งหมด
-- ความสูงของ drawer ผูกกับความสูงหน้าจอ (80%) ควรทดสอบบนอุปกรณ์จอเล็ก/ใหญ่
+- ใช้ `SvgPicture.asset` ทั้งสำหรับโลโก้ธนาคารที่ export มาจาก Figma และปุ่มปิด เพื่อให้คมชัดบนทุกขนาดจอ
+- ความสูงของ drawer ถูก cap ที่ 640 px ให้ใกล้ Figma มากขึ้น
 - **Static show method**: มี overlay style (barrierColor + BackdropFilter blur 10px) ตาม Figma specs
 - **Consistent pattern**: ใช้ pattern เดียวกับ DrawerReviewTransaction และ DrawerBalanceDetail
-- **Height**: 80% ของหน้าจอ (0.80 * screen height)
+- **Height**: `min(80% ของหน้าจอ, 640)`
 
 ## 📱 Edge-to-Edge & Gesture Navigation Support
 
@@ -151,17 +152,19 @@ if (bottomPadding > 0)
 
 ## 🔄 Recent Updates
 
-**v2.0 - Overlay Style Implementation**
-- เพิ่ม static `show()` method พร้อม Figma-compliant overlay style
-- Background: `rgba(0,0,0,0.5)` + `BackdropFilter` blur 10px
-- อัปเดต preview file ให้ใช้ `.show()` method แทน custom implementation
-- Consistent pattern กับ drawer widgets อื่นๆ
+**v2.1 - Figma Logo Import + Spec Alignment**
+- ใช้โลโก้ธนาคารจาก Figma export จริงใน `lib/assets/images/figma_banks/` แบบ SVG
+- ปรับหัวข้อเป็น `Deposit Channel`
+- ลดรายการเหลือ 4 แถวตาม Figma และเอา trailing arrow ออก
+- ปรับ typography ของ bank rows เป็น 13 px / 600
+- จำกัดความสูง drawer ไม่เกิน 640 px
+- อัปเดต preview ให้เปิด drawer อัตโนมัติสำหรับ visual review
 
 ## ✅ Checklist ก่อนใช้งานจริง
 
-1. ตรวจสอบว่า assets (`brands=*.svg`, `cancel-01.svg`, `arrow-right-01.svg`) อยู่ใน `pubspec.yaml`
-2. หากธนาคารมีจำนวนเยอะ ควรดึงข้อมูลจากโมเดลหรือ service แทนการซ้ำโค้ดใน widget
-3. เพิ่ม localization สำหรับชื่อธนาคารหรือหัวข้อหากต้องรองรับหลายภาษา
+1. ตรวจสอบว่า assets ใน `lib/assets/images/figma_banks/` และ `cancel-01.svg` ถูก include ใน `pubspec.yaml`
+2. หากโลโก้ใน Figma เปลี่ยน ควร export/crop ชุดใหม่แทนการแก้สีในโค้ด
+3. เพิ่ม localization สำหรับชื่อธนาคารหากต้องรองรับหลายภาษา
 4. ทดสอบในธีมมืด/สว่างว่า contrast ของสีอ่านได้ชัดเจน
 5. **แนะนำ**: ใช้ `DrawerDepositChannel.show()` method แทน manual implementation
 

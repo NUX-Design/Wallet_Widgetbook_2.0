@@ -14,7 +14,12 @@ const String megaphoneIcon = 'lib/assets/images/megaphone-01.svg';
 const String visaIcon = 'lib/assets/images/logo_visa.svg';
 
 // Helper function to create a colored SVG icon
-Widget createHugeIcon(String iconPath, Color color, {double? width, double? height}) {
+Widget createHugeIcon(
+  String iconPath,
+  Color color, {
+  double? width,
+  double? height,
+}) {
   try {
     return SvgPicture.asset(
       iconPath,

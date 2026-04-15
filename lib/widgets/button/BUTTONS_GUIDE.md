@@ -3,6 +3,16 @@
 ## Overview
 The `Buttons` widget is a versatile, theme-aware button component that supports multiple button types with consistent styling across the application. It follows the project's design token system and provides interactive feedback with animations.
 
+## Figma Source
+- File: `New Wi Wallet 2.0`
+- Component set: `buttons`
+- Source component link: [Buttons component in Figma](https://www.figma.com/design/D7WVaC8n3foVLo6S3HuPn8/New-Wi-Wallet-2.0?node-id=7066-6424&m=dev)
+- Figma variants currently available:
+  - `Role=Primary, State=Enabled`
+  - `Role=Secondary, State=Enabled`
+  - `Role=Secondary, State=Disabled`
+  - `Role=Amount, State=Enabled`
+
 ## Design Specifications
 
 ### Button Types
@@ -46,8 +56,12 @@ The `Buttons` widget is a versatile, theme-aware button component that supports 
 - **Shadow**: rgba(24, 40, 40, 0.05) with 2px blur
 
 ### Disabled States
-- **Primary/Amount**: `fill/base/300` background, `text/base/400` text, `stroke/base/200` border
-- **Secondary**: `fill/contrast/100` background, `fill/contrast/600` text, shadow applied
+- **Figma-shipped disabled variant**: `Secondary/Disabled`
+- **Background**: `alt/base/600`
+- **Text**: `text/base/400`
+- **Border**: none
+- **Shadow**: rgba(24, 40, 40, 0.05) with 2px blur
+- **Fallback for non-Figma disabled roles in Flutter**: `fill/base/300` background, `text/base/400` text, `stroke/base/200` border
 
 ## Code Review Analysis
 
@@ -96,7 +110,7 @@ Buttons(
 ### Secondary Button with Disabled State
 ```dart
 Buttons(
-  text: 'Cancel',
+  text: 'Secondary Disabled',
   type: ButtonType.secondary,
   enabled: false,
 )
@@ -147,6 +161,6 @@ The preview file demonstrates:
 4. **Add More Types**: Consider adding danger, success, warning button types
 5. **Size Variants**: Add small/large button size options
 
-## Compliance Score: 85/100
+## Current Alignment Note
 
-The widget follows most project conventions but has room for improvement in design token consistency and flexibility.
+The Flutter widget is now aligned to the current Figma disabled state for the shipped component set. If additional variants such as `Primary/Disabled` or `Amount/Disabled` are added in Figma later, the Flutter fallback should be replaced with those exact specs.

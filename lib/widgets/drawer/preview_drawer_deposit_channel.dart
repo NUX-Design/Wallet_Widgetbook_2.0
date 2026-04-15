@@ -11,13 +11,14 @@ class ThemeProvider extends ChangeNotifier {
   ThemeMode get themeMode => _themeMode;
 
   void toggleTheme() {
-    _themeMode = _themeMode == ThemeMode.light ? ThemeMode.dark : ThemeMode.light;
+    _themeMode =
+        _themeMode == ThemeMode.light ? ThemeMode.dark : ThemeMode.light;
     notifyListeners();
   }
 }
 
 class LocaleProvider extends ChangeNotifier {
-  Locale? _locale;
+  Locale? _locale = const Locale('en');
 
   Locale? get locale => _locale;
 
@@ -61,24 +62,43 @@ class MyApp extends StatelessWidget {
   }
 }
 
-class PreviewDrawerDepositChannel extends StatelessWidget {
+class PreviewDrawerDepositChannel extends StatefulWidget {
   const PreviewDrawerDepositChannel({super.key});
+
+  @override
+  State<PreviewDrawerDepositChannel> createState() =>
+      _PreviewDrawerDepositChannelState();
+}
+
+class _PreviewDrawerDepositChannelState
+    extends State<PreviewDrawerDepositChannel> {
+  bool _didShowDrawer = false;
 
   void _showDrawer(BuildContext context) {
     DrawerDepositChannel.show(
       context,
       onBankSelected: (bank) {
         Navigator.pop(context);
-        ScaffoldMessenger.of(context).showSnackBar(
-          SnackBar(content: Text('Selected: ${bank.name}')),
-        );
+        ScaffoldMessenger.of(
+          context,
+        ).showSnackBar(SnackBar(content: Text('Selected: ${bank.name}')));
       },
     );
   }
 
   @override
   Widget build(BuildContext context) {
-    final brightnessKey = Theme.of(context).brightness == Brightness.light ? 'light' : 'dark';
+    if (!_didShowDrawer) {
+      _didShowDrawer = true;
+      WidgetsBinding.instance.addPostFrameCallback((_) {
+        if (mounted) {
+          _showDrawer(context);
+        }
+      });
+    }
+
+    final brightnessKey =
+        Theme.of(context).brightness == Brightness.light ? 'light' : 'dark';
     return Scaffold(
       backgroundColor: ThemeColors.get(brightnessKey, 'fill/base/300'),
       appBar: AppBar(
@@ -89,7 +109,9 @@ class PreviewDrawerDepositChannel extends StatelessWidget {
             builder: (context, themeProvider, _) {
               return IconButton(
                 icon: Icon(
-                  themeProvider.themeMode == ThemeMode.light ? Icons.dark_mode : Icons.light_mode,
+                  themeProvider.themeMode == ThemeMode.light
+                      ? Icons.dark_mode
+                      : Icons.light_mode,
                 ),
                 onPressed: () => themeProvider.toggleTheme(),
               );

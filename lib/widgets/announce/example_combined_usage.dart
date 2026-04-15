@@ -11,7 +11,8 @@ class ThemeProvider extends ChangeNotifier {
   ThemeMode get themeMode => _themeMode;
 
   void toggleTheme() {
-    _themeMode = _themeMode == ThemeMode.light ? ThemeMode.dark : ThemeMode.light;
+    _themeMode =
+        _themeMode == ThemeMode.light ? ThemeMode.dark : ThemeMode.light;
     notifyListeners();
   }
 }
@@ -50,10 +51,12 @@ class CombinedAnnouncementExample extends StatefulWidget {
   const CombinedAnnouncementExample({super.key});
 
   @override
-  State<CombinedAnnouncementExample> createState() => _CombinedAnnouncementExampleState();
+  State<CombinedAnnouncementExample> createState() =>
+      _CombinedAnnouncementExampleState();
 }
 
-class _CombinedAnnouncementExampleState extends State<CombinedAnnouncementExample> {
+class _CombinedAnnouncementExampleState
+    extends State<CombinedAnnouncementExample> {
   late List<String> _announcements;
 
   @override
@@ -74,8 +77,9 @@ class _CombinedAnnouncementExampleState extends State<CombinedAnnouncementExampl
 
   @override
   Widget build(BuildContext context) {
-    final brightnessKey = Theme.of(context).brightness == Brightness.light ? 'light' : 'dark';
-    
+    final brightnessKey =
+        Theme.of(context).brightness == Brightness.light ? 'light' : 'dark';
+
     return Scaffold(
       backgroundColor: ThemeColors.get(brightnessKey, 'fill/base/100'),
       appBar: AppBar(
@@ -86,7 +90,9 @@ class _CombinedAnnouncementExampleState extends State<CombinedAnnouncementExampl
             builder: (context, themeProvider, _) {
               return IconButton(
                 icon: Icon(
-                  themeProvider.themeMode == ThemeMode.light ? Icons.dark_mode : Icons.light_mode,
+                  themeProvider.themeMode == ThemeMode.light
+                      ? Icons.dark_mode
+                      : Icons.light_mode,
                 ),
                 onPressed: () => themeProvider.toggleTheme(),
               );
@@ -111,11 +117,12 @@ class _CombinedAnnouncementExampleState extends State<CombinedAnnouncementExampl
               const SizedBox(height: 8),
               const AnnouncementWarning(
                 title: 'Please recheck information before proceeding',
-                description: 'To prevent wrong account transfers or fraudulent activities. It cannot be changed once confirmed.',
+                description:
+                    'To prevent wrong account transfers or fraudulent activities. It cannot be changed once confirmed.',
               ),
-              
+
               const SizedBox(height: 32),
-              
+
               // Announcements Section
               Text(
                 'System Announcements',
@@ -129,9 +136,9 @@ class _CombinedAnnouncementExampleState extends State<CombinedAnnouncementExampl
                 messages: _announcements,
                 onClose: _rotateAnnouncements,
               ),
-              
+
               const SizedBox(height: 32),
-              
+
               // Controls Section
               Text(
                 'Controls',
@@ -151,9 +158,9 @@ class _CombinedAnnouncementExampleState extends State<CombinedAnnouncementExampl
                   ),
                 ],
               ),
-              
+
               const SizedBox(height: 32),
-              
+
               // Usage Info
               Container(
                 padding: const EdgeInsets.all(16),

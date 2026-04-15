@@ -203,7 +203,6 @@ class DrawerReviewTransaction extends StatelessWidget {
                     style: GoogleFonts.notoSansThai(
                       fontSize: 15,
                       fontWeight: FontWeight.w600,
-                      height: 1.51,
                       color: ThemeColors.get(brightnessKey, 'text/base/600'),
                     ),
                   ),

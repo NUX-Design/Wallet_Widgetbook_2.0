@@ -1,12 +1,21 @@
+import 'dart:math' as math;
 import 'dart:ui';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:mcp_test_app/config/themes/theme_color.dart';
+import 'package:mcp_test_app/generated/intl/app_localizations.dart';
 
 enum BankType { scb, kbank, bbl, krungsri }
 
 class DrawerDepositChannel extends StatelessWidget {
+  static const List<BankType> _banks = [
+    BankType.scb,
+    BankType.bbl,
+    BankType.krungsri,
+    BankType.kbank,
+  ];
+
   final VoidCallback? onClose;
   final Function(BankType)? onBankSelected;
 
@@ -48,30 +57,31 @@ class DrawerDepositChannel extends StatelessWidget {
   String _getBankLogo(BankType bank) {
     switch (bank) {
       case BankType.scb:
-        return 'lib/assets/images/brands=SCB.svg';
+        return 'lib/assets/images/figma_banks/scb.svg';
       case BankType.kbank:
-        return 'lib/assets/images/brands=KBANK.svg';
+        return 'lib/assets/images/figma_banks/kbank.svg';
       case BankType.bbl:
-        return 'lib/assets/images/brands=Bangkok Bank.svg';
+        return 'lib/assets/images/figma_banks/bbl.svg';
       case BankType.krungsri:
-        return 'lib/assets/images/brands=Krungsri.svg';
+        return 'lib/assets/images/figma_banks/krungsri.svg';
     }
   }
 
   @override
   Widget build(BuildContext context) {
+    final l10n = AppLocalizations.of(context);
     final brightnessKey =
         Theme.of(context).brightness == Brightness.light ? 'light' : 'dark';
     final mediaQuery = MediaQuery.of(context);
-    final screenHeight = mediaQuery.size.height;
     final bottomPadding =
         mediaQuery.viewPadding.bottom > 0
             ? mediaQuery.viewPadding.bottom
             : mediaQuery.padding.bottom;
+    final drawerHeight = math.min(mediaQuery.size.height * 0.80, 640.0);
 
     return Container(
       width: double.infinity,
-      height: screenHeight * 0.80,
+      height: drawerHeight,
       padding: const EdgeInsets.only(top: 16, left: 16, right: 16, bottom: 0),
       decoration: BoxDecoration(
         color: ThemeColors.get(brightnessKey, 'fill/base/100'),
@@ -82,7 +92,10 @@ class DrawerDepositChannel extends StatelessWidget {
       ),
       child: Column(
         children: [
-          _buildHeader(brightnessKey),
+          _buildHeader(
+            brightnessKey,
+            l10n?.titleDrawerDepositChannel ?? 'Deposit Channel',
+          ),
           const SizedBox(height: 16),
           Expanded(
             child: SingleChildScrollView(
@@ -90,22 +103,10 @@ class DrawerDepositChannel extends StatelessWidget {
                 children: [
                   _buildLabelContainer(brightnessKey),
                   const SizedBox(height: 16),
-                  _buildBankItem(brightnessKey, BankType.scb),
-                  const SizedBox(height: 16),
-                  _buildBankItem(brightnessKey, BankType.bbl),
-                  const SizedBox(height: 16),
-                  _buildBankItem(brightnessKey, BankType.kbank),
-                  const SizedBox(height: 16),
-                  _buildBankItem(brightnessKey, BankType.krungsri),
-                  const SizedBox(height: 16),
-                  _buildBankItem(brightnessKey, BankType.scb),
-                  const SizedBox(height: 16),
-                  _buildBankItem(brightnessKey, BankType.bbl),
-                  const SizedBox(height: 16),
-                  _buildBankItem(brightnessKey, BankType.kbank),
-                  const SizedBox(height: 16),
-                  _buildBankItem(brightnessKey, BankType.krungsri),
-                  const SizedBox(height: 140),
+                  for (var i = 0; i < _banks.length; i++) ...[
+                    _buildBankItem(brightnessKey, _banks[i]),
+                    if (i != _banks.length - 1) const SizedBox(height: 16),
+                  ],
                 ],
               ),
             ),
@@ -128,20 +129,21 @@ class DrawerDepositChannel extends StatelessWidget {
     );
   }
 
-  Widget _buildHeader(String brightnessKey) {
+  Widget _buildHeader(String brightnessKey, String title) {
     return SizedBox(
       height: 24,
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
+          const SizedBox(width: 24, height: 24),
           Expanded(
             child: Center(
               child: Text(
-                'เลือกช่องทางฝาก',
+                title,
                 style: GoogleFonts.notoSansThai(
                   fontSize: 15,
-                  height: 1.33,
-                  fontWeight: FontWeight.w700,
+                  height: 1.0,
+                  fontWeight: FontWeight.w600,
                   color: ThemeColors.get(brightnessKey, 'text/base/600'),
                 ),
               ),
@@ -201,23 +203,18 @@ class DrawerDepositChannel extends StatelessWidget {
         ),
         child: Row(
           children: [
-            SvgPicture.asset(_getBankLogo(bank), width: 26, height: 26),
+            SvgPicture.asset(_getBankLogo(bank), width: 24, height: 24),
             const SizedBox(width: 16),
             Expanded(
               child: Text(
                 _getBankName(bank),
                 style: GoogleFonts.notoSansThai(
-                  fontSize: 15,
-                  height: 1.33,
-                  fontWeight: FontWeight.w400,
+                  fontSize: 13,
+                  height: 16 / 13,
+                  fontWeight: FontWeight.w600,
                   color: ThemeColors.get(brightnessKey, 'text/base/600'),
                 ),
               ),
-            ),
-            SvgPicture.asset(
-              'lib/assets/images/arrow-right-01.svg',
-              width: 24,
-              height: 24,
             ),
           ],
         ),

@@ -28,7 +28,9 @@ class _SearchInputState extends State<SearchInput> {
   @override
   void initState() {
     super.initState();
-    _controller = widget.controller ?? TextEditingController(text: widget.initialValue ?? '');
+    _controller =
+        widget.controller ??
+        TextEditingController(text: widget.initialValue ?? '');
     _hasText = _controller.text.isNotEmpty;
     _controller.addListener(_onTextChanged);
     _focusNode.addListener(_onFocusChanged);
@@ -59,11 +61,13 @@ class _SearchInputState extends State<SearchInput> {
 
   @override
   Widget build(BuildContext context) {
-    final brightnessKey = Theme.of(context).brightness == Brightness.light ? 'light' : 'dark';
-    
-    final borderColor = _hasFocus
-        ? ThemeColors.get(brightnessKey, 'primary/400')
-        : ThemeColors.get(brightnessKey, 'stroke/base/200');
+    final brightnessKey =
+        Theme.of(context).brightness == Brightness.light ? 'light' : 'dark';
+
+    final borderColor =
+        _hasFocus
+            ? ThemeColors.get(brightnessKey, 'primary/400')
+            : ThemeColors.get(brightnessKey, 'stroke/base/200');
     final backgroundColor = ThemeColors.get(brightnessKey, 'fill/base/300');
 
     return Container(
@@ -73,10 +77,7 @@ class _SearchInputState extends State<SearchInput> {
       decoration: BoxDecoration(
         color: backgroundColor,
         borderRadius: BorderRadius.circular(8),
-        border: Border.all(
-          color: borderColor,
-          width: 1,
-        ),
+        border: Border.all(color: borderColor, width: 1),
       ),
       child: Row(
         children: [
@@ -100,9 +101,10 @@ class _SearchInputState extends State<SearchInput> {
               style: GoogleFonts.notoSansThai(
                 fontSize: 15,
                 height: 1.33,
-                color: _hasText
-                    ? ThemeColors.get(brightnessKey, 'text/base/600')
-                    : ThemeColors.get(brightnessKey, 'text/base/400'),
+                color:
+                    _hasText
+                        ? ThemeColors.get(brightnessKey, 'text/base/600')
+                        : ThemeColors.get(brightnessKey, 'text/base/400'),
               ),
               decoration: InputDecoration(
                 border: InputBorder.none,

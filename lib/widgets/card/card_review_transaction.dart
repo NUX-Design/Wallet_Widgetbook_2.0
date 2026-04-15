@@ -70,7 +70,7 @@ class CardReviewTransaction extends StatelessWidget {
                   fontSize: 22,
                   height: 1.27,
                   fontWeight: FontWeight.w700,
-                  color: ThemeColors.get(brightnessKey, 'success/500'),
+                  color: ThemeColors.get(brightnessKey, 'text/base/success'),
                 ),
               ),
               const SizedBox(height: 4),
@@ -95,7 +95,7 @@ class CardReviewTransaction extends StatelessWidget {
           Container(
             height: 1,
             decoration: BoxDecoration(
-              color: ThemeColors.get(brightnessKey, 'stroke/base/200'),
+              color: ThemeColors.get(brightnessKey, 'stroke/base/300'),
               borderRadius: BorderRadius.circular(12),
             ),
           ),
@@ -110,7 +110,7 @@ class CardReviewTransaction extends StatelessWidget {
               Container(
                 height: 1,
                 decoration: BoxDecoration(
-                  color: ThemeColors.get(brightnessKey, 'stroke/base/200'),
+                  color: ThemeColors.get(brightnessKey, 'stroke/base/300'),
                   borderRadius: BorderRadius.circular(12),
                 ),
               ),

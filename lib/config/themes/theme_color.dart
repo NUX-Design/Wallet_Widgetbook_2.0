@@ -321,7 +321,6 @@ class ThemeColors {
     'warning/600': _hex('#fde4b5'),
   };
 
-
   static Color get(String theme, String key) {
     if (theme == 'light') {
       return light[key] ?? dark[key] ?? Colors.transparent;

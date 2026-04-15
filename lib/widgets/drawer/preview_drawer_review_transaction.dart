@@ -106,7 +106,7 @@ class DrawerReviewTransactionPreview extends StatelessWidget {
                     totalAmount: '5,000.00 THB',
                     feeAmount: 'Fee 0.00 THB',
                     fromLabel: 'From',
-                    fromValue: 'Your Wi Wallet',
+                    fromValue: 'Your Wallet',
                     mobileLabel: 'Mobile Number',
                     mobileValue: '081-141-1234',
                     toLabel: 'To',

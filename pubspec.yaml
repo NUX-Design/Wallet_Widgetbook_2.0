@@ -75,6 +75,7 @@ flutter:
 
   assets:
     - lib/assets/images/
+    - lib/assets/images/figma_banks/
     - lib/assets/lottie/
 
   # An image asset can refer to one or more resolution-specific "variants", see
