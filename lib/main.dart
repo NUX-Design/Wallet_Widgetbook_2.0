@@ -191,17 +191,15 @@ class _HomePageState extends State<HomePage> {
                                     themeProvider.themeMode == ThemeMode.dark,
                                 onChanged:
                                     (value) => themeProvider.toggleTheme(),
-                                activeColor: ThemeColors.get(
-                                  brightnessKey,
-                                  'fill/base/100',
+                                thumbColor: WidgetStatePropertyAll(
+                                  ThemeColors.get(
+                                    brightnessKey,
+                                    'fill/base/100',
+                                  ),
                                 ),
                                 activeTrackColor: ThemeColors.get(
                                   brightnessKey,
                                   'success/400',
-                                ),
-                                inactiveThumbColor: ThemeColors.get(
-                                  brightnessKey,
-                                  'fill/base/100',
                                 ),
                                 inactiveTrackColor: ThemeColors.get(
                                   brightnessKey,
