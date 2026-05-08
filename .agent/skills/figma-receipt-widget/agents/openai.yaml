@@ -1,0 +1,7 @@
+interface:
+  display_name: "Figma Receipt Widget"
+  short_description: "Generate Flutter receipt widgets from Figma specs"
+  default_prompt: "Use $figma-receipt-widget to update the Flutter receipt widgets from the receipt handoff markdown and Figma source of truth."
+
+policy:
+  allow_implicit_invocation: true
