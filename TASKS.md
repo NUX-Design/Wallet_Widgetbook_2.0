@@ -63,6 +63,7 @@ Depends on: S-01, S-02
 ### W-04: `HorizontalTabs`
 
 - [x] ตรวจ selected tab, pressed state, และ `showDot`
+- [x] ตรวจ selected tab และ `showDot`
 - [x] ทดสอบ tap แล้ว `onTabChanged`
 - [x] ทดสอบ 2-tab / 3-tab layout
 
