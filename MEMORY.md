@@ -110,6 +110,8 @@
   - item list
   - image carousel
   - snack bar
+- Many reusable widgets still have no direct tests yet, especially inputs, announcement variants, receipt widgets, NavigatorBar, Avatar, HorizontalTabs, ShortcutMenuItem, PreLoading, and LottieSkeleton.
+- Parallel test execution backlog is now tracked in `TASKS.md`, while `WIDGET_TEST_PLAN.md` keeps the higher-level analysis and prioritization.
 
 ## Repo Boundaries
 
