@@ -1,5 +1,3 @@
-import 'dart:ui';
-
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_test/flutter_test.dart';
@@ -34,7 +32,7 @@ void main() {
       final backdropFilter = tester.widget<BackdropFilter>(
         find.byType(BackdropFilter),
       );
-      final blur = backdropFilter.filter as ImageFilter;
+      final blur = backdropFilter.filter;
       expect(blur, isNotNull);
 
       final container = tester.widget<Container>(

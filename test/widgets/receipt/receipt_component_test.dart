@@ -1,7 +1,6 @@
 import 'dart:async';
 import 'dart:convert';
 import 'dart:io';
-import 'dart:typed_data';
 
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
@@ -10,7 +9,7 @@ import 'package:flutter_test/flutter_test.dart';
 import 'package:mcp_test_app/widgets/receipt/receipt_component.dart';
 
 void main() {
-  const _googleFontsAssetManifest = <String, List<String>>{
+  const googleFontsAssetManifest = <String, List<String>>{
     'google_fonts/NotoSansThai-Regular.ttf': <String>[
       'google_fonts/NotoSansThai-Regular.ttf',
     ],
@@ -36,7 +35,7 @@ void main() {
       if (requestedKey == 'AssetManifest.json') {
         return ByteData.view(
           Uint8List.fromList(
-            utf8.encode(jsonEncode(_googleFontsAssetManifest)),
+            utf8.encode(jsonEncode(googleFontsAssetManifest)),
           ).buffer,
         );
       }
