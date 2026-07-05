@@ -8,13 +8,12 @@ import 'package:mcp_test_app/widgets/input/search_input.dart';
 
 import '../../support/widget_test_harness.dart';
 
-BoxDecoration _boxDecorationFor(
-  WidgetTester tester,
-  Finder rootFinder,
-) {
-  final container = tester.widgetList<Container>(
-    find.descendant(of: rootFinder, matching: find.byType(Container)),
-  ).firstWhere((container) => container.decoration is BoxDecoration);
+BoxDecoration _boxDecorationFor(WidgetTester tester, Finder rootFinder) {
+  final container = tester
+      .widgetList<Container>(
+        find.descendant(of: rootFinder, matching: find.byType(Container)),
+      )
+      .firstWhere((container) => container.decoration is BoxDecoration);
   return container.decoration! as BoxDecoration;
 }
 
@@ -27,10 +26,7 @@ Finder _clearIconFinder(Finder rootFinder) {
   );
 }
 
-GestureDetector _svgGestureDetector(
-  WidgetTester tester,
-  Finder rootFinder,
-) {
+GestureDetector _svgGestureDetector(WidgetTester tester, Finder rootFinder) {
   return tester
       .widgetList<GestureDetector>(
         find.descendant(of: rootFinder, matching: find.byType(GestureDetector)),
@@ -77,7 +73,10 @@ void main() {
         ThemeColors.get('light', 'text/base/danger'),
       );
       expect(
-        tester.widget<Text>(find.text('ท่านต้องฝากเงินอย่างน้อย 100 THB')).style?.color,
+        tester
+            .widget<Text>(find.text('ท่านต้องฝากเงินอย่างน้อย 100 THB'))
+            .style
+            ?.color,
         ThemeColors.get('light', 'text/base/danger'),
       );
       expect(_clearIconFinder(rootFinder), findsOneWidget);
@@ -98,10 +97,7 @@ void main() {
 
       await pumpTestApp(
         tester,
-        FullAmountInput(
-          controller: controller,
-          onChanged: changedValues.add,
-        ),
+        FullAmountInput(controller: controller, onChanged: changedValues.add),
       );
 
       await tester.tap(find.byType(TextField));
@@ -251,10 +247,7 @@ void main() {
 
       await pumpTestApp(
         tester,
-        SearchInput(
-          controller: controller,
-          onChanged: changedValues.add,
-        ),
+        SearchInput(controller: controller, onChanged: changedValues.add),
         assetStrategy: TestAssetStrategy.placeholderAssets,
         assetBundle: PlaceholderAssetBundle(
           assetPaths: <String>[

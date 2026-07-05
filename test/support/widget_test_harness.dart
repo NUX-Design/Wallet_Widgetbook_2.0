@@ -23,10 +23,7 @@ enum TestThemeVariant { light, dark }
 /// Strategy for loading assets in tests.
 enum TestAssetStrategy { realAssets, placeholderAssets }
 
-ThemeData buildTestTheme(
-  TestThemeVariant variant, {
-  Locale? locale,
-}) {
+ThemeData buildTestTheme(TestThemeVariant variant, {Locale? locale}) {
   // Keep widget tests deterministic and offline-friendly.
   GoogleFonts.config.allowRuntimeFetching = false;
 
@@ -36,7 +33,10 @@ ThemeData buildTestTheme(
       brightness == Brightness.light
           ? BaseTheme.lightColorScheme
           : BaseTheme.darkColorScheme;
-  final baseTheme = ThemeData.from(colorScheme: colorScheme, useMaterial3: true);
+  final baseTheme = ThemeData.from(
+    colorScheme: colorScheme,
+    useMaterial3: true,
+  );
   final textTheme = _buildLocalizedTextTheme(locale, baseTheme.textTheme);
 
   return baseTheme.copyWith(

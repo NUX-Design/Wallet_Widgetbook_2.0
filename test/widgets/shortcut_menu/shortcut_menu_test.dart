@@ -1,5 +1,4 @@
 import 'dart:convert';
-import 'dart:typed_data';
 
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
@@ -15,21 +14,21 @@ void main() {
 </svg>
 ''';
 
-  const String assetKey = 'lib/assets/images/arrow-data-transfer-horizontal.svg';
+  const String assetKey =
+      'lib/assets/images/arrow-data-transfer-horizontal.svg';
 
   final binding = TestWidgetsFlutterBinding.ensureInitialized();
 
   setUp(() {
-    binding.defaultBinaryMessenger.setMockMessageHandler(
-      'flutter/assets',
-      (ByteData? message) async {
-        final requestedKey = utf8.decode(message!.buffer.asUint8List());
-        if (requestedKey == assetKey) {
-          return ByteData.view(Uint8List.fromList(utf8.encode(rawSvg)).buffer);
-        }
-        return null;
-      },
-    );
+    binding.defaultBinaryMessenger.setMockMessageHandler('flutter/assets', (
+      ByteData? message,
+    ) async {
+      final requestedKey = utf8.decode(message!.buffer.asUint8List());
+      if (requestedKey == assetKey) {
+        return ByteData.view(Uint8List.fromList(utf8.encode(rawSvg)).buffer);
+      }
+      return null;
+    });
   });
 
   tearDown(() {

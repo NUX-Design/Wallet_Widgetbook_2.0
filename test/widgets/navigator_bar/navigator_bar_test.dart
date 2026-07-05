@@ -7,10 +7,14 @@ import '../../support/widget_test_harness.dart';
 
 BoxDecoration _navigatorBarDecoration(WidgetTester tester) {
   final containers =
-      tester.widgetList<Container>(find.descendant(
-        of: find.byType(NavigatorBar),
-        matching: find.byType(Container),
-      )).toList();
+      tester
+          .widgetList<Container>(
+            find.descendant(
+              of: find.byType(NavigatorBar),
+              matching: find.byType(Container),
+            ),
+          )
+          .toList();
 
   final decoratedContainer = containers.firstWhere(
     (container) =>
@@ -91,10 +95,14 @@ void main() {
     expect(find.text('ตั้งค่า'), findsOneWidget);
 
     final containers =
-        tester.widgetList<Container>(find.descendant(
-          of: find.byType(NavigatorBar),
-          matching: find.byType(Container),
-        )).toList();
+        tester
+            .widgetList<Container>(
+              find.descendant(
+                of: find.byType(NavigatorBar),
+                matching: find.byType(Container),
+              ),
+            )
+            .toList();
     final bottomSpacer = containers.firstWhere(
       (container) => container.color != null && container.decoration == null,
     );
@@ -134,6 +142,6 @@ void main() {
     );
 
     final decoration = _navigatorBarDecoration(tester);
-    expect(decoration.color?.alpha, 128);
+    expect(((decoration.color?.a ?? 0) * 255.0).round() & 0xff, 128);
   });
 }

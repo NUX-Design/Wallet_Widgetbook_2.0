@@ -81,7 +81,7 @@ void main() {
         }),
       );
       final decoration = opacityContainer.decoration! as BoxDecoration;
-      expect(decoration.color?.opacity, closeTo(0.5, 0.01));
+      expect(decoration.color?.a, closeTo(0.5, 0.01));
 
       final bottomPaddingContainer = find.byWidgetPredicate((widget) {
         return widget is Container &&

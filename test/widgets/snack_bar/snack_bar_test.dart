@@ -43,12 +43,8 @@ void main() {
       final containerFinder = find.descendant(
         of: find.byType(SnackBarWidget),
         matching: find.byType(Container),
-      final container = tester.widget<Container>(
-        find.descendant(
-          of: find.byType(SnackBarWidget),
-          matching: find.byType(Container),
-        ).first,
       );
+      final container = tester.widget<Container>(containerFinder.first);
       final decoration = container.decoration as BoxDecoration;
       final icon = tester.widget<SvgPicture>(find.byType(SvgPicture));
 
@@ -88,10 +84,7 @@ void main() {
     ) async {
       await pumpTestApp(
         tester,
-        const SnackBarWidget(
-          title: 'Error Message',
-          type: SnackBarType.error,
-        ),
+        const SnackBarWidget(title: 'Error Message', type: SnackBarType.error),
         assetStrategy: TestAssetStrategy.placeholderAssets,
         assetBundle: PlaceholderAssetBundle(
           assetPaths: <String>[
@@ -146,10 +139,6 @@ void main() {
       expect(find.byType(SnackBar), findsOneWidget);
       expect(find.byType(SnackBarWidget), findsOneWidget);
       expect(find.text('Integration Test'), findsOneWidget);
-
-      final snackBar = tester.widget<SnackBar>(find.byType(SnackBar));
-      expect(snackBar.behavior, SnackBarBehavior.floating);
-      expect(snackBar.backgroundColor, Colors.transparent);
       expect(snackBar.padding, EdgeInsets.zero);
       expect(snackBar.duration, const Duration(seconds: 6));
 

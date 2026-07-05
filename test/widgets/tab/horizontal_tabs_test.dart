@@ -7,10 +7,12 @@ import '../../support/widget_test_harness.dart';
 
 BoxDecoration _tabsDecoration(WidgetTester tester) {
   final container = tester.widget<Container>(
-    find.descendant(
-      of: find.byType(HorizontalTabs),
-      matching: find.byType(Container),
-    ).first,
+    find
+        .descendant(
+          of: find.byType(HorizontalTabs),
+          matching: find.byType(Container),
+        )
+        .first,
   );
   return container.decoration! as BoxDecoration;
 }
@@ -75,8 +77,14 @@ void main() {
 
     final selectedText = tester.widget<Text>(find.text('For You'));
     final unselectedText = tester.widget<Text>(find.text('General'));
-    expect(selectedText.style?.color, ThemeColors.get('light', 'fill/contrast/600'));
-    expect(unselectedText.style?.color, ThemeColors.get('light', 'text/base/500'));
+    expect(
+      selectedText.style?.color,
+      ThemeColors.get('light', 'fill/contrast/600'),
+    );
+    expect(
+      unselectedText.style?.color,
+      ThemeColors.get('light', 'text/base/500'),
+    );
 
     final decoration = _tabsDecoration(tester);
     expect(decoration.color, ThemeColors.get('light', 'fill/base/300'));

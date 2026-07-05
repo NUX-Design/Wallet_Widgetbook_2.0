@@ -1,7 +1,6 @@
 import 'dart:async';
 import 'dart:convert';
 import 'dart:io';
-import 'dart:typed_data';
 
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
@@ -10,7 +9,7 @@ import 'package:flutter_test/flutter_test.dart';
 import 'package:mcp_test_app/widgets/receipt/receipt_component.dart';
 
 void main() {
-  const _googleFontsAssetManifest = <String, List<String>>{
+  const googleFontsAssetManifest = <String, List<String>>{
     'google_fonts/NotoSansThai-Regular.ttf': <String>[
       'google_fonts/NotoSansThai-Regular.ttf',
     ],
@@ -29,26 +28,25 @@ void main() {
   final fontBytes = File('/System/Library/Fonts/SFNS.ttf').readAsBytesSync();
 
   setUp(() {
-    binding.defaultBinaryMessenger.setMockMessageHandler(
-      'flutter/assets',
-      (ByteData? message) async {
-        final requestedKey = utf8.decode(message!.buffer.asUint8List());
-        if (requestedKey == 'AssetManifest.json') {
-          return ByteData.view(
-            Uint8List.fromList(
-              utf8.encode(jsonEncode(_googleFontsAssetManifest)),
-            ).buffer,
-          );
-        }
+    binding.defaultBinaryMessenger.setMockMessageHandler('flutter/assets', (
+      ByteData? message,
+    ) async {
+      final requestedKey = utf8.decode(message!.buffer.asUint8List());
+      if (requestedKey == 'AssetManifest.json') {
+        return ByteData.view(
+          Uint8List.fromList(
+            utf8.encode(jsonEncode(googleFontsAssetManifest)),
+          ).buffer,
+        );
+      }
 
-        if (requestedKey.startsWith('google_fonts/NotoSansThai-') &&
-            (requestedKey.endsWith('.ttf') || requestedKey.endsWith('.otf'))) {
-          return ByteData.view(fontBytes.buffer);
-        }
+      if (requestedKey.startsWith('google_fonts/NotoSansThai-') &&
+          (requestedKey.endsWith('.ttf') || requestedKey.endsWith('.otf'))) {
+        return ByteData.view(fontBytes.buffer);
+      }
 
-        return null;
-      },
-    );
+      return null;
+    });
   });
 
   tearDown(() {
@@ -102,7 +100,9 @@ void main() {
       expect(tester.takeException(), isNull);
     });
 
-    testWidgets('keeps long text within max lines', (WidgetTester tester) async {
+    testWidgets('keeps long text within max lines', (
+      WidgetTester tester,
+    ) async {
       const longSenderName =
           'Victor Von Doom with an intentionally long sender name for truncation';
       const longMerchantName =
@@ -147,9 +147,7 @@ Future<void> _pumpReceiptApp(
 
   await tester.pumpWidget(
     DefaultAssetBundle(
-      bundle: _ReceiptAssetBundle(
-        assetPaths: assetPaths,
-      ),
+      bundle: _ReceiptAssetBundle(assetPaths: assetPaths),
       child: MaterialApp(
         theme: ThemeData.light(useMaterial3: true),
         home: Scaffold(body: child),
@@ -244,8 +242,7 @@ class _ReceiptLongTextProbe extends StatelessWidget {
           amount: '500,000,000.00 THB',
           fee: 'Fees 5.00 THB',
           senderName: senderName,
-          senderAccount:
-              'x-1234-5678-9012-3456-7890-1234-5678-9012-3456',
+          senderAccount: 'x-1234-5678-9012-3456-7890-1234-5678-9012-3456',
           merchantName: merchantName,
           dateTime: '2025-10-06 12:00:53',
           transactionId:
@@ -314,14 +311,15 @@ class _ReceiptAssetBundle extends CachingAssetBundle {
     FutureOr<T> Function(ByteData data) parser,
   ) {
     if (key == 'AssetManifest.bin') {
-      final manifestData = const StandardMessageCodec().encodeMessage(
-        <String, List<Map<String, dynamic>>>{
-          for (final path in assetPaths)
-            path: <Map<String, dynamic>>[
-              <String, dynamic>{'asset': path},
-            ],
-        },
-      )!;
+      final manifestData =
+          const StandardMessageCodec().encodeMessage(
+            <String, List<Map<String, dynamic>>>{
+              for (final path in assetPaths)
+                path: <Map<String, dynamic>>[
+                  <String, dynamic>{'asset': path},
+                ],
+            },
+          )!;
       return Future<T>.value(parser(manifestData));
     }
 

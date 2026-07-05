@@ -239,10 +239,14 @@ Future<void> _pumpImageCarouselGoldenApp(
 
   await tester.pumpWidget(
     MaterialApp(
-      theme: ThemeData.from(colorScheme: colorScheme, useMaterial3: true)
-          .copyWith(scaffoldBackgroundColor: backgroundColor),
-      darkTheme: ThemeData.from(colorScheme: colorScheme, useMaterial3: true)
-          .copyWith(scaffoldBackgroundColor: backgroundColor),
+      theme: ThemeData.from(
+        colorScheme: colorScheme,
+        useMaterial3: true,
+      ).copyWith(scaffoldBackgroundColor: backgroundColor),
+      darkTheme: ThemeData.from(
+        colorScheme: colorScheme,
+        useMaterial3: true,
+      ).copyWith(scaffoldBackgroundColor: backgroundColor),
       themeMode: themeVariant,
       home: Scaffold(body: child),
     ),

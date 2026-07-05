@@ -41,37 +41,41 @@ void main() {
       );
     });
 
-    testWidgets('renders the logo, expiry date, masked number, and gradient card', (
-      WidgetTester tester,
-    ) async {
-      await _pumpVisaCardGoldenApp(
-        tester,
-        child: const _VisaCardGoldenProbe(),
-        surfaceSize: const Size(375, 220),
-        themeMode: ThemeMode.light,
-      );
+    testWidgets(
+      'renders the logo, expiry date, masked number, and gradient card',
+      (WidgetTester tester) async {
+        await _pumpVisaCardGoldenApp(
+          tester,
+          child: const _VisaCardGoldenProbe(),
+          surfaceSize: const Size(375, 220),
+          themeMode: ThemeMode.light,
+        );
 
-      await tester.pump();
+        await tester.pump();
 
-      final cardContainer = tester.widget<Container>(
-        find.byWidgetPredicate(
-          (widget) =>
-              widget is Container &&
-              widget.decoration is BoxDecoration &&
-              (widget.decoration as BoxDecoration).gradient is LinearGradient,
-        ),
-      );
+        final cardContainer = tester.widget<Container>(
+          find.byWidgetPredicate(
+            (widget) =>
+                widget is Container &&
+                widget.decoration is BoxDecoration &&
+                (widget.decoration as BoxDecoration).gradient is LinearGradient,
+          ),
+        );
 
-      final decoration = cardContainer.decoration as BoxDecoration;
-      final gradient = decoration.gradient as LinearGradient;
+        final decoration = cardContainer.decoration as BoxDecoration;
+        final gradient = decoration.gradient as LinearGradient;
 
-      expect(find.byType(SvgPicture), findsOneWidget);
-      expect(find.text('12/28'), findsOneWidget);
-      expect(find.text('Virtual Card'), findsOneWidget);
-      expect(find.text('••••'), findsOneWidget);
-      expect(find.text('1234'), findsOneWidget);
-      expect(gradient.colors, const <Color>[Color(0xFF0F0F0F), Color(0xFF757575)]);
-    });
+        expect(find.byType(SvgPicture), findsOneWidget);
+        expect(find.text('12/28'), findsOneWidget);
+        expect(find.text('Virtual Card'), findsOneWidget);
+        expect(find.text('••••'), findsOneWidget);
+        expect(find.text('1234'), findsOneWidget);
+        expect(gradient.colors, const <Color>[
+          Color(0xFF0F0F0F),
+          Color(0xFF757575),
+        ]);
+      },
+    );
   });
 }
 
@@ -101,11 +105,6 @@ class _VisaCardGoldenProbe extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const Center(
-      child: SizedBox(
-        width: 343,
-        child: VisaCard(),
-      ),
-    );
+    return const Center(child: SizedBox(width: 343, child: VisaCard()));
   }
 }

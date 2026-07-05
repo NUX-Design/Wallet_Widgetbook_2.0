@@ -6,10 +6,11 @@ Operational rules for agents working in this repository. This repo is a Flutter 
 
 ## Required Read Order
 
-1. Read `MEMORY.md` first on every task, without exception.
-2. Read the user request and identify the smallest relevant scope.
-3. Read the nearest source-of-truth files for that scope before changing code.
-4. Re-read and update `MEMORY.md` before finishing when you discover durable project knowledge that will matter in future tasks.
+1. Read `AGENTS.md` first on every task, without exception.
+2. Read `MEMORY.md` next on every task, without exception.
+3. Read the user request and identify the smallest relevant scope.
+4. Read the nearest source-of-truth files for that scope before changing code.
+5. Re-read and update `MEMORY.md` before finishing when you discover durable project knowledge that will matter in future tasks.
 
 ## Guardrails
 
@@ -38,9 +39,9 @@ Operational rules for agents working in this repository. This repo is a Flutter 
 - Generated localization artifacts: `lib/l10n/*.arb`, `lib/generated/intl/`
 - Reusable widgets: `lib/widgets/`
 - Flutter tests: `test/`
+- Task backlogs: `task/`
 - Root documentation/schema tooling: `CODEBASE_CONTEXT.md`, `WIDGETS_GUIDE.md`, `scripts/`, `package.json`, `docs/schema.json`
 - MCP helper server: `mcp-server/`
-- Extra tooling sandbox: `tools/flutter_mcp_2/`
 
 ### Trust Order For Context
 
@@ -55,6 +56,7 @@ Reason: repo-level overview docs may lag behind the live Flutter structure.
 
 ### File Reading Strategy
 
+- For repo-level context, architecture overviews, and documentation/schema work, read `CODEBASE_CONTEXT.md` after `MEMORY.md` and before other broad overview docs.
 - For widget work, read the widget source, its preview file, related tests, and any local guide/spec markdown next to it.
 - For localization work, read `lib/l10n/localization.json`, `tool/generate_arb.dart`, and `l10n.yaml`.
 - For theme/token work, read `lib/config/themes/theme_color.dart` and related theme files first.
@@ -140,6 +142,14 @@ Use these default execution recipes unless the user explicitly asks for a differ
 4. Never hand-edit `docs/schema.json`.
 5. If you discover doc drift against live code, fix or clearly encode the trust order in agent docs.
 
+#### Task Backlog Playbook
+
+1. Read the relevant backlog under `task/` when the user asks for roadmap, checklist, or execution tracking.
+2. Treat `task/TASKS.md` as the current MCP production-ready backlog source of truth.
+3. When the user asks what the latest work is, what was done most recently, or current progress, answer from `task/TASKS.md` by inspecting the latest checklist state together with the `อัปเดตล่าสุดเมื่อ` timestamp.
+4. If a backlog file moves or its ownership changes, update both `AGENTS.md` and `MEMORY.md` in the same task.
+5. `mcp-server/KOYEB_HOSTING_PLAN.md` is the design doc for hosting the MCP remote endpoint on Koyeb for multi-client zero-clone access; its execution checklist lives in `task/TASKS.md` under "Phase 8: Koyeb Hosting Pilot". This is a pilot/proposal separate from the already-closed production-ready plan — do not treat it as done until `task/TASKS.md` Phase 8 checkboxes are checked.
+
 ### Change Workflow
 
 1. Read `MEMORY.md`.
@@ -160,6 +170,12 @@ Use these default execution recipes unless the user explicitly asks for a differ
   - `flutter run -t lib/widgets/.../preview_*.dart -d <device>` for standalone widget preview validation
   - `npm run generate-schema` when schema-facing docs changed
 - If Flutter commands fail because of SDK/cache permissions or environment issues, report that explicitly.
+
+## Claude Code Slash Commands Reference
+
+- เมื่อผู้ใช้ถามเรื่อง `Claude Code slash commands` ให้ใช้อ้างอิง knowledge base ที่อยู่ที่ `/Users/Niwat.yah/Documents/Obsidian Vault/Claude-Slash/claude-code-slash-commands-cheatsheet.md`
+- ใช้ไฟล์นั้นเป็น source สำหรับคำอธิบาย/คำแนะนำเกี่ยวกับ slash commands แทนการบันทึกรายการคำสั่งทั้งหมดไว้ใน `AGENTS.md`
+- หากต้องการยืนยันว่าคำสั่งใดใช้ได้จริงในเครื่อง ให้ตรวจด้วย `/help` และ `/release-notes` เสมอ เพราะ availability เปลี่ยนตาม version, platform และ plan
 
 ## Code Conventions
 

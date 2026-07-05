@@ -73,74 +73,135 @@ void main() {
       );
     });
 
-    testWidgets('prefers network images over assets and respects loading state', (
-      WidgetTester tester,
-    ) async {
-      await HttpOverrides.runZoned(() async {
+    testWidgets(
+      'prefers network images over assets and respects loading state',
+      (WidgetTester tester) async {
+        await HttpOverrides.runZoned(() async {
+          await pumpTestApp(
+            tester,
+            const Avatar(
+              imageUrl: 'https://example.com/avatar.png',
+              assetPath: 'lib/assets/images/avatar-demo.png',
+              name: 'Tony Stark',
+              handle: '@ironman',
+              radius: 32,
+            ),
+            assetStrategy: TestAssetStrategy.placeholderAssets,
+            assetBundle: PlaceholderAssetBundle(
+              assetPaths: <String>[
+                'lib/assets/images/avatar-demo.png',
+                'lib/assets/images/user-add-01.svg',
+                'lib/assets/lottie/wi_skeleton.json',
+              ],
+            ),
+          );
+        }, createHttpClient: (_) => _FakeHttpClient(_kPngBytes));
+
+        final circleAvatar = tester.widget<CircleAvatar>(
+          find.byType(CircleAvatar),
+        );
+        expect(circleAvatar.radius, 32);
+        expect(circleAvatar.backgroundImage, isA<NetworkImage>());
+
         await pumpTestApp(
           tester,
           const Avatar(
-            imageUrl: 'https://example.com/avatar.png',
-            assetPath: 'lib/assets/images/avatar-demo.png',
-            name: 'Tony Stark',
-            handle: '@ironman',
-            radius: 32,
+            name: 'Loading User',
+            handle: '@loading.user',
+            isLoading: true,
           ),
           assetStrategy: TestAssetStrategy.placeholderAssets,
           assetBundle: PlaceholderAssetBundle(
             assetPaths: <String>[
-              'lib/assets/images/avatar-demo.png',
               'lib/assets/images/user-add-01.svg',
               'lib/assets/lottie/wi_skeleton.json',
             ],
           ),
         );
-      }, createHttpClient: (_) => _FakeHttpClient(_kPngBytes));
 
-      final circleAvatar = tester.widget<CircleAvatar>(
-        find.byType(CircleAvatar),
-      );
-      expect(circleAvatar.radius, 32);
-      expect(circleAvatar.backgroundImage, isA<NetworkImage>());
-
-      await pumpTestApp(
-        tester,
-        const Avatar(
-          name: 'Loading User',
-          handle: '@loading.user',
-          isLoading: true,
-        ),
-        assetStrategy: TestAssetStrategy.placeholderAssets,
-        assetBundle: PlaceholderAssetBundle(
-          assetPaths: <String>[
-            'lib/assets/images/user-add-01.svg',
-            'lib/assets/lottie/wi_skeleton.json',
-          ],
-        ),
-      );
-
-      expect(find.byType(Lottie), findsWidgets);
-      expect(find.byType(Opacity), findsWidgets);
-    });
+        expect(find.byType(Lottie), findsWidgets);
+        expect(find.byType(Opacity), findsWidgets);
+      },
+    );
   });
 }
 
 final Uint8List _kPngBytes = Uint8List.fromList(<int>[
-  0x89, 0x50, 0x4E, 0x47, 0x0D, 0x0A, 0x1A, 0x0A,
-  0x00, 0x00, 0x00, 0x0D, 0x49, 0x48, 0x44, 0x52,
-  0x00, 0x00, 0x00, 0x01, 0x00, 0x00, 0x00, 0x01,
-  0x08, 0x06, 0x00, 0x00, 0x00, 0x1F, 0x15, 0xC4,
-  0x89, 0x00, 0x00, 0x00, 0x0A, 0x49, 0x44, 0x41,
-  0x54, 0x78, 0x9C, 0x63, 0x00, 0x01, 0x00, 0x00,
-  0x05, 0x00, 0x01, 0x0D, 0x0A, 0x2D, 0xB4, 0x00,
-  0x00, 0x00, 0x00, 0x49, 0x45, 0x4E, 0x44, 0xAE,
-  0x42, 0x60, 0x82,
+  0x89,
+  0x50,
+  0x4E,
+  0x47,
+  0x0D,
+  0x0A,
+  0x1A,
+  0x0A,
+  0x00,
+  0x00,
+  0x00,
+  0x0D,
+  0x49,
+  0x48,
+  0x44,
+  0x52,
+  0x00,
+  0x00,
+  0x00,
+  0x01,
+  0x00,
+  0x00,
+  0x00,
+  0x01,
+  0x08,
+  0x06,
+  0x00,
+  0x00,
+  0x00,
+  0x1F,
+  0x15,
+  0xC4,
+  0x89,
+  0x00,
+  0x00,
+  0x00,
+  0x0A,
+  0x49,
+  0x44,
+  0x41,
+  0x54,
+  0x78,
+  0x9C,
+  0x63,
+  0x00,
+  0x01,
+  0x00,
+  0x00,
+  0x05,
+  0x00,
+  0x01,
+  0x0D,
+  0x0A,
+  0x2D,
+  0xB4,
+  0x00,
+  0x00,
+  0x00,
+  0x00,
+  0x49,
+  0x45,
+  0x4E,
+  0x44,
+  0xAE,
+  0x42,
+  0x60,
+  0x82,
 ]);
 
 class _FakeHttpClient implements HttpClient {
   _FakeHttpClient(this.bytes);
 
   final Uint8List bytes;
+
+  @override
   bool autoUncompress = false;
 
   @override
@@ -206,9 +267,6 @@ class _FakeHttpClientResponse extends StreamView<List<int>>
 
   @override
   List<RedirectInfo> get redirects => const <RedirectInfo>[];
-
-  @override
-  List<X509Certificate>? get certificates => null;
 
   @override
   noSuchMethod(Invocation invocation) => super.noSuchMethod(invocation);

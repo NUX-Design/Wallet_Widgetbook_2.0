@@ -1,5 +1,3 @@
-import 'dart:ui';
-
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_test/flutter_test.dart';
@@ -14,9 +12,7 @@ void main() {
       WidgetTester tester,
     ) async {
       final bundle = _RecordingAssetBundle(
-        assetPaths: <String>[
-          'lib/assets/lottie/wi_loader.json',
-        ],
+        assetPaths: <String>['lib/assets/lottie/wi_loader.json'],
       );
 
       await pumpTestApp(
@@ -36,7 +32,7 @@ void main() {
       final backdropFilter = tester.widget<BackdropFilter>(
         find.byType(BackdropFilter),
       );
-      final blur = backdropFilter.filter as ImageFilter;
+      final blur = backdropFilter.filter;
       expect(blur, isNotNull);
 
       final container = tester.widget<Container>(
@@ -51,7 +47,10 @@ void main() {
       expect(lottie.width, 280);
       expect(lottie.height, 280);
       expect(lottie.fit, BoxFit.contain);
-      expect(bundle.requestedKeys, contains('lib/assets/lottie/wi_loader.json'));
+      expect(
+        bundle.requestedKeys,
+        contains('lib/assets/lottie/wi_loader.json'),
+      );
     });
   });
 }
