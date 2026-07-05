@@ -292,10 +292,19 @@ Inspector verification for the local stdio server:
 npm run verify:mcp
 ```
 
-Protocol-level verification for the hosted Streamable HTTP server:
+Protocol-level verification for the hosted Streamable HTTP server (spins up a local instance and tests against itself):
 
 ```bash
 npm run verify:mcp:http
+```
+
+Protocol-level verification against a REAL hosted endpoint you already deployed (e.g. a Render pilot URL — see `RENDER_HOSTING_PLAN.md` and `task/TASKS.md` Phase 8):
+
+```bash
+MCP_REMOTE_BASE_URL="https://<your-host>/mcp" \
+MCP_REMOTE_PROXY_SHARED_SECRET="<same-secret-as-deploy>" \
+MCP_REMOTE_REFRESH_TOKEN="<same-refresh-token>" \
+npm run verify:mcp:remote
 ```
 
 Structured evaluation suite runner:
@@ -352,6 +361,9 @@ MCP_LOG_LEVEL=debug node http-server.js
   - `get_widget_metadata`
   - `/info`
   - `/admin/refresh` + `/health`
+- `npm run verify:mcp:remote` ตรวจ endpoint ที่ deploy จริงแล้ว (เช่น Render pilot URL) ผ่าน `MCP_REMOTE_BASE_URL` โดยไม่ spin up server ใหม่ — ใช้สำหรับ `task/TASKS.md` P8-02 โดยเฉพาะ เพราะ `verify:mcp:http` ทดสอบกับ instance ที่มันสร้างขึ้นเองเท่านั้น ไม่สามารถชี้ออกไปยัง URL ภายนอกได้
+  - ทุก request มี timeout (`MCP_REMOTE_TIMEOUT_MS`, default 15000ms) — ถ้า timeout อาจเป็น Render free-tier cold start (spin-up ใช้เวลาประมาณ 1 นาทีหลัง idle 15 นาทีตาม `render.com/docs/free`) แทนที่จะเป็น held-connection restriction จริง ดู `RENDER_HOSTING_PLAN.md` ข้อ 2/7
+  - `/admin/refresh` จะถูกทดสอบเฉพาะเมื่อส่ง `MCP_REMOTE_REFRESH_TOKEN` มาด้วย (เพราะมัน mutate state จริงบน endpoint ที่ deploy อยู่)
 - ถ้า command นี้ fail:
   - เช็กก่อนว่า `npm install` ถูกเรียกใน `mcp-server/`
   - เช็กว่า `docs/schema.json` และ `lib/config/themes/theme.json` ยังมีอยู่ใน repo root

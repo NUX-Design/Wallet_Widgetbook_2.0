@@ -148,7 +148,7 @@ Use these default execution recipes unless the user explicitly asks for a differ
 2. Treat `task/TASKS.md` as the current MCP production-ready backlog source of truth.
 3. When the user asks what the latest work is, what was done most recently, or current progress, answer from `task/TASKS.md` by inspecting the latest checklist state together with the `อัปเดตล่าสุดเมื่อ` timestamp.
 4. If a backlog file moves or its ownership changes, update both `AGENTS.md` and `MEMORY.md` in the same task.
-5. `mcp-server/KOYEB_HOSTING_PLAN.md` is the design doc for hosting the MCP remote endpoint on Koyeb for multi-client zero-clone access; its execution checklist lives in `task/TASKS.md` under "Phase 8: Koyeb Hosting Pilot". This is a pilot/proposal separate from the already-closed production-ready plan — do not treat it as done until `task/TASKS.md` Phase 8 checkboxes are checked.
+5. `mcp-server/RENDER_HOSTING_PLAN.md` is the design doc for hosting the MCP remote endpoint on Render for multi-client zero-clone access, backed by a checked-in `render.yaml` Blueprint at repo root; its execution checklist lives in `task/TASKS.md` under "Phase 8: Render Hosting Pilot". This is a pilot/proposal separate from the already-closed production-ready plan — do not treat it as done until `task/TASKS.md` Phase 8 checkboxes are checked. `mcp-server/KOYEB_HOSTING_PLAN.md` is a superseded historical reference only (Koyeb closed its free tier to new users in early 2026); do not propose it as an active plan.
 
 ### Change Workflow
 
