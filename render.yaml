@@ -1,0 +1,27 @@
+services:
+  - type: web
+    name: flutter-widget-wallet-mcp
+    runtime: node
+    plan: free
+    rootDir: mcp-server
+    buildCommand: npm ci
+    startCommand: node http-server.js
+    healthCheckPath: /health
+    autoDeployTrigger: commit
+    envVars:
+      - key: MCP_REMOTE_HOST
+        value: 0.0.0.0
+      - key: MCP_REMOTE_PORT
+        value: 10000
+      - key: MCP_REMOTE_CHANNEL
+        value: production
+      # Secrets below are intentionally not committed with real values.
+      # Set them in the Render Dashboard (Environment tab) after the first
+      # Blueprint sync. sync: false keeps Render from expecting/overwriting
+      # them from this file.
+      - key: MCP_REMOTE_PROXY_SHARED_SECRET
+        sync: false
+      - key: MCP_REMOTE_REFRESH_TOKEN
+        sync: false
+      - key: MCP_REMOTE_COMMIT_SHA
+        sync: false

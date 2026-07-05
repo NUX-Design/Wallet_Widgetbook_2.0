@@ -1,6 +1,8 @@
 # Koyeb Hosting Plan: `flutter-widget-wallet-mcp`
 
-สถานะ: **Proposed / Pilot pending** — ยังไม่ deploy จริง รอ validation ตามข้อ 6 ก่อน commit ใช้งานถาวร
+สถานะ: **Superseded** — Koyeb ปิด free tier ให้ผู้ใช้ใหม่หลัง Mistral AI เข้าซื้อในต้นปี 2026 แผนนี้ใช้ไม่ได้แล้วสำหรับ requirement ที่ต้องมี free hosting จริง ดูแผนที่ใช้งานจริงแทนที่ [RENDER_HOSTING_PLAN.md](/Users/Niwat.yah/flutter_widgetbook_3.0/mcp-server/RENDER_HOSTING_PLAN.md)
+
+เอกสารนี้เก็บไว้เป็น historical reference เท่านั้น (เหตุผลที่ตัวเลือกอื่น ๆ ถูกตัดออกไปตอนนั้นยังใช้อ้างอิงได้บางส่วน) — ห้ามใช้เป็น execution plan ต่อ
 
 ## 1. เป้าหมาย
 
@@ -33,7 +35,7 @@
 | Start command | `node http-server.js` |
 | Health check | HTTP protocol, path `/health` |
 | Instance | Free (512MB RAM / 0.1 vCPU) |
-| Env vars | `MCP_REMOTE_HOST=0.0.0.0`, `MCP_REMOTE_PORT=<Koyeb-assigned PORT>`, `MCP_REMOTE_PROXY_SHARED_SECRET`, `MCP_REMOTE_REFRESH_TOKEN`, `MCP_REMOTE_CHANNEL=production`, `MCP_REMOTE_COMMIT_SHA` |
+| Env vars | `MCP_REMOTE_HOST=0.0.0.0`, `MCP_REMOTE_PORT=<same port you expose on Koyeb เช่น 3310>`, `MCP_REMOTE_PROXY_SHARED_SECRET`, `MCP_REMOTE_REFRESH_TOKEN`, `MCP_REMOTE_CHANNEL=production`, `MCP_REMOTE_COMMIT_SHA` |
 | Auto-deploy | เปิดไว้ — push เข้า `main` แล้ว Koyeb build/redeploy ให้เองอัตโนมัติ |
 
 ## 4. Domain / TLS
@@ -59,12 +61,14 @@
 
 เหตุผล: ทุก client ที่กล่าวถึงรองรับ local stdio command เหมือนกันหมด ไม่ต้องเช็คทีละตัวว่า native remote-URL support ผ่านจริงหรือ best-effort (ตาม `COMPATIBILITY_POLICY.md` Codex remote-URL ตรงยังเป็น best-effort/unverified)
 
+ข้อควรระวังสำคัญ: config แบบ `Authorization: Bearer <TOKEN>` ใช้ได้ก็ต่อเมื่อมี reverse proxy / edge layer ข้างหน้า Koyeb ที่ validate token แล้ว inject internal headers `x-mcp-authenticated-user` และ `x-mcp-proxy-secret` ให้ MCP process ตาม `README.md` และ `REMOTE_MODE_DECISION.md` เท่านั้น. ถ้า deploy แค่ Koyeb ตรง ๆ ยังไม่มี auth translation layer นี้ ห้ามแจก `Authorization` flow ให้ client จริง เพราะตัว MCP server ไม่ได้อ่าน Bearer token โดยตรง
+
 ## 6. Validation Checklist ก่อน commit ใช้จริง
 
 1. Deploy pilot ขึ้น Koyeb ตามข้อ 3
-2. รัน `cd mcp-server && npm run verify:mcp:http` ชี้ไปที่ URL Koyeb แทน localhost
+2. รัน `cd mcp-server && npm run verify:mcp:remote` ชี้ไปที่ URL Koyeb จริง (`verify:mcp:http` ใช้ตรวจ local self-host เท่านั้น)
 3. เช็คว่าผ่านครบ: `tools/list`, `list_widgets`, `search_widgets`, `get_widget_metadata`, `/info`, `/admin/refresh`, `/health`
-4. ทดสอบ `mcp-remote` bridge จริงกับ client อย่างน้อย 1 ตัว (แนะนำ Codex ก่อน เพราะกังวลเรื่อง remote support มากสุด)
+4. ถ้าจะทดสอบ `mcp-remote` bridge ด้วย `Authorization` header ให้เตรียม reverse proxy / edge layer ที่แปลง auth ไปเป็น internal headers ของ MCP server ก่อน แล้วค่อยทดสอบกับ client อย่างน้อย 1 ตัว (แนะนำ Codex ก่อน เพราะกังวลเรื่อง remote support มากสุด)
 5. ถ้า fail เพราะ held-connection restriction → สลับไป Northflank (fallback ตามข้อ 2)
 
 ## 7. Out of Scope (ตอนนี้)
