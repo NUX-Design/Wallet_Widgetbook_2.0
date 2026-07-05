@@ -29,26 +29,25 @@ void main() {
   final fontBytes = File('/System/Library/Fonts/SFNS.ttf').readAsBytesSync();
 
   setUp(() {
-    binding.defaultBinaryMessenger.setMockMessageHandler(
-      'flutter/assets',
-      (ByteData? message) async {
-        final requestedKey = utf8.decode(message!.buffer.asUint8List());
-        if (requestedKey == 'AssetManifest.json') {
-          return ByteData.view(
-            Uint8List.fromList(
-              utf8.encode(jsonEncode(_googleFontsAssetManifest)),
-            ).buffer,
-          );
-        }
+    binding.defaultBinaryMessenger.setMockMessageHandler('flutter/assets', (
+      ByteData? message,
+    ) async {
+      final requestedKey = utf8.decode(message!.buffer.asUint8List());
+      if (requestedKey == 'AssetManifest.json') {
+        return ByteData.view(
+          Uint8List.fromList(
+            utf8.encode(jsonEncode(_googleFontsAssetManifest)),
+          ).buffer,
+        );
+      }
 
-        if (requestedKey.startsWith('google_fonts/NotoSansThai-') &&
-            (requestedKey.endsWith('.ttf') || requestedKey.endsWith('.otf'))) {
-          return ByteData.view(fontBytes.buffer);
-        }
+      if (requestedKey.startsWith('google_fonts/NotoSansThai-') &&
+          (requestedKey.endsWith('.ttf') || requestedKey.endsWith('.otf'))) {
+        return ByteData.view(fontBytes.buffer);
+      }
 
-        return null;
-      },
-    );
+      return null;
+    });
   });
 
   tearDown(() {
@@ -80,30 +79,33 @@ void main() {
       );
     });
 
-    testWidgets('renders header logo fallback, background fallback, and detail rows', (
+    testWidgets(
+      'renders header logo fallback, background fallback, and detail rows',
+      (WidgetTester tester) async {
+        await _pumpReceiptImageApp(
+          tester,
+          child: const _ReceiptImageFallbackProbe(),
+          assetPaths: const <String>[],
+        );
+
+        await tester.pump();
+
+        expect(find.text('Payment'), findsOneWidget);
+        expect(find.text('wi wallet'), findsOneWidget);
+        expect(find.text('Date&Time:'), findsOneWidget);
+        expect(find.text('Transaction ID:'), findsOneWidget);
+        expect(find.text('Merchant Ref ID:'), findsOneWidget);
+        expect(find.text('Biller ID:'), findsOneWidget);
+        expect(find.text('Ref 1:'), findsOneWidget);
+        expect(find.text('Ref 2:'), findsNothing);
+        expect(find.byType(CustomPaint), findsWidgets);
+        expect(tester.takeException(), isNull);
+      },
+    );
+
+    testWidgets('keeps long text within max lines', (
       WidgetTester tester,
     ) async {
-      await _pumpReceiptImageApp(
-        tester,
-        child: const _ReceiptImageFallbackProbe(),
-        assetPaths: const <String>[],
-      );
-
-      await tester.pump();
-
-      expect(find.text('Payment'), findsOneWidget);
-      expect(find.text('wi wallet'), findsOneWidget);
-      expect(find.text('Date&Time:'), findsOneWidget);
-      expect(find.text('Transaction ID:'), findsOneWidget);
-      expect(find.text('Merchant Ref ID:'), findsOneWidget);
-      expect(find.text('Biller ID:'), findsOneWidget);
-      expect(find.text('Ref 1:'), findsOneWidget);
-      expect(find.text('Ref 2:'), findsNothing);
-      expect(find.byType(CustomPaint), findsWidgets);
-      expect(tester.takeException(), isNull);
-    });
-
-    testWidgets('keeps long text within max lines', (WidgetTester tester) async {
       const longMerchantName =
           'Merchant with an intentionally long display name that should truncate';
 
@@ -138,9 +140,7 @@ Future<void> _pumpReceiptImageApp(
 
   await tester.pumpWidget(
     DefaultAssetBundle(
-      bundle: _ReceiptAssetBundle(
-        assetPaths: assetPaths,
-      ),
+      bundle: _ReceiptAssetBundle(assetPaths: assetPaths),
       child: MaterialApp(
         theme: ThemeData.light(useMaterial3: true),
         home: Scaffold(body: child),
@@ -233,8 +233,7 @@ class _ReceiptImageLongTextProbe extends StatelessWidget {
           fee: 'Fees 5.00 THB',
           senderName:
               'Victor Von Doom with an intentionally long sender name for truncation',
-          senderAccount:
-              'x-1234-5678-9012-3456-7890-1234-5678-9012-3456',
+          senderAccount: 'x-1234-5678-9012-3456-7890-1234-5678-9012-3456',
           merchantName: merchantName,
           dateTime: '2025-10-06 12:00:53',
           transactionId:
@@ -304,14 +303,15 @@ class _ReceiptAssetBundle extends CachingAssetBundle {
     FutureOr<T> Function(ByteData data) parser,
   ) {
     if (key == 'AssetManifest.bin') {
-      final manifestData = const StandardMessageCodec().encodeMessage(
-        <String, List<Map<String, dynamic>>>{
-          for (final path in assetPaths)
-            path: <Map<String, dynamic>>[
-              <String, dynamic>{'asset': path},
-            ],
-        },
-      )!;
+      final manifestData =
+          const StandardMessageCodec().encodeMessage(
+            <String, List<Map<String, dynamic>>>{
+              for (final path in assetPaths)
+                path: <Map<String, dynamic>>[
+                  <String, dynamic>{'asset': path},
+                ],
+            },
+          )!;
       return Future<T>.value(parser(manifestData));
     }
 

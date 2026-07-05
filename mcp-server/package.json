@@ -13,8 +13,8 @@
         "evaluate:mcp": "node scripts/run-evaluations.js",
         "validate:onboarding": "node scripts/validate-onboarding.js",
         "ci:mcp": "node scripts/run-ci.js",
-        "test": "node --test tests/**/*.test.js",
-        "test:update-snapshots": "UPDATE_SNAPSHOTS=1 node --test tests/**/*.test.js"
+        "test": "node --test",
+        "test:update-snapshots": "UPDATE_SNAPSHOTS=1 node --test"
     },
     "dependencies": {
         "@modelcontextprotocol/sdk": "^1.0.0",

@@ -9,6 +9,13 @@
 # packages, and plugins designed to encourage good coding practices.
 include: package:flutter_lints/flutter.yaml
 
+analyzer:
+  exclude:
+    # Dart fixtures for the mcp-server Node.js test suite; they are not part
+    # of this Flutter app and intentionally reference a non-existent package
+    # to exercise the widget catalog parser's error paths.
+    - mcp-server/tests/fixtures/**
+
 linter:
   # The lint rules applied to this project can be customized in the
   # section below to disable rules from the `package:flutter_lints/flutter.yaml`

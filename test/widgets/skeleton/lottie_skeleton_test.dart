@@ -12,10 +12,7 @@ void main() {
     ) async {
       await pumpTestApp(
         tester,
-        const LottieSkeleton(
-          isLoading: false,
-          child: Text('Loaded content'),
-        ),
+        const LottieSkeleton(isLoading: false, child: Text('Loaded content')),
         assetStrategy: TestAssetStrategy.placeholderAssets,
       );
 
@@ -28,9 +25,7 @@ void main() {
       WidgetTester tester,
     ) async {
       final bundle = PlaceholderAssetBundle(
-        assetPaths: <String>[
-          'lib/assets/lottie/wi_loader.json',
-        ],
+        assetPaths: <String>['lib/assets/lottie/wi_loader.json'],
       );
 
       await pumpTestApp(

@@ -18,7 +18,9 @@ void main() {
             mainAxisSize: MainAxisSize.min,
             children: [
               Text(
-                Theme.of(context).brightness == Brightness.dark ? 'dark' : 'light',
+                Theme.of(context).brightness == Brightness.dark
+                    ? 'dark'
+                    : 'light',
               ),
               Text(Localizations.localeOf(context).languageCode),
               Text(AppLocalizations.of(context)!.navigatorHome),
@@ -61,11 +63,19 @@ void main() {
       await bundle.loadString('AssetManifest.json'),
       contains('lib/assets/images/placeholder.svg'),
     );
-    expect(await bundle.loadString('lib/assets/images/placeholder.svg'), isNotEmpty);
-    expect(await bundle.loadString('lib/assets/lottie/placeholder.json'), isNotEmpty);
+    expect(
+      await bundle.loadString('lib/assets/images/placeholder.svg'),
+      isNotEmpty,
+    );
+    expect(
+      await bundle.loadString('lib/assets/lottie/placeholder.json'),
+      isNotEmpty,
+    );
   });
 
-  testWidgets('Snack bar host can show a snackbar', (WidgetTester tester) async {
+  testWidgets('Snack bar host can show a snackbar', (
+    WidgetTester tester,
+  ) async {
     await pumpSnackBarHost(
       tester,
       child: Builder(
@@ -125,11 +135,7 @@ void main() {
   testWidgets('settleWidgetTester completes transient animation frames', (
     WidgetTester tester,
   ) async {
-    await pumpTestApp(
-      tester,
-      const _AnimatedProbe(),
-      wrapWithScaffold: false,
-    );
+    await pumpTestApp(tester, const _AnimatedProbe(), wrapWithScaffold: false);
 
     await settleWidgetTester(tester);
     expect(find.text('animated'), findsOneWidget);

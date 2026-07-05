@@ -14,9 +14,7 @@ void main() {
       WidgetTester tester,
     ) async {
       final bundle = _RecordingAssetBundle(
-        assetPaths: <String>[
-          'lib/assets/lottie/wi_loader.json',
-        ],
+        assetPaths: <String>['lib/assets/lottie/wi_loader.json'],
       );
 
       await pumpTestApp(
@@ -51,7 +49,10 @@ void main() {
       expect(lottie.width, 280);
       expect(lottie.height, 280);
       expect(lottie.fit, BoxFit.contain);
-      expect(bundle.requestedKeys, contains('lib/assets/lottie/wi_loader.json'));
+      expect(
+        bundle.requestedKeys,
+        contains('lib/assets/lottie/wi_loader.json'),
+      );
     });
   });
 }

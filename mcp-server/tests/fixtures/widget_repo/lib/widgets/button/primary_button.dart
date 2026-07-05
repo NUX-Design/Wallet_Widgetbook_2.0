@@ -17,10 +17,7 @@ class PrimaryButton extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Row(
-      children: [
-        SvgPicture.asset('assets/icons/send.svg'),
-        Text(label),
-      ],
+      children: [SvgPicture.asset('assets/icons/send.svg'), Text(label)],
     );
   }
 }
