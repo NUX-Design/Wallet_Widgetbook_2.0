@@ -1,3 +1,63 @@
+# 🚀 Release Notes (Unreleased) - MCP Server Hardening, Cross-Agent Skills & New Widgets
+
+**Release Date:** July 2026
+**Branch:** `dev`
+**Base Version:** `25.0.5+1` (pubspec version unchanged — no version bump yet)
+
+---
+
+## ✨ What's New
+
+### 🧩 New Widgets
+- **Tab (Horizontal Tabs)** - New horizontal tabs widget with Widgetbook registration.
+- **Receipt** - New receipt component family with dedicated `receipt/` folder and Figma-sourced skill.
+- **Announcement (Danger / Warning / Stack)** - `AnnouncementDanger` widget added; `AnnouncementStack` and `AnnouncementWarning` refactored and registered in Widgetbook.
+
+### 🤖 MCP Server v2.0 & Production Hardening
+- **Figma-to-Flutter Tools** - MCP server upgraded to v2.0, adding Figma-to-Flutter conversion and Widgetbook tooling; renamed to `flutter-widget-wallet-mcp`.
+- **Phase 1-7 Production Hardening** - Completed a full hardening pass on the MCP server (CI, error handling, stability) plus follow-up fixes for MCP/Flutter CI failures.
+- **Phase 8 Hosting Pilot** - Migrated hosting from Koyeb to Render, added a public edge proxy for onboarding, and added support for direct bearer auth on the hosted MCP service.
+- **Remote Verification Tooling** - Added `npm run verify:mcp:remote` and related scripts under `mcp-server/scripts/` to validate the deployed remote endpoint.
+
+### 🧠 Cross-Agent Skill Packs
+- **Skill Packs for Claude Code, Codex, and Kiro** - Added `skills/claude-code/`, `skills/codex/`, and `skills/kiro/` with 8 shared skills each: `flutter-widget-adapt`, `flutter-widget-audit`, `flutter-widget-beginner`, `flutter-widget-figma-to-code`, `flutter-widget-install`, `flutter-widget-preview`, `flutter-widget-search`, `flutter-widget-upgrade`.
+- **Agent Packs** - Added `agent-packs/antigravity/` and `agent-packs/cursor/` with `AGENTS.md` and local/remote MCP config templates for those clients.
+- **Repo-Level Agent Context** - Added/expanded `AGENTS.md` and `MEMORY.md` as repo-specific operating rules for AI agents.
+
+### ✅ Test Coverage
+- **Widget Test Backlog** - Added a widget test plan and task backlog (`task/TASKS.md`).
+- **Shared Test Harness** - Added a shared widget test harness plus batch 1-3 widget coverage tests.
+
+### 📚 Documentation Updates
+- **README Rewrite** - Rewrote the repo overview and MCP remote setup instructions, then translated the full README to English.
+- **MCP Compatibility Policy** - Added `mcp-server/COMPATIBILITY_POLICY.md` documenting best-effort/unverified support for remote MCP in Claude Code and Codex host apps.
+- **Beginner Skill Spec** - Added `mcp-server/FLUTTER_WIDGET_BEGINNER_SKILL_SPEC.md`.
+- **Support Contact & Token Handling** - Updated support contact email and switched the Figma API key reference to an env var instead of a literal token.
+
+---
+
+## 🔧 Technical Improvements
+
+### CI/CD & Quality
+- Fixed pre-existing `flutter analyze` issues that were blocking the `dev` branch CI.
+- Fixed MCP CI and Flutter CI failures introduced by the Phase 1-7 hardening commit.
+- Fixed `activeColor` deprecation warning in `Switch`.
+- Fixed `RenderFlex` overflow in UI tests by providing larger screen constraints.
+
+### Security
+- Figma API key is now read from an environment variable instead of being referenced as a literal token in docs/config.
+
+---
+
+## 🚀 What's Next
+
+- Bump `pubspec.yaml` version once this batch of changes is tagged for release
+- Navigation System - `go_router` integration
+- API Layer - Repository pattern implementation
+- Performance Optimization - Image caching and lazy loading
+
+---
+
 # 🚀 Release Notes v25.0.5 - New Widgets & Enhanced Preview System
 
 **Release Date:** December 2025
