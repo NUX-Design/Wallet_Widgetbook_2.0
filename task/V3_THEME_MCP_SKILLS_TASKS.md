@@ -1,7 +1,7 @@
 # Theme V3 + MCP + Skills Tasks
 
 สร้างเมื่อ: `2026-07-10 21:49:05 +0700`
-อัปเดตล่าสุดเมื่อ: `2026-07-10 21:49:05 +0700`
+อัปเดตล่าสุดเมื่อ: `2026-07-10 23:06:44 +0700`
 
 Execution checklist นี้แตกจาก [`docs/V3_THEME_MCP_SKILLS_PLAN.md`](../docs/V3_THEME_MCP_SKILLS_PLAN.md) และเป็น source of truth สำหรับติดตามการสร้าง Theme V3, Widget V3, MCP tools V3, Skills V3 และ rollout บน Render service เดิม
 
@@ -39,42 +39,62 @@ Execution checklist นี้แตกจาก [`docs/V3_THEME_MCP_SKILLS_PLAN.
 
 ### V3-01: Capture Flutter baseline
 
-- [ ] รัน `flutter analyze`
-- [ ] รัน `flutter test`
-- [ ] บันทึกผลและ caveats ของ environment
+- [x] รัน `flutter analyze`
+- [x] รัน `flutter test`
+- [x] บันทึกผลและ caveats ของ environment
 
 Depends on: ไม่มี
 
 Lane: Baseline
 
-Evidence: command output หรือ execution note
+Evidence (re-verified `2026-07-10 22:59:14 +0700`):
+
+- `flutter analyze`: PASS — `No issues found`
+- `flutter test test/support/widget_test_harness_test.dart`: PASS — 6/6; ยืนยัน SVG markup, raster manifest และ Lottie JSON
+- `flutter test`: PASS — 114/114
+- Environment caveat: test harness ต้อง serve `AssetManifest.bin` ด้วย `StandardMessageCodec`; แก้เฉพาะ test infrastructure โดยไม่เปลี่ยน SVG/Lottie loading branches
+- Dependency resolution รายงาน 61 packages ที่มีเวอร์ชันใหม่กว่าแต่ไม่ตรง current constraints; ไม่ได้เปลี่ยน dependency versions
 
 ### V3-02: Capture MCP baseline
 
-- [ ] รัน `cd mcp-server && npm run check:mcp-syntax`
-- [ ] รัน `cd mcp-server && npm test`
-- [ ] รัน `cd mcp-server && npm run verify:mcp`
-- [ ] รัน `cd mcp-server && npm run verify:mcp:http`
-- [ ] บันทึก `tools/list`, contract snapshot และจำนวน remote read-only tools เดิม
+- [x] รัน `cd mcp-server && npm run check:mcp-syntax`
+- [x] รัน `cd mcp-server && npm test`
+- [x] รัน `cd mcp-server && npm run verify:mcp`
+- [x] รัน `cd mcp-server && npm run verify:mcp:http`
+- [x] บันทึก `tools/list`, contract snapshot และจำนวน remote read-only tools เดิม
 
 Depends on: ไม่มี
 
 Lane: Baseline
 
-Evidence: test output, snapshots, `/info` metadata
+Evidence:
+
+- `npm run check:mcp-syntax`: PASS — 34 files
+- `npm test`: PASS — 21/21; contract snapshot เดิมผ่านโดยไม่ regenerate (`mcp-server/tests/snapshots/tool_definitions.contracts.json`)
+- `npm run verify:mcp`: PASS — Inspector `tools/list` และ widget read workflows ผ่าน
+- `npm run verify:mcp:http`: PASS — `/info`, refresh, health และ read workflows ผ่าน
+- Legacy registry: 14 local tools; remote registry: 12 read-only tools; exclude `generate_widget_code` และ `generate_widgetbook_use_case`
+- Environment caveat: ต้องรัน `npm ci` เพื่อติดตั้ง Inspector CLI; `npm audit` รายงาน 3 moderate และ 2 high findings โดยไม่ได้รัน auto-fix
 
 ### V3-03: Enforce change boundaries
 
-- [ ] เพิ่ม automated check ห้าม `lib/config/themes/v3/**` import legacy `theme_color.dart`
-- [ ] เพิ่ม automated check ห้าม widget เดิม import V3
-- [ ] เพิ่ม check ว่า skills เดิมไม่มี diff ในงาน V3
-- [ ] ระบุ additive-only MCP integration files ใน reviewer checklist
+- [x] เพิ่ม automated check ห้าม `lib/config/themes/v3/**` import legacy `theme_color.dart`
+- [x] เพิ่ม automated check ห้าม widget เดิม import V3
+- [x] เพิ่ม check ว่า skills เดิมไม่มี diff ในงาน V3
+- [x] ระบุ additive-only MCP integration files ใน reviewer checklist
 
 Depends on: V3-01, V3-02
 
 Lane: Guardrails
 
-Evidence: test/script และผลรัน
+Evidence:
+
+- `scripts/check-v3-boundaries.js`: scan V3/legacy Dart imports, block `ThemeColors.get()` ใน V3 theme และตรวจ legacy `skills/**` diff เมื่อมี V3 work
+- `scripts/check-v3-boundaries.test.js`: PASS 6/6 allowed/rejected scenarios
+- `npm run check:v3-boundaries`: PASS — 47 Dart files, 10 changed paths
+- `.github/workflows/flutter_ci.yml`: รัน checker/tests ด้วย PR/push base SHA และ full git history
+- `docs/v3/V3_REVIEW_CHECKLIST.md`: frozen legacy boundaries, additive-only MCP integration files และ regression gates
+- Regression: CI YAML parse PASS; `flutter analyze` PASS; `flutter test` PASS 114/114
 
 ## Phase 2 — Theme V3 Foundation
 

@@ -52,6 +52,7 @@
 - A separate additive Theme V3 initiative is planned, not yet implemented. Its architecture source of truth is `docs/V3_THEME_MCP_SKILLS_PLAN.md`, and its execution/progress source of truth is `task/V3_THEME_MCP_SKILLS_TASKS.md`.
 - The planned V3 boundary keeps legacy theme files and widgets unchanged, places V3 theme code under `lib/config/themes/v3/`, and places V3 widgets under `lib/widgets/v3/`.
 - Planned V3 inputs are Figma/DTCG primitive plus semantic Light/Dark JSON tokens; V3 widgets should consume semantic colors through a V3-prefixed API rather than `ThemeColors.get()`.
+- V3 change boundaries are enforced by `npm run check:v3-boundaries` with unit coverage from `npm run test:v3-boundaries`. The checker blocks legacy theme use inside V3 theme code, V3 imports from legacy widgets, and legacy `skills/**` changes when a diff contains V3 work. Flutter CI supplies the PR/push base SHA so changed-path checks cover committed diffs; `docs/v3/V3_REVIEW_CHECKLIST.md` is the reviewer source for frozen files and additive-only MCP integration boundaries.
 
 ### Widgetbook
 
@@ -124,6 +125,7 @@
 
 - `flutter analyze` passed on 2026-06-25.
 - `flutter test` passed on 2026-06-25.
+- Theme V3 baseline `V3-01`/`V3-02` was captured on 2026-07-10 at commit `18ed97af7e62579cceea7bc8dd4100d716a159d9`; evidence is stored inline in `task/V3_THEME_MCP_SKILLS_TASKS.md`. `flutter analyze` and all 114 Flutter tests pass after the test-only `PlaceholderAssetBundle` was updated to serve Flutter's binary `AssetManifest.bin`; targeted tests explicitly preserve SVG markup and Lottie JSON behavior. All four MCP baseline gates passed after `npm ci`; the legacy registry contained 14 local tools and 12 remotely exposed read-only tools, and the existing contract snapshot passed unchanged.
 - Flutter commands may require permissions to write to the external Flutter SDK cache, depending on sandbox/runtime.
 
 ## Testing Layout
