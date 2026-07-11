@@ -55,6 +55,8 @@ export function inspectDartBoundary(filePath, source) {
   const normalizedPath = toPosix(filePath);
   const violations = [];
   const isV3Theme = normalizedPath.startsWith("lib/config/themes/v3/");
+  const isV3Widget = normalizedPath.startsWith("lib/widgets/v3/");
+  const isV3Dart = isV3Theme || isV3Widget;
   const isLegacyWidget =
     normalizedPath.startsWith("lib/widgets/") &&
     !normalizedPath.startsWith("lib/widgets/v3/");
@@ -63,9 +65,9 @@ export function inspectDartBoundary(filePath, source) {
     const resolvedImport = resolveRepoImport(normalizedPath, uri);
     if (!resolvedImport) continue;
 
-    if (isV3Theme && resolvedImport === "lib/config/themes/theme_color.dart") {
+    if (isV3Dart && resolvedImport === "lib/config/themes/theme_color.dart") {
       violations.push(
-        `${normalizedPath}: V3 theme code must not import legacy theme_color.dart (${uri})`,
+        `${normalizedPath}: V3 code must not import legacy theme_color.dart (${uri})`,
       );
     }
 
@@ -80,9 +82,9 @@ export function inspectDartBoundary(filePath, source) {
     }
   }
 
-  if (isV3Theme && /\bThemeColors\s*\.\s*get\s*\(/.test(source)) {
+  if (isV3Dart && /\bThemeColors\s*\.\s*get\s*\(/.test(source)) {
     violations.push(
-      `${normalizedPath}: V3 theme code must use V3 semantic APIs, not ThemeColors.get()`,
+      `${normalizedPath}: V3 code must use V3 semantic APIs, not ThemeColors.get()`,
     );
   }
 

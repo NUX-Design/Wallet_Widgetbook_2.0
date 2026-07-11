@@ -1,7 +1,7 @@
 # Theme V3 + MCP + Skills Tasks
 
 สร้างเมื่อ: `2026-07-10 21:49:05 +0700`
-อัปเดตล่าสุดเมื่อ: `2026-07-11 22:50:00 +0700`
+อัปเดตล่าสุดเมื่อ: `2026-07-11 23:59:32 +0700`
 
 Execution checklist นี้แตกจาก [`docs/V3_THEME_MCP_SKILLS_PLAN.md`](../docs/V3_THEME_MCP_SKILLS_PLAN.md) และเป็น source of truth สำหรับติดตามการสร้าง Theme V3, Widget V3, MCP tools V3, Skills V3 และ rollout บน Render service เดิม
 
@@ -28,7 +28,7 @@ Evidence (`2026-07-10 23:47:26 +0700`):
 
 - V3 work อยู่เฉพาะ V3 paths, tests, checklist และ memory; legacy theme/widget/MCP/skills ไม่มี source diff
 - `npm run check:v3-boundaries`: PASS — 57 Dart files, 17 changed paths
-- `npm run test:v3-boundaries`: PASS — 6/6
+- `npm run test:v3-boundaries`: PASS — 8/8; ครอบคลุมการ reject legacy theme import และ `ThemeColors.get()` ภายใน Widget V3
 - Legacy MCP contract snapshot และ integration tests: PASS — 21/21
 - Render architecture ยังใช้ service `flutter-widget-wallet-mcp` และ endpoint `/mcp` เดิม; ไม่มี service/config ชุดที่สอง
 - Generated outputs ตรงกับ token sources และ generator รอบสองรายงาน `changedFiles=0`
@@ -114,7 +114,7 @@ Lane: Guardrails
 Evidence:
 
 - `scripts/check-v3-boundaries.js`: scan V3/legacy Dart imports, block `ThemeColors.get()` ใน V3 theme และตรวจ legacy `skills/**` diff เมื่อมี V3 work
-- `scripts/check-v3-boundaries.test.js`: PASS 6/6 allowed/rejected scenarios
+- `scripts/check-v3-boundaries.test.js`: PASS 8/8 allowed/rejected scenarios; checker บล็อก legacy `theme_color.dart` และ `ThemeColors.get()` ทั้งใน Theme V3 และ Widget V3
 - `npm run check:v3-boundaries`: PASS — 47 Dart files, 10 changed paths
 - `.github/workflows/flutter_ci.yml`: รัน checker/tests ด้วย PR/push base SHA และ full git history
 - `docs/v3/V3_REVIEW_CHECKLIST.md`: frozen legacy boundaries, additive-only MCP integration files และ regression gates

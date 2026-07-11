@@ -26,6 +26,32 @@ test("allows V3 theme code to import another V3 module", () => {
   assert.deepEqual(violations, []);
 });
 
+test("rejects package and relative legacy theme imports from V3 widgets", () => {
+  const packageViolations = inspectDartBoundary(
+    "lib/widgets/v3/button/v3_button.dart",
+    "import 'package:mcp_test_app/config/themes/theme_color.dart';",
+  );
+  const relativeViolations = inspectDartBoundary(
+    "lib/widgets/v3/button/v3_button.dart",
+    "import '../../../config/themes/theme_color.dart';",
+  );
+
+  assert.equal(packageViolations.length, 1);
+  assert.match(packageViolations[0], /must not import legacy theme_color\.dart/);
+  assert.equal(relativeViolations.length, 1);
+  assert.match(relativeViolations[0], /must not import legacy theme_color\.dart/);
+});
+
+test("rejects ThemeColors.get inside V3 widgets", () => {
+  const violations = inspectDartBoundary(
+    "lib/widgets/v3/button/v3_button.dart",
+    "final color = ThemeColors.get('light', 'fill/base/300');",
+  );
+
+  assert.equal(violations.length, 1);
+  assert.match(violations[0], /not ThemeColors\.get/);
+});
+
 test("rejects package and relative V3 imports from legacy widgets", () => {
   const packageViolations = inspectDartBoundary(
     "lib/widgets/input/search_input.dart",
