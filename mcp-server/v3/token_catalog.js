@@ -9,7 +9,7 @@ export class V3TokenCatalog {
     if (this.cache) return this.cache;
     const root = path.join(this.repoRoot, "lib/config/themes/v3/tokens");
     this.cache = resolveV3Tokens(
-      parseTokenFile(path.join(root, "primitive.tokens.json")),
+      parseTokenFile(path.join(root, "primitive/primitive.tokens.json")),
       parseTokenFile(path.join(root, "semantic/light.tokens.json")),
       parseTokenFile(path.join(root, "semantic/dark.tokens.json")),
     );

@@ -37,9 +37,16 @@ Execution checklist ของแผนนี้อยู่ที่ [`task/V3_T
 
 ```text
 Figma/DTCG token exports
-├── primitive.tokens.json
+├── primitive/primitive.tokens.json
+├── primitive/color.alpha.json
+├── primitive/radius.json
+├── primitive/space.json
+├── primitive/shadow.effect.json
 ├── semantic/light.tokens.json
-└── semantic/dark.tokens.json
+├── semantic/dark.tokens.json
+├── semantic/radius.json
+├── semantic/space.json
+└── semantic/typography.json
               │
               ▼
 lib/config/themes/v3/
@@ -116,13 +123,25 @@ Existing MCP integration files แก้ได้แบบ additive เท่า
 ```text
 lib/config/themes/v3/
 ├── tokens/
-│   ├── primitive.tokens.json
+│   ├── primitive/
+│   │   ├── primitive.tokens.json
+│   │   ├── color.alpha.json
+│   │   ├── radius.json
+│   │   ├── space.json
+│   │   └── shadow.effect.json
 │   └── semantic/
 │       ├── light.tokens.json
-│       └── dark.tokens.json
+│       ├── dark.tokens.json
+│       ├── radius.json
+│       ├── space.json
+│       └── typography.json
 ├── generated/
 │   ├── v3_primitive_colors.g.dart
-│   └── v3_semantic_colors.g.dart
+│   ├── v3_primitive_dimensions.g.dart
+│   ├── v3_primitive_shadows.g.dart
+│   ├── v3_semantic_colors.g.dart
+│   ├── v3_semantic_dimensions.g.dart
+│   └── v3_typography.g.dart
 ├── v3_color_token.dart
 ├── v3_color_palette.dart
 ├── v3_theme_scope.dart

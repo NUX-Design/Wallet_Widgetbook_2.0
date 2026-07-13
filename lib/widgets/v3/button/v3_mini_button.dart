@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
-import 'package:google_fonts/google_fonts.dart';
 
 import '../../../config/themes/v3/v3_color_palette.dart';
+import '../../../config/themes/v3/v3_dimensions.dart';
+import '../../../config/themes/v3/v3_primitives.dart';
 import '../../../config/themes/v3/v3_theme_scope.dart';
+import '../../../config/themes/v3/v3_typography.dart';
 
 enum V3MiniButtonVariant { primary, outline, ghost }
 
@@ -61,14 +63,21 @@ class V3MiniButton extends StatelessWidget {
       label: semanticLabel ?? label,
       hint: semanticHint,
       child: ExcludeSemantics(
-        child: TextButton(
-          onPressed: _isEnabled ? onPressed : null,
-          style: _buttonStyle(colors, metrics),
-          child: _ButtonContent(
-            label: label,
-            leadingIcon: effectiveLeading,
-            trailingIcon: trailingIcon,
-            metrics: metrics,
+        child: DecoratedBox(
+          key: const ValueKey('v3-mini-button-decoration'),
+          decoration: BoxDecoration(
+            borderRadius: BorderRadius.circular(V3Radii.roundedFull),
+            boxShadow: _boxShadow,
+          ),
+          child: TextButton(
+            onPressed: _isEnabled ? onPressed : null,
+            style: _buttonStyle(colors, metrics),
+            child: _ButtonContent(
+              label: label,
+              leadingIcon: effectiveLeading,
+              trailingIcon: trailingIcon,
+              metrics: metrics,
+            ),
           ),
         ),
       ),
@@ -89,18 +98,16 @@ class V3MiniButton extends StatelessWidget {
       maximumSize: WidgetStatePropertyAll(
         Size(double.infinity, metrics.height),
       ),
-      padding: WidgetStatePropertyAll(
-        EdgeInsets.symmetric(horizontal: metrics.horizontalPadding),
-      ),
+      padding: WidgetStatePropertyAll(metrics.padding),
       tapTargetSize: MaterialTapTargetSize.shrinkWrap,
       visualDensity: VisualDensity.standard,
-      shape: const WidgetStatePropertyAll(StadiumBorder()),
+      shape: WidgetStatePropertyAll(
+        RoundedRectangleBorder(
+          borderRadius: BorderRadius.circular(V3Radii.roundedFull),
+        ),
+      ),
       textStyle: WidgetStatePropertyAll(
-        GoogleFonts.notoSans(
-          fontSize: 12,
-          height: 16 / 12,
-          fontWeight: FontWeight.w500,
-          letterSpacing: 0,
+        V3Typography.labelTiny.copyWith(
           decoration:
               variant == V3MiniButtonVariant.ghost
                   ? TextDecoration.underline
@@ -113,15 +120,22 @@ class V3MiniButton extends StatelessWidget {
       backgroundColor: WidgetStateProperty.resolveWith(
         (states) => _backgroundColor(colors, states),
       ),
-      overlayColor: WidgetStatePropertyAll(colors.black.withValues(alpha: 0)),
+      overlayColor: const WidgetStatePropertyAll(V3PrimitiveColors.blackAlpha0),
       side: WidgetStateProperty.resolveWith(
         (states) => _borderSide(colors, states),
       ),
-      elevation: WidgetStatePropertyAll(
-        variant == V3MiniButtonVariant.outline && _isEnabled ? 1 : 0,
-      ),
-      shadowColor: WidgetStatePropertyAll(colors.black.withValues(alpha: 0.05)),
+      elevation: const WidgetStatePropertyAll(0),
+      shadowColor: const WidgetStatePropertyAll(V3PrimitiveColors.blackAlpha0),
     );
+  }
+
+  List<BoxShadow> get _boxShadow {
+    final hasShadow =
+        variant == V3MiniButtonVariant.outline &&
+        _isEnabled &&
+        (state == V3MiniButtonState.defaultState ||
+            state == V3MiniButtonState.active);
+    return hasShadow ? V3PrimitiveShadows.sm : const <BoxShadow>[];
   }
 
   Color _foregroundColor(V3ColorPalette colors, Set<WidgetState> states) {
@@ -146,7 +160,7 @@ class V3MiniButton extends StatelessWidget {
 
   Color _backgroundColor(V3ColorPalette colors, Set<WidgetState> states) {
     if (variant == V3MiniButtonVariant.ghost) {
-      return colors.black.withValues(alpha: 0);
+      return V3PrimitiveColors.blackAlpha0;
     }
     if (_isDisabled(states)) {
       return colors.backgroundNeutral;
@@ -158,7 +172,7 @@ class V3MiniButton extends StatelessWidget {
     }
     if (variant == V3MiniButtonVariant.outline) {
       return _isActive(states)
-          ? colors.black.withValues(alpha: 0.05)
+          ? V3PrimitiveColors.blackAlpha5
           : colors.buttonSecondary;
     }
     return _isActive(states) ? colors.borderTertiary : colors.buttonPrimary;
@@ -206,7 +220,7 @@ class _ButtonContent extends StatelessWidget {
       data: IconThemeData(size: metrics.iconSize),
       child: Row(
         mainAxisSize: MainAxisSize.min,
-        spacing: 6,
+        spacing: V3Spacing.space6,
         children: [
           if (leadingIcon != null) _icon(leadingIcon!),
           Text(
@@ -233,15 +247,30 @@ class _V3MiniButtonMetrics {
   const _V3MiniButtonMetrics({
     required this.height,
     required this.horizontalPadding,
+    required this.verticalPadding,
   });
 
   factory _V3MiniButtonMetrics.forVariant(V3MiniButtonVariant variant) {
     return variant == V3MiniButtonVariant.ghost
-        ? const _V3MiniButtonMetrics(height: 16, horizontalPadding: 0)
-        : const _V3MiniButtonMetrics(height: 24, horizontalPadding: 8);
+        ? const _V3MiniButtonMetrics(
+          height: V3Spacing.space16,
+          horizontalPadding: V3Spacing.space0,
+          verticalPadding: V3Spacing.space0,
+        )
+        : const _V3MiniButtonMetrics(
+          height: V3Spacing.space24,
+          horizontalPadding: V3Spacing.space8,
+          verticalPadding: V3Spacing.space2,
+        );
   }
 
   final double height;
   final double horizontalPadding;
-  final double iconSize = 12;
+  final double verticalPadding;
+  final double iconSize = V3Spacing.space12;
+
+  EdgeInsets get padding => EdgeInsets.symmetric(
+    horizontal: horizontalPadding,
+    vertical: verticalPadding,
+  );
 }
