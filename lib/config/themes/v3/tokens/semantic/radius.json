@@ -1,0 +1,149 @@
+{
+  "rounded-none": {
+    "$type": "number",
+    "$value": 0,
+    "$extensions": {
+      "com.figma.variableId": "VariableID:20:1592",
+      "com.figma.scopes": [
+        "ALL_SCOPES"
+      ],
+      "com.figma.aliasData": {
+        "targetVariableId": "VariableID:30fddec07df266c678de3aeca1e349ef66129f3b/-1:-1",
+        "targetVariableName": "radius-0",
+        "targetVariableSetId": "VariableCollectionId:9452246a879f455fc6070d907f79d3a00879ef00/-1:-1",
+        "targetVariableSetName": "Border radii (absolute)"
+      }
+    }
+  },
+  "rounded-sm": {
+    "$type": "number",
+    "$value": 2,
+    "$extensions": {
+      "com.figma.variableId": "VariableID:13:679",
+      "com.figma.scopes": [
+        "ALL_SCOPES"
+      ],
+      "com.figma.aliasData": {
+        "targetVariableId": "VariableID:4d3cbf658422dd6a75f7bcba6c6721499edd3117/-1:-1",
+        "targetVariableName": "radius-2",
+        "targetVariableSetId": "VariableCollectionId:9452246a879f455fc6070d907f79d3a00879ef00/-1:-1",
+        "targetVariableSetName": "Border radii (absolute)"
+      }
+    }
+  },
+  "rounded-md": {
+    "$type": "number",
+    "$value": 4,
+    "$extensions": {
+      "com.figma.variableId": "VariableID:13:680",
+      "com.figma.scopes": [
+        "ALL_SCOPES"
+      ],
+      "com.figma.aliasData": {
+        "targetVariableId": "VariableID:a69e6aa6cb64aafb3011c1627d3016a457a8cc81/-1:-1",
+        "targetVariableName": "radius-4",
+        "targetVariableSetId": "VariableCollectionId:9452246a879f455fc6070d907f79d3a00879ef00/-1:-1",
+        "targetVariableSetName": "Border radii (absolute)"
+      }
+    }
+  },
+  "rounded-base": {
+    "$type": "number",
+    "$value": 6,
+    "$extensions": {
+      "com.figma.variableId": "VariableID:13:681",
+      "com.figma.scopes": [
+        "ALL_SCOPES"
+      ],
+      "com.figma.aliasData": {
+        "targetVariableId": "VariableID:c06e6d3bc4114abd354164be4ef2c5cd548ccd9b/-1:-1",
+        "targetVariableName": "radius-6",
+        "targetVariableSetId": "VariableCollectionId:9452246a879f455fc6070d907f79d3a00879ef00/-1:-1",
+        "targetVariableSetName": "Border radii (absolute)"
+      }
+    }
+  },
+  "rounded-lg": {
+    "$type": "number",
+    "$value": 8,
+    "$extensions": {
+      "com.figma.variableId": "VariableID:13:682",
+      "com.figma.scopes": [
+        "ALL_SCOPES"
+      ],
+      "com.figma.aliasData": {
+        "targetVariableId": "VariableID:8bcda3f2046acc319a08c7fb0fd5350180d94a10/-1:-1",
+        "targetVariableName": "radius-8",
+        "targetVariableSetId": "VariableCollectionId:9452246a879f455fc6070d907f79d3a00879ef00/-1:-1",
+        "targetVariableSetName": "Border radii (absolute)"
+      }
+    }
+  },
+  "rounded-xl": {
+    "$type": "number",
+    "$value": 12,
+    "$extensions": {
+      "com.figma.variableId": "VariableID:13:683",
+      "com.figma.scopes": [
+        "ALL_SCOPES"
+      ],
+      "com.figma.aliasData": {
+        "targetVariableId": "VariableID:86863c158cde51016c915550fb539442dcb94e85/-1:-1",
+        "targetVariableName": "radius-12",
+        "targetVariableSetId": "VariableCollectionId:9452246a879f455fc6070d907f79d3a00879ef00/-1:-1",
+        "targetVariableSetName": "Border radii (absolute)"
+      }
+    }
+  },
+  "rounded-2xl": {
+    "$type": "number",
+    "$value": 16,
+    "$extensions": {
+      "com.figma.variableId": "VariableID:13:684",
+      "com.figma.scopes": [
+        "ALL_SCOPES"
+      ],
+      "com.figma.aliasData": {
+        "targetVariableId": "VariableID:36889baec5436c40c29dfdae10fcdf9be706cd0f/-1:-1",
+        "targetVariableName": "radius-16",
+        "targetVariableSetId": "VariableCollectionId:9452246a879f455fc6070d907f79d3a00879ef00/-1:-1",
+        "targetVariableSetName": "Border radii (absolute)"
+      }
+    }
+  },
+  "rounded-3xl": {
+    "$type": "number",
+    "$value": 24,
+    "$extensions": {
+      "com.figma.variableId": "VariableID:13:685",
+      "com.figma.scopes": [
+        "ALL_SCOPES"
+      ],
+      "com.figma.aliasData": {
+        "targetVariableId": "VariableID:ee390318c7fb0792595c01e5c10695e7d98075b1/-1:-1",
+        "targetVariableName": "radius-24",
+        "targetVariableSetId": "VariableCollectionId:9452246a879f455fc6070d907f79d3a00879ef00/-1:-1",
+        "targetVariableSetName": "Border radii (absolute)"
+      }
+    }
+  },
+  "rounded-full": {
+    "$type": "number",
+    "$value": 999,
+    "$extensions": {
+      "com.figma.variableId": "VariableID:13:686",
+      "com.figma.scopes": [
+        "ALL_SCOPES"
+      ],
+      "com.figma.aliasData": {
+        "targetVariableId": "VariableID:564b8529f48a49e382d0761d31d8e7489a80682a/-1:-1",
+        "targetVariableName": "radius-full",
+        "targetVariableSetId": "VariableCollectionId:9452246a879f455fc6070d907f79d3a00879ef00/-1:-1",
+        "targetVariableSetName": "Border radii (absolute)"
+      }
+    }
+  },
+  "$extensions": {
+    "com.figma.modeName": "Mode 1"
+  }
+}

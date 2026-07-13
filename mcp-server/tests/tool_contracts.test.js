@@ -13,7 +13,7 @@ const requiredWidgetTools = [
 ];
 
 const requiredV3Tools = [
-  "get_v3_design_system_info", "list_v3_categories",
+  "get_v3_design_system_info", "get_v3_theme_foundation", "list_v3_categories",
   "list_v3_color_tokens", "search_v3_color_tokens", "get_v3_color_token",
   "list_v3_widgets", "search_v3_widgets", "get_v3_widget_details", "get_v3_widget_metadata",
   "get_v3_widget_code", "get_v3_widget_preview", "audit_v3_widget",

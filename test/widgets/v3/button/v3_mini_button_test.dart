@@ -3,6 +3,9 @@ import 'dart:ui' as ui;
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mcp_test_app/config/themes/v3/v3_color_palette.dart';
+import 'package:mcp_test_app/config/themes/v3/v3_dimensions.dart';
+import 'package:mcp_test_app/config/themes/v3/v3_primitives.dart';
+import 'package:mcp_test_app/config/themes/v3/v3_typography.dart';
 import 'package:mcp_test_app/widgets/v3/button/preview_v3_mini_button.dart';
 import 'package:mcp_test_app/widgets/v3/button/v3_mini_button.dart';
 
@@ -86,10 +89,7 @@ void main() {
       onPressed: () {},
     );
     style = buttonStyle(tester);
-    expect(
-      style.backgroundColor!.resolve({}),
-      V3ColorPalette.light.black.withValues(alpha: 0.05),
-    );
+    expect(style.backgroundColor!.resolve({}), V3PrimitiveColors.blackAlpha5);
     expect(style.side!.resolve({})?.color, V3ColorPalette.light.contentNeutral);
 
     await pumpButton(
@@ -135,21 +135,24 @@ void main() {
     );
     final style = buttonStyle(tester);
     final textStyle = style.textStyle!.resolve({})!;
-    expect(tester.getSize(find.byType(TextButton)).height, 24);
+    expect(tester.getSize(find.byType(TextButton)).height, V3Spacing.space24);
     expect(
       style.padding!.resolve({}),
-      const EdgeInsets.symmetric(horizontal: 8),
+      const EdgeInsets.symmetric(
+        horizontal: V3Spacing.space8,
+        vertical: V3Spacing.space2,
+      ),
     );
-    expect(textStyle.fontSize, 12);
-    expect(textStyle.height! * textStyle.fontSize!, 16);
-    expect(textStyle.fontWeight, FontWeight.w500);
+    expect(textStyle.fontSize, V3Typography.labelTiny.fontSize);
+    expect(textStyle.height, V3Typography.labelTiny.height);
+    expect(textStyle.fontWeight, V3Typography.labelTiny.fontWeight);
     expect(
       tester.getSize(find.byKey(const ValueKey('left-icon'))),
-      const Size(12, 12),
+      const Size.square(V3Spacing.space12),
     );
     expect(
       tester.getSize(find.byKey(const ValueKey('right-icon'))),
-      const Size(12, 12),
+      const Size.square(V3Spacing.space12),
     );
 
     await pumpButton(
@@ -157,7 +160,41 @@ void main() {
       variant: V3MiniButtonVariant.ghost,
       onPressed: () {},
     );
-    expect(tester.getSize(find.byType(TextButton)).height, 16);
+    expect(tester.getSize(find.byType(TextButton)).height, V3Spacing.space16);
+  });
+
+  testWidgets('uses radius and shadow tokens for Outline Figma states', (
+    tester,
+  ) async {
+    await pumpButton(
+      tester,
+      variant: V3MiniButtonVariant.outline,
+      onPressed: () {},
+    );
+    var decoration =
+        tester
+                .widget<DecoratedBox>(
+                  find.byKey(const ValueKey('v3-mini-button-decoration')),
+                )
+                .decoration
+            as BoxDecoration;
+    expect(decoration.borderRadius, BorderRadius.circular(V3Radii.roundedFull));
+    expect(decoration.boxShadow, V3PrimitiveShadows.sm);
+
+    await pumpButton(
+      tester,
+      variant: V3MiniButtonVariant.outline,
+      state: V3MiniButtonState.error,
+      onPressed: () {},
+    );
+    decoration =
+        tester
+                .widget<DecoratedBox>(
+                  find.byKey(const ValueKey('v3-mini-button-decoration')),
+                )
+                .decoration
+            as BoxDecoration;
+    expect(decoration.boxShadow, isEmpty);
   });
 
   testWidgets('disabled and loading states do not invoke callbacks', (

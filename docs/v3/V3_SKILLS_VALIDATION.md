@@ -66,11 +66,11 @@ Regression validator แบบถาวรอยู่ที่ `scripts/validat
 ### Reject unconfirmed edits to legacy widgets
 
 - Skill spec (`docs/v3/V3_SKILLS_SPEC.md`) และทุก `SKILL.md` ประกาศ guardrail ชัดเจนว่าห้าม migrate/overwrite widget เดิมนอก `lib/widgets/v3/**` โดยอัตโนมัติ ไม่มี workflow ใดใน 8 skills ที่ระบุ MCP write/generation call ไปยัง legacy path
-- `flutter-widget-v3-beginner` คงกฎ mandatory flow `ask → scan → summarize → confirm → execute` เหมือน legacy `flutter-widget-beginner` และเพิ่มกฎเฉพาะ: ถ้าไม่พบ Theme V3 foundation ต้องหยุดและแนะนำ Phase 2-3 ของ `docs/V3_THEME_MCP_SKILLS_PLAN.md` แทนการสร้าง foundation เอง
+- `flutter-widget-v3-beginner` คงกฎ mandatory flow `ask → scan → summarize → confirm → execute`; เมื่อเลือก `bootstrap-new` และยืนยัน destination แล้วจึงรัน `flutter create`, ติดตั้ง runtime foundation ผ่าน `get_v3_theme_foundation`, เพิ่ม starter Widget V3/preview/test และตรวจ analyze/test ส่วน mode อื่นยังห้ามสร้าง project โดยปริยาย
 
 ### No fallback to legacy tools
 
-- ทุก `SKILL.md` อ้างอิงเฉพาะ tool ที่มี prefix `v3`/`_v3_`; ยืนยันโดยตรวจ `mcp-server/v3/tool_contracts.js` (17 รายการ) ตรงกับชื่อ tool ที่ใช้ในทุก skill ไม่มี tool legacy (`get_widget_metadata`, `get_color_token`, ฯลฯ) ปรากฏใน `SKILL.md` ใดของ `skills-v3/**`
+- ทุก `SKILL.md` อ้างอิงเฉพาะ tool ที่มี prefix `v3`/`_v3_`; ยืนยันโดยตรวจ `mcp-server/v3/tool_contracts.js` (18 รายการ) ตรงกับชื่อ tool ที่ใช้ในทุก skill ไม่มี tool legacy (`get_widget_metadata`, `get_color_token`, ฯลฯ) ปรากฏใน `SKILL.md` ใดของ `skills-v3/**`
 - Negative-path evidence: `get_v3_widget_metadata({ widgetName: "NotARealWidgetXYZ" })` คืน error `NOT_FOUND` พร้อม hint ให้เรียก `list_v3_widgets`/`search_v3_widgets` — ไม่มี fallback ไป legacy widget catalog
 
 ### Generation/write tools stay unexposed
@@ -80,7 +80,8 @@ Regression validator แบบถาวรอยู่ที่ `scripts/validat
 
 ### Repeatable validator
 
-- `npm run validate:v3-skills`: PASS — 3 packs, 8 skills ต่อ pack, 17 V3 tool contracts
+- `npm run validate:v3-skills`: PASS — 3 packs, 8 skills ต่อ pack, 18 V3 tool contracts; beginner validator บังคับ markers สำหรับ `flutter create`, foundation manifest, `main.dart`, analyze และ test พร้อม reject ข้อความ `bootstrap-new ... stop here`
+- Forward test บน empty temp workspace: `flutter create --project-name v3_starter --org com.wi --platforms web`, ติดตั้ง runtime foundation 11 ไฟล์จาก `V3FoundationCatalog`, เพิ่ม `V3MiniButton`, แล้ว `flutter analyze` PASS และ `flutter test` PASS 1/1
 - `.github/workflows/flutter_ci.yml` รัน validator ทุก push/PR ไป `main` และ `dev`
 - Validator ยืนยันว่า local-only generation tools ไม่อยู่ใน remote registry และทุก skill ที่อ้าง tool เหล่านี้มี `Remote-Safe Fallback`
 

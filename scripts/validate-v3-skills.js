@@ -83,6 +83,18 @@ for (const pack of packs) {
       for (const step of ["Ask discovery questions", "Scan the workspace", "Summarize", "confirmation", "Execute only"]) {
         if (!source.includes(step)) violations.push(`${relativeSkill}: missing beginner flow marker ${step}`);
       }
+      for (const marker of [
+        "flutter create --project-name",
+        "get_v3_theme_foundation",
+        "lib/main.dart",
+        "flutter analyze",
+        "flutter test",
+      ]) {
+        if (!source.includes(marker)) violations.push(`${relativeSkill}: missing bootstrap-new marker ${marker}`);
+      }
+      if (/bootstrap-new[^\n]*stop here/i.test(source)) {
+        violations.push(`${relativeSkill}: bootstrap-new still stops instead of creating a Flutter app`);
+      }
     }
     if (pack.openAiMetadata) {
       const metadataPath = `${pack.root}/${skillName}/agents/openai.yaml`;

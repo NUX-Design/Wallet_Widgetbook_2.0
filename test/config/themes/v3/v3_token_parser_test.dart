@@ -1,4 +1,6 @@
 import 'package:flutter_test/flutter_test.dart';
+import 'package:mcp_test_app/config/themes/v3/v3_number_token_parser.dart';
+import 'package:mcp_test_app/config/themes/v3/v3_number_token_resolver.dart';
 import 'package:mcp_test_app/config/themes/v3/v3_token_parser.dart';
 import 'package:mcp_test_app/config/themes/v3/v3_token_resolver.dart';
 
@@ -275,6 +277,147 @@ void main() {
             (error) => error.message,
             'message',
             contains('Light/Dark path parity failed'),
+          ),
+        ),
+      );
+    });
+  });
+
+  group('V3NumberTokenParser', () {
+    const numberParser = V3NumberTokenParser();
+
+    test('parses and normalizes finite number tokens', () {
+      final tokens = numberParser.parseDocument({
+        'space-0': {r'$type': 'number', r'$value': 0},
+        'space-12': {r'$type': 'number', r'$value': 12},
+      });
+
+      expect(tokens, hasLength(2));
+      expect(tokens.first.dartProperty, 'space0');
+      expect(tokens.first.value, 0);
+      expect(tokens.last.dartProperty, 'space12');
+      expect(tokens.last.value, 12);
+    });
+
+    test('reads number token alias metadata', () {
+      final token =
+          numberParser.parseDocument({
+            'rounded-md': {
+              r'$type': 'number',
+              r'$value': 4,
+              r'$extensions': {
+                'com.figma.aliasData': {'targetVariableName': 'radius-4'},
+              },
+            },
+          }).single;
+
+      expect(token.aliasPath, 'radius-4');
+    });
+
+    test('rejects non-number values with token path', () {
+      expect(
+        () => numberParser.parseDocument({
+          'space-bad': {r'$type': 'number', r'$value': '12'},
+        }, source: 'space.json'),
+        throwsA(
+          isA<V3TokenFormatException>().having(
+            (error) => error.message,
+            'message',
+            allOf(contains('space.json:space-bad'), contains('finite')),
+          ),
+        ),
+      );
+    });
+
+    test('rejects non-number token types', () {
+      expect(
+        () => numberParser.parseDocument({
+          'space-4': {r'$type': 'dimension', r'$value': 4},
+        }),
+        throwsA(
+          isA<V3TokenFormatException>().having(
+            (error) => error.message,
+            'message',
+            contains('expected \$type "number"'),
+          ),
+        ),
+      );
+    });
+  });
+
+  group('V3NumberTokenResolver', () {
+    const numberParser = V3NumberTokenParser();
+    const numberResolver = V3NumberTokenResolver();
+
+    test('resolves semantic number aliases to primitives', () {
+      final primitives = numberParser.parseDocument({
+        'radius-4': {r'$type': 'number', r'$value': 4},
+      });
+      final semantics = numberParser.parseDocument({
+        'rounded-md': {
+          r'$type': 'number',
+          r'$value': 4,
+          r'$extensions': {
+            'com.figma.aliasData': {'targetVariableName': 'radius-4'},
+          },
+        },
+      });
+
+      final resolved = numberResolver.resolve(
+        primitives: primitives,
+        semantics: semantics,
+      );
+      expect(resolved.single.primitive.path, 'radius-4');
+    });
+
+    test('rejects missing primitive number targets', () {
+      final semantics = numberParser.parseDocument({
+        'rounded-md': {
+          r'$type': 'number',
+          r'$value': 4,
+          r'$extensions': {
+            'com.figma.aliasData': {'targetVariableName': 'radius-4'},
+          },
+        },
+      });
+
+      expect(
+        () =>
+            numberResolver.resolve(primitives: const [], semantics: semantics),
+        throwsA(
+          isA<V3TokenFormatException>().having(
+            (error) => error.message,
+            'message',
+            contains('missing primitive number target'),
+          ),
+        ),
+      );
+    });
+
+    test('rejects resolved values that differ from primitive targets', () {
+      final primitives = numberParser.parseDocument({
+        'radius-4': {r'$type': 'number', r'$value': 4},
+      });
+      final semantics = numberParser.parseDocument({
+        'rounded-md': {
+          r'$type': 'number',
+          r'$value': 6,
+          r'$extensions': {
+            'com.figma.aliasData': {'targetVariableName': 'radius-4'},
+          },
+        },
+      });
+
+      expect(
+        () => numberResolver.resolve(
+          primitives: primitives,
+          semantics: semantics,
+        ),
+        throwsA(
+          isA<V3TokenFormatException>().having(
+            (error) => error.message,
+            'message',
+            contains('does not match primitive'),
           ),
         ),
       );
