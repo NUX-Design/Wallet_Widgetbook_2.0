@@ -89,6 +89,15 @@ for (const pack of packs) {
         "lib/main.dart",
         "flutter analyze",
         "flutter test",
+        "Never present bare labels",
+        "existing-v3-foundation",
+        "existing-flutter-no-v3",
+        "no-flutter-yet",
+        "additive-only` — recommended",
+        "allow-structure-setup",
+        "ask-before-overwrite",
+        "organization identifier",
+        "scan-only, auto-detect, auto, additive-only",
       ]) {
         if (!source.includes(marker)) violations.push(`${relativeSkill}: missing bootstrap-new marker ${marker}`);
       }

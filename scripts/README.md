@@ -8,6 +8,7 @@ This directory contains utility scripts to transform the Wi_Wallet Design System
 *   **`generate-schema.js`**: The main execution script. It reads the source files, calls the parser, and writes the output JSON.
 *   **`check-v3-boundaries.js`**: Enforces Theme/Widget/Skill V3 isolation rules and supports base-ref-aware changed-file checks for CI.
 *   **`check-v3-boundaries.test.js`**: Covers allowed and rejected V3 boundary scenarios with Node's built-in test runner.
+*   **`configure-codex-global-mcp.sh`**: Configures the hosted wallet MCP server in Codex global config using the verified `http_headers.Authorization` form.
 
 ## 🚀 Usage
 
@@ -26,6 +27,12 @@ npm run test:v3-boundaries
 
 # Compare changed paths with a review base
 npm run check:v3-boundaries -- --base-ref origin/main
+```
+
+Configure the hosted MCP server globally for Codex. The script prompts for the private Bearer token and never places it in shell history:
+
+```bash
+bash scripts/configure-codex-global-mcp.sh
 ```
 
 ### Direct Execution
