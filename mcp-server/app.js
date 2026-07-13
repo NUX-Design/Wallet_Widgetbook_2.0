@@ -19,6 +19,7 @@ import {
 } from "./tool_runtime.js";
 import { WidgetCatalog } from "./widget_catalog.js";
 import { createV3Handlers } from "./v3/handlers.js";
+import { V3FoundationCatalog } from "./v3/foundation_catalog.js";
 import { V3TokenCatalog } from "./v3/token_catalog.js";
 import { V3WidgetCatalog } from "./v3/widget_catalog.js";
 
@@ -335,6 +336,7 @@ export function createToolDispatcher({
   widgetCatalog = new WidgetCatalog(projectRoot, { logger }),
   v3TokenCatalog = new V3TokenCatalog(projectRoot),
   v3WidgetCatalog = new V3WidgetCatalog(projectRoot),
+  v3FoundationCatalog = new V3FoundationCatalog(projectRoot),
 }) {
   const schemaPath = path.join(projectRoot, "docs", "schema.json");
   const themeJsonPath = path.join(projectRoot, "lib", "config", "themes", "theme.json");
@@ -921,7 +923,11 @@ ${props}
   const toolHandlers = {
     ...designSystemHandlers,
     ...widgetLibraryHandlers,
-    ...createV3Handlers({ tokenCatalog: v3TokenCatalog, widgetCatalog: v3WidgetCatalog }),
+    ...createV3Handlers({
+      tokenCatalog: v3TokenCatalog,
+      widgetCatalog: v3WidgetCatalog,
+      foundationCatalog: v3FoundationCatalog,
+    }),
   };
 
   return async function dispatchToolCall(name, args = {}) {

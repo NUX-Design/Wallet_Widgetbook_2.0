@@ -58,6 +58,7 @@ const timeoutMs = Number.parseInt(env.MCP_REMOTE_TIMEOUT_MS ?? "15000", 10);
 // V3 read-only tools that MUST be exposed remotely.
 const EXPECTED_V3_TOOLS = [
   "get_v3_design_system_info",
+  "get_v3_theme_foundation",
   "list_v3_categories",
   "list_v3_color_tokens",
   "search_v3_color_tokens",
@@ -166,6 +167,18 @@ async function main() {
       "generation tools excluded",
       leakedGeneration.length === 0 ? "PASS" : "FAIL",
       leakedGeneration.length === 0 ? "no generation/write tools exposed remotely" : `LEAKED: ${leakedGeneration.join(", ")}`,
+    );
+
+    const foundation = await withTimeout("get_v3_theme_foundation", () =>
+      client.callTool({ name: "get_v3_theme_foundation", arguments: {} }),
+    );
+    const foundationData = parseToolResult(foundation);
+    record(
+      "get_v3_theme_foundation",
+      foundationData.profile === "runtime" && Array.isArray(foundationData.files) && foundationData.files.length > 0
+        ? "PASS"
+        : "FAIL",
+      `profile=${foundationData.profile} files=${foundationData.files?.length ?? 0}`,
     );
 
     // get_v3_color_token — Light/Dark values + primitive aliases.

@@ -5,6 +5,7 @@ import { fileURLToPath } from "node:url";
 import { createToolHarness } from "../helpers/tool_harness.js";
 
 const fixtureRoot = path.resolve(path.dirname(fileURLToPath(import.meta.url)), "../fixtures/v3_repo");
+const repoRoot = path.resolve(path.dirname(fileURLToPath(import.meta.url)), "../../..");
 
 test("all V3 token and widget tools are routed through the existing dispatcher", async () => {
   const harness = createToolHarness(fixtureRoot);
@@ -54,4 +55,22 @@ test("V3 parity tools enforce V3 paths, names, and theme APIs", async () => {
   assert.equal(useCase.data.fileToCreate, "lib/widgets/v3/button/preview_v3_test_button.dart");
   const legacyImport = await harness.callError("generate_v3_widgetbook_use_case", { widgetName: "V3TestButton", importPath: "package:mcp_test_app/widgets/button/buttons.dart", category: "button" });
   assert.equal(legacyImport.error.error.code, "INVALID_ARGUMENT");
+});
+
+test("V3 runtime foundation is remotely installable from an allowlisted manifest", async () => {
+  const harness = createToolHarness(repoRoot);
+  const manifest = await harness.callSuccess("get_v3_theme_foundation");
+  assert.equal(manifest.data.profile, "runtime");
+  assert.equal(manifest.data.files.length, 11);
+  assert.ok(manifest.data.files.every((entry) => entry.file.startsWith("lib/config/themes/v3/")));
+
+  const scope = await harness.callSuccess("get_v3_theme_foundation", {
+    file: "lib/config/themes/v3/v3_theme_scope.dart",
+  });
+  assert.match(scope.data.code, /class V3ThemeScope/);
+
+  const rejected = await harness.callError("get_v3_theme_foundation", {
+    file: "lib/config/themes/theme_color.dart",
+  });
+  assert.equal(rejected.error.error.code, "INVALID_ARGUMENT");
 });

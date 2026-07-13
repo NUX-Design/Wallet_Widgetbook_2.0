@@ -67,7 +67,7 @@ ${classBody}
   };
 }
 
-export function createV3Handlers({ tokenCatalog, widgetCatalog }) {
+export function createV3Handlers({ tokenCatalog, widgetCatalog, foundationCatalog }) {
   return {
     async get_v3_design_system_info(args) {
       const section = ensureEnum(args.section, "section", ["project", "designTokens", "widgets", "implementation"]);
@@ -79,6 +79,22 @@ export function createV3Handlers({ tokenCatalog, widgetCatalog }) {
         implementation: { sourcePattern: "lib/widgets/v3/<category>/v3_<widget>.dart", previewPattern: "preview_v3_<widget>.dart", guidePattern: "V3_<WIDGET>_GUIDE.md", legacyFallback: false },
       };
       return ok({ themeVersion: "v3", section, data: data[section] });
+    },
+    async get_v3_theme_foundation(args) {
+      if (!args.file) {
+        return ok({
+          themeVersion: "v3",
+          profile: "runtime",
+          files: foundationCatalog.manifest(),
+          instructions: [
+            "Create every file at the returned relative path inside the target Flutter project.",
+            "Fetch each file by calling get_v3_theme_foundation with its exact manifest path.",
+            "Do not modify generated files; refresh them from the Theme V3 source repository when tokens change.",
+          ],
+        });
+      }
+      const file = ensureNonEmptyString(args.file, "file");
+      return ok({ themeVersion: "v3", profile: "runtime", file, code: foundationCatalog.read(file) });
     },
     async list_v3_categories() {
       return ok({ themeVersion: "v3", categories: [...new Set(widgetCatalog.list().map((widget) => widget.category))].sort() });

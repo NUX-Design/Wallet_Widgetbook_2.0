@@ -42,16 +42,18 @@ V3MiniButton(
 
 ### Figma Specification
 
-| Variant | Height | Padding X | Gap | Icon | Typography |
-|---|---:|---:|---:|---:|---|
-| Primary / Outline | 24 | 8 | 6 | 12 | Noto Sans 12/16, 500 |
-| Ghost | 16 | 0 | 6 | 12 | Noto Sans 12/16, 500, underline |
+| Variant | Height | Padding | Gap | Icon | Radius | Typography | Shadow |
+|---|---:|---:|---:|---:|---|---|---|
+| Primary | `space-24` | X `space-8`, Y `space-2` | `space-6` | `space-12` | `rounded-full` | `label/tiny` | none |
+| Outline | `space-24` | X `space-8`, Y `space-2` | `space-6` | `space-12` | `rounded-full` | `label/tiny` | `shadow-sm` เฉพาะ Default/Active |
+| Ghost | `space-16` | `space-0` | `space-6` | `space-12` | `rounded-full` | `label/tiny` + underline | none |
 
 - Primary Active ใช้ `border/tertiary` ตาม semantic export
 - Outline Active ใช้ `core/black` ที่ alpha 5% และ `content/neutral`
 - Outline Error แยกสี content `state/error` กับ `border/extension/error` ตาม Figma
 - Disabled ปิด callback แม้ caller ส่ง `onPressed`; Ghost Error ใช้ neutral content ตาม SOT
 - keyboard focus ใช้ visual เดียวกับ Active เพื่อให้ focus มองเห็นได้
+- component ใช้ `V3Typography`, `V3Spacing`, `V3Radii`, `V3PrimitiveColors` และ `V3PrimitiveShadows` โดยตรง จึงไม่มี visual metric, alpha หรือ effect ที่สร้างซ้ำด้วย magic number
 
 ### Accessibility
 
@@ -100,4 +102,19 @@ Semantic tokens:
   - content/extension/navy
   - core/black
   - state/error
+Dimension tokens:
+  - space-0
+  - space-2
+  - space-6
+  - space-8
+  - space-12
+  - space-16
+  - space-24
+  - rounded-full
+Typography tokens:
+  - label/tiny
+Primitive effect/color tokens:
+  - shadow-sm
+  - black/alpha-0
+  - black/alpha-5
 ```

@@ -8,7 +8,7 @@ Execution task: `V3-19` ใน [`task/V3_THEME_MCP_SKILLS_TASKS.md`](../../task/
 
 - Skills V3 ใช้ **remote MCP endpoint เดิมเป็นเส้นทางหลัก**: `https://flutter-widget-wallet-mcp.onrender.com/mcp` (หรือ local `stdio` เดิมระหว่างพัฒนา) พร้อม `Authorization: Bearer <TOKEN>` mechanism เดิม — ไม่มี server, URL หรือ secret ชุดใหม่
 - Skills V3 เรียกใช้เฉพาะ **V3-prefixed MCP tools** (`*_v3_*`) ที่ประกาศใน `mcp-server/v3/tool_contracts.js`; ห้ามเรียก legacy tool เป็น fallback เมื่อ V3 tool ไม่พบข้อมูล
-- Skills V3 อ่าน/เขียนเฉพาะ `lib/widgets/v3/**` (และไฟล์ทดสอบคู่กันใต้ `test/widgets/v3/**`) เป็น target repo scope; ห้าม migrate, overwrite หรือแก้ widget เดิมที่อยู่นอก `lib/widgets/v3/`
+- Existing-project flow อ่าน/เขียนเฉพาะ `lib/config/themes/v3/**`, `lib/widgets/v3/**` และ `test/widgets/v3/**`; `bootstrap-new` ที่ผู้ใช้ยืนยันแล้วเพิ่มสิทธิ์เฉพาะการสร้าง Flutter project structure/entrypoint ใหม่ ห้าม migrate, overwrite หรือแก้ legacy widget/theme
 - Skills V3 ต้องไม่แก้ theme เดิมใต้ `lib/config/themes/` (นอก `v3/`) และห้ามเรียก `ThemeColors.get()`; สีต้องมาจาก `V3ThemeScope.colorsOf(context)` เท่านั้น
 - Skills เดิมใต้ `skills/**` ไม่ถูกแก้โดยงานนี้; Skills V3 เป็น distribution แยกทั้งหมดใต้ `skills-v3/**`
 
@@ -35,10 +35,11 @@ Server เดิม: `flutter-widget-wallet-mcp`
 Endpoint เดิม: `https://flutter-widget-wallet-mcp.onrender.com/mcp`
 Auth เดิม: `Authorization: Bearer <TOKEN>`
 
-Available V3 tools (จาก `mcp-server/v3/tool_contracts.js`, 17 รายการ, ทั้งหมด read-only):
+Available V3 tools (จาก `mcp-server/v3/tool_contracts.js`, 18 รายการ, ทั้งหมด read-only):
 
 ```text
 get_v3_design_system_info
+get_v3_theme_foundation
 list_v3_categories
 list_v3_color_tokens
 search_v3_color_tokens
@@ -63,7 +64,7 @@ generate_v3_widgetbook_use_case
 
 | Skill | Primary V3 tools |
 |---|---|
-| `v3-beginner` | `get_v3_design_system_info`, `get_v3_codebase_patterns`, `list_v3_categories`, `search_v3_widgets`, `get_v3_widget_metadata`, `get_v3_widget_code`, `get_v3_widget_preview`, `get_v3_flutter_widget_template`, `generate_v3_widgetbook_use_case` |
+| `v3-beginner` | `get_v3_design_system_info`, `get_v3_theme_foundation`, `get_v3_codebase_patterns`, `list_v3_categories`, `search_v3_widgets`, `get_v3_widget_metadata`, `get_v3_widget_code`, `get_v3_widget_preview`, `get_v3_flutter_widget_template`, `generate_v3_widgetbook_use_case` |
 | `v3-search` | `list_v3_categories`, `search_v3_widgets`, `get_v3_widget_metadata` |
 | `v3-install` | `get_v3_widget_metadata`, `get_v3_widget_code`, `get_v3_widget_preview` |
 | `v3-adapt` | `get_v3_codebase_patterns`, `get_v3_design_system_info`, `get_v3_color_token`, `search_v3_color_tokens`, `get_v3_widget_metadata` |
@@ -83,8 +84,8 @@ generate_v3_widgetbook_use_case
 1. **Goal** — `scan-only` / `bootstrap-existing` / `bootstrap-new`
    - `scan-only`: วิเคราะห์ V3 foundation ที่มีอยู่ (`lib/config/themes/v3/`, `lib/widgets/v3/`) เท่านั้น ไม่แก้ไฟล์
    - `bootstrap-existing`: workspace มี Theme V3 อยู่แล้ว (เช่น repo นี้) ให้เพิ่ม widget V3 ใหม่โดยใช้ foundation เดิม
-   - `bootstrap-new`: ถ้ายังไม่มี `lib/config/themes/v3/` เลย ต้องหยุดและแจ้งว่า Theme V3 foundation เป็น prerequisite ที่ต้องทำก่อน (Phase 2-3 ของ `docs/V3_THEME_MCP_SKILLS_PLAN.md`) — skill นี้ไม่สร้าง Theme V3 foundation ใหม่ให้อัตโนมัติ
-2. **Workspace State Preference** — `existing-v3-foundation` / `no-v3-foundation-yet` / `auto-detect`
+   - `bootstrap-new`: สร้าง Flutter app ใหม่ด้วย `flutter create`, ติดตั้ง runtime foundation จาก `get_v3_theme_foundation`, เพิ่ม starter Widget V3/preview/test และตรวจ Light/Dark + analyze/test
+2. **Workspace State Preference** — `existing-v3-foundation` / `existing-flutter-no-v3` / `no-flutter-yet` / `auto-detect`
 3. **Target Widget Scope** — ชื่อ widget ที่จะเพิ่ม หรือ `auto` ให้ skill เลือกจาก MCP catalog (`search_v3_widgets`/`list_v3_widgets`) โดย priority คือ widget ที่ยังไม่มีใน `lib/widgets/v3/**` ของ target repo
 4. **Change Policy** — `additive-only` / `allow-structure-setup` / `ask-before-overwrite` (ความหมายเหมือน legacy แต่ scope เฉพาะ `lib/widgets/v3/**` และ `test/widgets/v3/**`)
 
@@ -93,6 +94,7 @@ generate_v3_widgetbook_use_case
 ตรวจอย่างน้อย:
 
 - มี `lib/config/themes/v3/generated/` (แปลว่า Theme V3 foundation พร้อมใช้) หรือไม่
+- มี Flutter SDK, `pubspec.yaml` และ `lib/main.dart` หรือไม่
 - มี `lib/widgets/v3/**` อยู่แล้วกี่ widget และมี pattern อะไรบ้าง
 - มี `test/widgets/v3/**` และ preview `preview_v3_*.dart` คู่กันหรือไม่
 - widget เป้าหมายมีอยู่แล้วหรือยัง (ถ้ามีแล้วให้เปลี่ยนไปใช้ `flutter-widget-v3-upgrade` หรือ `flutter-widget-v3-adapt` แทน)
@@ -103,7 +105,7 @@ generate_v3_widgetbook_use_case
 
 ### Execute
 
-ใช้ `get_v3_widget_metadata` + `get_v3_widget_code` + `get_v3_widget_preview` ถ้า widget ที่ต้องการมีอยู่ใน MCP catalog แล้ว หากต้อง scaffold widget ใหม่ ให้ใช้ `get_v3_flutter_widget_template`; local/stdio อาจใช้ `generate_v3_widgetbook_use_case` เพิ่มเติม ส่วน Remote MCP ให้ agent เขียน preview/use case เองจาก read-only results ตาม `docs/v3/V3_WIDGET_CONVENTIONS.md`
+สำหรับ `bootstrap-new` หลัง confirm project name/destination/org/platforms แล้ว ต้องตรวจ destination ไม่ให้ overwrite, รัน `flutter create`, เรียก `get_v3_theme_foundation` เพื่อรับ manifest และดึงไฟล์ runtime ทุกไฟล์, ติดตั้งหรือ scaffold starter Widget V3, สร้าง Material 3 Light/Dark entrypoint + standalone preview + targeted tests แล้วรัน `dart format`, `flutter analyze`, `flutter test` สำหรับ existing project ใช้ `get_v3_widget_metadata` + `get_v3_widget_code` + `get_v3_widget_preview` หรือ `get_v3_flutter_widget_template` ตามเดิม
 
 ## Canonical Workflow — `flutter-widget-v3-search`
 

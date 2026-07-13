@@ -9,6 +9,11 @@ export const v3ToolDefinitions = [
     outputSchema: objectOutput, annotations: readOnly,
   },
   {
+    name: "get_v3_theme_foundation", title: "Get V3 Theme Foundation", description: "Return the installable Theme V3 runtime manifest or one allowlisted Dart source file for bootstrapping a Flutter app.",
+    inputSchema: { type: "object", properties: { file: { type: "string" } }, additionalProperties: false },
+    outputSchema: objectOutput, annotations: readOnly,
+  },
+  {
     name: "list_v3_categories", title: "List V3 Widget Categories", description: "List categories indexed exclusively from lib/widgets/v3.",
     inputSchema: { type: "object", properties: {}, additionalProperties: false }, outputSchema: objectOutput, annotations: readOnly,
   },
