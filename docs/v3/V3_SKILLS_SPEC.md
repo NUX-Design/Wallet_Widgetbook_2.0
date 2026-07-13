@@ -81,13 +81,58 @@ generate_v3_widgetbook_use_case
 
 ### Discovery Questions (เหมือน legacy แต่ขอบเขต V3 เท่านั้น)
 
+ก่อนแสดงตัวเลือก ต้องอธิบายแต่ละ label ด้วยภาษาของผู้ใช้เสมอว่า “คืออะไร”, “ควรเลือกเมื่อไร” และ “skill มีสิทธิ์แก้อะไร” ห้ามถามด้วย label เปล่า เช่น `auto-detect` หรือ `additive-only` โดยไม่มีคำอธิบาย และเมื่อผู้ใช้ไม่แน่ใจให้แนะนำค่าที่ปลอดภัยที่สุด
+
 1. **Goal** — `scan-only` / `bootstrap-existing` / `bootstrap-new`
    - `scan-only`: วิเคราะห์ V3 foundation ที่มีอยู่ (`lib/config/themes/v3/`, `lib/widgets/v3/`) เท่านั้น ไม่แก้ไฟล์
    - `bootstrap-existing`: workspace มี Theme V3 อยู่แล้ว (เช่น repo นี้) ให้เพิ่ม widget V3 ใหม่โดยใช้ foundation เดิม
    - `bootstrap-new`: สร้าง Flutter app ใหม่ด้วย `flutter create`, ติดตั้ง runtime foundation จาก `get_v3_theme_foundation`, เพิ่ม starter Widget V3/preview/test และตรวจ Light/Dark + analyze/test
 2. **Workspace State Preference** — `existing-v3-foundation` / `existing-flutter-no-v3` / `no-flutter-yet` / `auto-detect`
+   - `auto-detect` (แนะนำ): scan แล้วจำแนกสถานะให้อัตโนมัติ ปลอดภัยที่สุดเมื่อผู้ใช้ไม่แน่ใจ
+   - `existing-v3-foundation`: เป็น Flutter project และมี `lib/config/themes/v3/generated/` แล้ว
+   - `existing-flutter-no-v3`: มี `pubspec.yaml` และ `lib/main.dart` แต่ยังไม่มี Theme V3 foundation
+   - `no-flutter-yet`: ปลายทางยังไม่ใช่ Flutter project; ต้องเลือก `bootstrap-new` ก่อนจึงสร้าง project ได้
 3. **Target Widget Scope** — ชื่อ widget ที่จะเพิ่ม หรือ `auto` ให้ skill เลือกจาก MCP catalog (`search_v3_widgets`/`list_v3_widgets`) โดย priority คือ widget ที่ยังไม่มีใน `lib/widgets/v3/**` ของ target repo
-4. **Change Policy** — `additive-only` / `allow-structure-setup` / `ask-before-overwrite` (ความหมายเหมือน legacy แต่ scope เฉพาะ `lib/widgets/v3/**` และ `test/widgets/v3/**`)
+4. **Change Policy**
+   - `additive-only` (แนะนำ): สร้างเฉพาะไฟล์ที่ยังไม่มี; หาก path ชนให้หยุดและแจ้ง ห้าม overwrite
+   - `allow-structure-setup`: สร้างโฟลเดอร์และ structural files ที่ V3 ต้องใช้ได้ แต่ห้าม overwrite ไฟล์เดิมโดยพลการ
+   - `ask-before-overwrite`: หากต้องแก้หรือแทนที่ไฟล์เดิม ต้องขออนุญาตรายไฟล์ก่อน
+
+ก่อน confirm งาน existing project ต้องแสดงขอบเขตที่อนุญาตให้ผู้ใช้เห็นชัดเจน:
+
+```text
+lib/config/themes/v3/**
+lib/widgets/v3/**
+test/widgets/v3/**
+```
+
+พร้อมยืนยันว่าจะไม่แก้ legacy theme หรือ legacy widgets
+
+เมื่อเลือก `bootstrap-new` ต้องอธิบายและเก็บข้อมูลเพิ่ม:
+
+- `project name`: ชื่อ Dart package ตัวพิมพ์เล็กและใช้ `_` แทนช่องว่าง เช่น `wi_wallet_demo`
+- `destination directory`: โฟลเดอร์ใหม่หรือว่าง เช่น `/Users/<user>/Documents/wi_wallet_demo`
+- `organization identifier`: reverse-domain namespace เช่น `com.wi.wallet`
+- `target platforms`: เลือกเฉพาะที่ใช้จริงจาก `android`, `ios`, `web`, `macos`, `windows`, `linux`
+
+ตัวอย่างคำตอบ:
+
+```text
+goal: bootstrap-new
+workspace: no-flutter-yet
+widget: auto
+policy: additive-only
+project name: wi_wallet_demo
+destination: /Users/<user>/Documents/wi_wallet_demo
+organization: com.wi.wallet
+platforms: android, ios
+```
+
+ถ้าผู้ใช้ต้องการเพียงตรวจ workspace ปัจจุบันแบบปลอดภัยที่สุด ให้แนะนำ:
+
+```text
+scan-only, auto-detect, auto, additive-only
+```
 
 ### Scan
 
