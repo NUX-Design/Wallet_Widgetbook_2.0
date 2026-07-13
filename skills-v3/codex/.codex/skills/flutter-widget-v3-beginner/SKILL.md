@@ -23,6 +23,8 @@ Never edit the repo before the question flow completes.
 
 ## Discovery Questions
 
+Before asking the user to choose, explain every option in the user's language. Never present bare labels such as `auto-detect` or `additive-only` without saying what they mean, when to use them, and what the skill may change. Recommend the safest choice when the user is unsure.
+
 ### 1. Goal
 
 Question: `รอบนี้ต้องการให้ flutter-widget-v3-beginner ทำอะไร`
@@ -37,9 +39,12 @@ Options:
 
 Question: `สภาพ workspace ตอนนี้เป็นแบบไหน หรืออยากให้ skill ตีความแบบไหน`
 
-Options: `existing-v3-foundation`, `existing-flutter-no-v3`, `no-flutter-yet`, `auto-detect` (safest default).
+Explain these options before asking:
 
-For `bootstrap-new`, also ask for project name, destination directory, organization identifier, and target platforms. Recommend a lowercase Dart package name, an empty/new destination, and the user's required platforms only.
+- `auto-detect` — recommended and safest when the user is unsure. Inspect the workspace and classify it automatically before proposing changes.
+- `existing-v3-foundation` — an existing Flutter project that already contains Theme V3, normally including `lib/config/themes/v3/generated/`.
+- `existing-flutter-no-v3` — an existing Flutter project with `pubspec.yaml` and `lib/main.dart`, but without the Theme V3 runtime foundation.
+- `no-flutter-yet` — the destination is not a Flutter project. Creating it requires the explicit `bootstrap-new` goal.
 
 ### 3. Target Widget Scope
 
@@ -51,7 +56,49 @@ Options: an explicit widget name, or `auto` to let the skill pick from `search_v
 
 Question: `ให้ skill แตะ repo ได้ระดับไหน`
 
-Options: `additive-only`, `allow-structure-setup`, `ask-before-overwrite` — same meaning as the legacy skill, scoped only to `lib/widgets/v3/**` and `test/widgets/v3/**`.
+Explain these options before asking:
+
+- `additive-only` — recommended. Create only missing files. Stop and report before any path collision; never overwrite an existing file.
+- `allow-structure-setup` — allow creation of folders and structural files required by V3, but never overwrite existing files implicitly.
+- `ask-before-overwrite` — if changing or replacing an existing file becomes necessary, request explicit permission for that file first.
+
+For an existing project, state this allowed scope visibly before confirmation:
+
+```text
+lib/config/themes/v3/**
+lib/widgets/v3/**
+test/widgets/v3/**
+```
+
+State that legacy theme files and legacy widgets will not be changed.
+
+### Additional Information For `bootstrap-new`
+
+When the user selects `bootstrap-new`, explain and collect:
+
+- `project name` — lowercase Dart package name using `_` instead of spaces, for example `wi_wallet_demo`.
+- `destination directory` — a new or empty directory, for example `/Users/<user>/Documents/wi_wallet_demo`.
+- `organization identifier` — reverse-domain namespace used by Android/iOS, for example `com.wi.wallet`.
+- `target platforms` — only the required values from `android`, `ios`, `web`, `macos`, `windows`, or `linux` to avoid unnecessary platform files.
+
+Show this answer template when useful:
+
+```text
+goal: bootstrap-new
+workspace: no-flutter-yet
+widget: auto
+policy: additive-only
+project name: wi_wallet_demo
+destination: /Users/<user>/Documents/wi_wallet_demo
+organization: com.wi.wallet
+platforms: android, ios
+```
+
+If the user wants only the safest assessment of the current workspace, recommend:
+
+```text
+scan-only, auto-detect, auto, additive-only
+```
 
 ## Workspace Scan
 

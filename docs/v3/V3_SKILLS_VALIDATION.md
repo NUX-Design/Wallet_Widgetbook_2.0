@@ -17,6 +17,7 @@ Regression validator แบบถาวรอยู่ที่ `scripts/validat
 - ตัวอย่าง prompt: "อยากเริ่มใช้ Theme V3 widget ใหม่ใน repo นี้ ยังไม่รู้ว่าต้องเริ่มยังไง"
 - Expected sequence: ask discovery questions → scan `lib/config/themes/v3/generated/` + `lib/widgets/v3/**` → `get_v3_design_system_info` → `list_v3_categories` → summarize → confirm → (ถ้า widget มีอยู่แล้ว) `search_v3_widgets` → `get_v3_widget_metadata` → `get_v3_widget_code` → `get_v3_widget_preview`
 - Real evidence: `get_v3_design_system_info({ section: "widgets" })` คืน `{ themeVersion: "v3", count: 1, categories: ["button"] }`; `list_v3_categories` คืน `{ categories: ["button"] }` — ตรงกับ pilot widget เดียวที่มีอยู่จริง ยืนยันว่า flow นี้จะ "summarize what exists" ได้ถูกต้องก่อนถาม confirm
+- Explanation-first revalidation (`2026-07-14`): forward-test ด้วย prompt ที่ผู้ใช้ไม่เข้าใจตัวเลือก คืนคำอธิบายภาษาไทยครบสำหรับ Goal, Workspace State, Target Widget และ Change Policy ก่อนถาม, แสดง existing-project scope ทั้ง 3 V3 paths, ยืนยันไม่แตะ legacy และแนะนำชุดปลอดภัย `scan-only, auto-detect, auto, additive-only`; ไม่มีการแก้ไฟล์ก่อน confirm. `quick_validate.py` PASS ทั้ง Codex/Claude Code/Kiro beginner skills และ `npm run validate:v3-skills` PASS 3 packs × 8 skills × 18 known tools.
 
 ### `flutter-widget-v3-search`
 

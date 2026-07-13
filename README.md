@@ -1,120 +1,391 @@
 <img width="1920" height="1080" alt="Cover" src="https://github.com/user-attachments/assets/4e0d1102-da06-4f92-bbfc-20123db01353" />
 
-# Flutter Widgetbook Library
+# Flutter Widget Wallet — Design System V3
 
-[![Flutter](https://img.shields.io/badge/Flutter-3.7.2+-02569B?logo=flutter)](https://flutter.dev)
+[![Dart](https://img.shields.io/badge/Dart-3.7.2+-0175C2?logo=dart)](https://dart.dev)
+[![Flutter](https://img.shields.io/badge/Flutter-Design%20System-02569B?logo=flutter)](https://flutter.dev)
 [![License](https://img.shields.io/badge/License-MIT-green.svg)](LICENSE)
 
-A Flutter UI library for Dart/Flutter focused on Finance, Wallet, and Banking use cases. This repo is a collection of reusable widgets, Design System, Design Tokens, i18n, Themes, Foundation layers, and preview workflows converted from Figma design components, so teams can reuse them at production quality.
+A Flutter design-system and widget library for Finance, Wallet, and Banking products. The recommended path is **Theme V3 + Widget V3 + MCP V3 tools + Skills V3**, built from Figma/DTCG tokens with Light/Dark parity and distributed to AI agents through the existing hosted MCP service.
 
-Beyond the UI side, this repo also ships an `mcp-server/` for connecting AI agents via the Model Context Protocol (MCP), along with agent context docs such as `AGENTS.md` and `MEMORY.md`, so agents understand the repo's rules, read the right source-of-truth, and pull widget/code metadata in a structured way.
+V3 is additive. The legacy theme, widgets, MCP contracts, and skills remain available for backward compatibility, but new development should use V3 paths, semantic tokens, V3-prefixed APIs, and Skills V3.
 
-## Table of Contents
+## Contents
 
-- [What is this repo](#what-is-this-repo)
-- [What's in this repo](#whats-in-this-repo)
-- [Project Structure](#project-structure)
-- [Quick Start](#quick-start)
-- [Design System Foundation](#design-system-foundation)
-- [MCP Server and Agent Skills](#mcp-server-and-agent-skills)
-- [Setup MCP for Codex, Claude Code, Kiro](#setup-mcp-for-codex-claude-code-kiro)
-- [Install Skills V3 (Recommended)](#install-skills-v3-recommended)
-- [Why using MCP + Skills from this repo is useful](#why-using-mcp--skills-from-this-repo-is-useful)
-- [Useful Commands](#useful-commands)
+- [V3 at a glance](#v3-at-a-glance)
+- [Architecture](#architecture)
+- [Repository structure](#repository-structure)
+- [Quick start for repository contributors](#quick-start-for-repository-contributors)
+- [Theme V3](#theme-v3)
+- [Widget V3](#widget-v3)
+- [Remote MCP V3](#remote-mcp-v3)
+- [Configure Remote MCP](#configure-remote-mcp)
+- [Install Skills V3](#install-skills-v3)
+- [Recommended agent workflow](#recommended-agent-workflow)
+- [Localization and previews](#localization-and-previews)
+- [Verification commands](#verification-commands)
+- [Legacy compatibility](#legacy-compatibility)
+- [Sources of truth](#sources-of-truth)
 
-## What is this repo
+## V3 at a glance
 
-This repo serves as the source-of-truth for a Flutter widget library targeted at financial products, focused on three things at once:
+The V3 stack is designed to move from Figma tokens to reusable Flutter components and agent-assisted delivery without duplicating design decisions:
 
-1. Ready-to-reuse UI components
-2. A consistent Design System and theme/token foundation
-3. Agent tooling that lets AI agents read, search, and reuse components more accurately
+- **Theme V3** — Figma/DTCG primitive and semantic tokens, deterministic Dart generation, Light/Dark parity, typography, spacing, radius, and shadows.
+- **Widget V3** — isolated reusable widgets under `lib/widgets/v3/**` using `V3ThemeScope` and semantic tokens only.
+- **MCP V3** — V3-prefixed tools for discovering the foundation, tokens, widgets, source, previews, metadata, patterns, and audit results.
+- **Skills V3** — eight workflow skills for Codex, Claude Code, and Kiro covering bootstrap, search, install, adapt, preview, Figma-to-code, audit, and upgrade.
+- **Remote distribution** — one existing Render endpoint with Bearer authentication; no second V3 service or token set.
 
-Overview of what this repo covers:
+Current V3 pilot widget:
 
-- Reusable Flutter widgets for Finance / Wallet / Banking flows
-- A Widgetbook catalog and standalone previews for inspecting UI in isolation
-- A theme system supporting light/dark modes
-- Design tokens that can be consistently reused
-- Localization source + generator pipeline
-- Widget docs / metadata / previews wired to the real source code
-- An MCP server for AI agents that need to search widgets, read metadata, and pull code examples
+- `V3MiniButton` — Primary, Outline, and Ghost variants; Default, Active, Disabled, and Error states; icon slots; Light/Dark preview; tests and metadata.
 
-## What's in this repo
+## Architecture
 
-- `lib/widgets/` — core reusable widgets such as button, card, drawer, receipt, input, avatar, tab, navigator bar, snack bar, loading, shortcut menu, and more
-- `lib/config/themes/` — the central home for theme primitives and color tokens
-- `lib/l10n/localization.json` — the editable source of truth for multi-language text
-- `lib/widgetbook.dart` and `lib/widgetbook_use_cases.dart` — support component previews via Widgetbook
-- `mcp-server/` — an MCP server letting external agents/tools query widget and design-system data
-- `AGENTS.md` and `MEMORY.md` — repo-specific agent context that helps agents work with this repo following the actual rules and structure
+```text
+Figma / DTCG exports
+        │
+        ▼
+lib/config/themes/v3/tokens/**
+        │  validate + generate
+        ▼
+Theme V3 generated runtime + V3ThemeScope
+        │
+        ▼
+lib/widgets/v3/** + previews + guides + tests
+        │
+        ▼
+mcp-server/v3/**
+        │
+        ▼
+https://flutter-widget-wallet-mcp.onrender.com/mcp
+        │
+        ▼
+Skills V3 for Codex / Claude Code / Kiro
+```
 
-## Project Structure
+## Repository structure
 
 ```text
 lib/
-├── config/themes/            # Theme system, tokens, base theme
-├── generated/intl/           # Generated localization output
-├── l10n/                     # Localization source + ARB files
-├── providers/                # ThemeProvider / LocaleProvider
-├── widgets/                  # Reusable UI components
+├── config/themes/v3/         # Theme V3 sources, generator, runtime, generated output
+├── widgets/v3/               # Widget V3 source, preview, and local metadata guides
+├── config/themes/            # Legacy-stable theme system
+├── widgets/                  # Legacy widgets plus the isolated v3/ subtree
+├── l10n/                     # Localization source and generated ARB inputs
+├── generated/intl/           # Generated localization Dart output
 ├── main.dart                 # Demo app entry
 ├── widgetbook.dart           # Widgetbook entry
-└── widgetbook_use_cases.dart # Manual Widgetbook use cases
+└── widgetbook_use_cases.dart # Manual Widgetbook annotations
 
-mcp-server/                   # MCP server for AI agents
-scripts/                      # Schema / docs tooling
-test/                         # Flutter tests
-task/                         # Backlog / execution tracking
+test/
+├── config/themes/v3/         # Theme V3 parser, resolver, generation, and runtime tests
+└── widgets/v3/               # Widget V3 tests
+
+mcp-server/
+├── v3/                       # V3 catalogs, contracts, handlers, and foundation allowlist
+├── tests/                    # Legacy and V3 MCP regression coverage
+└── scripts/                  # Local, HTTP, Render, and V3 verification scripts
+
+skills-v3/
+├── codex/.codex/skills/
+├── claude-code/.claude/skills/
+└── kiro/.kiro/skills/
+
+docs/v3/                      # V3 conventions, reviews, onboarding, and validation evidence
+task/V3_THEME_MCP_SKILLS_TASKS.md
 ```
 
-## Quick Start
+## Quick start for repository contributors
 
-### Prerequisites
+### Requirements
 
-- Flutter SDK `^3.7.2`
-- Dart SDK
-- Node.js `18+` for MCP tooling and docs/schema scripts
+- Dart SDK compatible with `^3.7.2`
+- Flutter SDK compatible with the project Dart constraint
+- Node.js `18+` for MCP and documentation tooling
 
-### Run the Flutter project
+### Install and run
 
 ```bash
 flutter pub get
-dart run tool/generate_arb.dart
-flutter gen-l10n
 flutter run
 ```
 
-### Run Widgetbook
+Run Widgetbook:
 
 ```bash
 flutter run -t lib/widgetbook.dart -d chrome
 ```
 
-### Run MCP server locally
+Run the V3 pilot preview directly:
+
+```bash
+flutter run \
+  -t lib/widgets/v3/button/preview_v3_mini_button.dart \
+  -d web-server \
+  --web-hostname 127.0.0.1 \
+  --web-port 8090
+```
+
+Run the MCP server locally over stdio:
 
 ```bash
 cd mcp-server
-npm install
+npm ci
 npm start
 ```
 
-## Design System Foundation
+## Theme V3
 
-This repo doesn't just store finished widgets — it holds a foundation that's ready to be reused across the whole system:
+Theme V3 source files live under `lib/config/themes/v3/`.
 
-- `Design Tokens`
-  Uses token-based color access through the theme layer instead of hardcoding colors in shared widgets
-- `Themes`
-  Supports light/dark mode using shared theme primitives across the whole library
-- `i18n`
-  Has an editable source (`lib/l10n/localization.json`) and a generation pipeline into ARB/intl outputs
-- `Widgetbook + Standalone Preview`
-  Supports both catalog-style previews and standalone runnable files for debugging components
-- `Foundation for Financial UI`
-  Many widgets and naming conventions are designed for wallet, payment, account summary, receipt, transaction, drawer action, and navigation use cases
+### Source-of-truth rules
 
-Currently supported languages:
+- Editable token inputs: `lib/config/themes/v3/tokens/**`
+- Generated Dart output: `lib/config/themes/v3/generated/**`
+- Generator: `lib/config/themes/v3/v3_theme_generator.dart`
+- Runtime selector: `V3ThemeScope`
+- Detailed guideline: `lib/config/themes/v3/V3_THEME_GUIDELINE.mdx`
+
+Never edit generated V3 files manually. Change token inputs first, then regenerate:
+
+```bash
+dart run lib/config/themes/v3/v3_theme_generator.dart
+```
+
+### Semantic-first usage
+
+Widget V3 code must use semantic tokens from `V3ThemeScope.colorsOf(context)` and V3 dimension/typography APIs. Do not import the legacy `theme_color.dart`, call `ThemeColors.get()`, or introduce raw design colors inside V3 widgets.
+
+```dart
+final colors = V3ThemeScope.colorsOf(context);
+
+return Container(
+  color: colors.backgroundPrimary,
+  child: Text(
+    'Title',
+    style: TextStyle(color: colors.contentPrimary),
+  ),
+);
+```
+
+`V3ThemeScope` resolves the generated Light or Dark palette from `Theme.of(context).brightness` without changing the legacy `ThemeData` bootstrap.
+
+## Widget V3
+
+New widgets belong under:
+
+```text
+lib/widgets/v3/<category>/
+├── v3_<widget>.dart
+├── preview_v3_<widget>.dart
+└── V3_<WIDGET>_GUIDE.md
+
+test/widgets/v3/<category>/
+└── v3_<widget>_test.dart
+```
+
+Every Widget V3 should provide:
+
+- A `V3`-prefixed public class and explicit constructor API
+- Semantic Theme V3 colors and dimensions
+- Light/Dark-compatible behavior
+- A standalone preview
+- Targeted widget tests
+- Accessibility-aware semantics, readable typography, and adequate interaction targets
+- A local guide containing `V3 Metadata` and semantic-token dependencies
+
+Read these before creating or changing a Widget V3:
+
+- `lib/widgets/v3/V3_WIDGETS_CONTEXT.md`
+- `docs/v3/V3_WIDGET_CONVENTIONS.md`
+- `lib/config/themes/v3/V3_THEME_GUIDELINE.mdx`
+
+## Remote MCP V3
+
+Hosted endpoint:
+
+```text
+https://flutter-widget-wallet-mcp.onrender.com/mcp
+```
+
+The endpoint uses Streamable HTTP and exposes legacy read-only tools plus V3 read-only tools. New integrations should call V3-prefixed tools only.
+
+Key remote V3 tools:
+
+- Foundation: `get_v3_design_system_info`, `get_v3_theme_foundation`
+- Tokens: `list_v3_color_tokens`, `search_v3_color_tokens`, `get_v3_color_token`
+- Widgets: `list_v3_categories`, `list_v3_widgets`, `search_v3_widgets`
+- Source and metadata: `get_v3_widget_details`, `get_v3_widget_metadata`, `get_v3_widget_code`, `get_v3_widget_preview`
+- Quality: `audit_v3_widget`
+- Authoring guidance: `get_v3_flutter_widget_template`, `get_v3_codebase_patterns`, `get_v3_figma_to_flutter_mapping`
+
+Remote MCP is intentionally read-only. Generation helpers remain local/stdio-only optimizations; agents author and write files locally in the target project after reading remote templates, tokens, metadata, source, and previews.
+
+Public health and capability metadata:
+
+```text
+https://flutter-widget-wallet-mcp.onrender.com/health
+https://flutter-widget-wallet-mcp.onrender.com/info
+```
+
+## Configure Remote MCP
+
+The same endpoint and Bearer token provide access to legacy and V3 tools. There is no separate V3 URL or authentication scheme.
+
+> **Bearer token access:** The Bearer token is private and is never published in this repository. Request it directly from **Niwat, the repository owner, only**. Never accept it from another source or share it in commits, chat messages, screenshots, documentation, or config examples.
+
+### Codex
+
+For the current Codex app/CLI version used by this project, the verified reliable setup is a global Streamable HTTP server with a literal `Authorization` header in `~/.codex/config.toml`. The `bearer_token_env_var` setup did not connect reliably in the Codex app and is not the recommended path for this server.
+
+Run the repository installer from the project root:
+
+```bash
+bash scripts/configure-codex-global-mcp.sh
+```
+
+The command securely prompts for the Bearer token from Niwat, recreates the server in Codex global config, writes the verified HTTP header form, applies owner-only permissions, and prints `codex mcp get` with the token masked. The token is not passed on the command line and therefore is not saved in shell history.
+
+The installer produces this configuration shape; `<TOKEN_FROM_NIWAT>` below represents the token entered at the secure prompt:
+
+```toml
+[mcp_servers.flutter-widget-wallet-mcp]
+enabled = true
+url = "https://flutter-widget-wallet-mcp.onrender.com/mcp"
+
+[mcp_servers.flutter-widget-wallet-mcp.http_headers]
+Authorization = "Bearer <TOKEN_FROM_NIWAT>"
+```
+
+You normally do not need to edit this block manually after running the installer. Because the resulting token is stored as plain text in the global config, the installer also restricts access to the file; the equivalent command is:
+
+```bash
+chmod 600 ~/.codex/config.toml
+```
+
+The current CLI supports `--url` and `--bearer-token-env-var`, but does not support `--transport` or `--header` for `codex mcp add`. The installer uses the supported `codex mcp add ... --url ...` command for the base entry, then writes the verified header table directly to `~/.codex/config.toml`.
+
+Quit and reopen Codex after changing the config, then verify:
+
+```bash
+codex mcp get flutter-widget-wallet-mcp
+```
+
+Expected result:
+
+```text
+enabled: true
+transport: streamable_http
+url: https://flutter-widget-wallet-mcp.onrender.com/mcp
+bearer_token_env_var: -
+http_headers: Authorization=*****
+```
+
+### Claude Code
+
+```bash
+export MCP_BEARER_TOKEN="<TOKEN_FROM_NIWAT>"
+
+claude mcp add --transport http flutter-widget-wallet-mcp \
+  https://flutter-widget-wallet-mcp.onrender.com/mcp \
+  --header "Authorization: Bearer ${MCP_BEARER_TOKEN}"
+```
+
+### Kiro and generic MCP clients
+
+Use the generic Streamable HTTP configuration shape supported by the client:
+
+```json
+{
+  "mcpServers": {
+    "flutter-widget-wallet-mcp": {
+      "url": "https://flutter-widget-wallet-mcp.onrender.com/mcp",
+      "headers": {
+        "Authorization": "Bearer <TOKEN_FROM_NIWAT>"
+      }
+    }
+  }
+}
+```
+
+Prefer environment-backed headers when the client supports them. The repository reference is `mcp-server/examples/remote.generic.mcp.json`.
+
+## Install Skills V3
+
+Install the native Skills V3 pack into the target project after connecting Remote MCP.
+
+### Codex
+
+```bash
+cp -r skills-v3/codex/.codex <TARGET_PROJECT_ROOT>/
+```
+
+### Claude Code
+
+```bash
+cp -r skills-v3/claude-code/.claude <TARGET_PROJECT_ROOT>/
+```
+
+### Kiro
+
+```bash
+cp -r skills-v3/kiro/.kiro <TARGET_PROJECT_ROOT>/
+```
+
+The eight V3 skills are:
+
+| Skill | Purpose |
+|---|---|
+| `flutter-widget-v3-beginner` | Scan and bootstrap an existing or new Flutter project using the mandatory ask → scan → summarize → confirm → execute flow |
+| `flutter-widget-v3-search` | Search the V3 catalog before creating a widget |
+| `flutter-widget-v3-install` | Install V3 widget source and preview into a target project |
+| `flutter-widget-v3-adapt` | Adapt an installed widget to the target project's V3 foundation |
+| `flutter-widget-v3-preview` | Run a standalone Light/Dark browser preview |
+| `flutter-widget-v3-figma-to-code` | Map a Figma component to V3 tokens, templates, and widgets |
+| `flutter-widget-v3-audit` | Audit V3 paths, token usage, preview, metadata, and legacy leakage |
+| `flutter-widget-v3-upgrade` | Compare local V3 code with the current remote source and upgrade selectively |
+
+In confirmed `bootstrap-new` mode, `flutter-widget-v3-beginner` can create a Flutter project, install the allowlisted Theme V3 runtime manifest through `get_v3_theme_foundation`, add a starter Widget V3 with preview and tests, and run verification.
+
+Canonical specification: `docs/v3/V3_SKILLS_SPEC.md`
+
+## Recommended agent workflow
+
+1. Read the nearest `AGENTS.md` and `MEMORY.md`.
+2. Connect to the existing Remote MCP endpoint.
+3. Install the native Skills V3 pack for the agent.
+4. Use `flutter-widget-v3-search` before building anything new.
+5. Install or author only under V3 theme/widget/test paths.
+6. Use semantic tokens through `V3ThemeScope`; never fall back to the legacy theme.
+7. Keep standalone previews, Light/Dark coverage, tests, and local metadata guides aligned.
+8. Run the narrowest relevant verification, then broader regression gates when required.
+
+The mandatory beginner workflow is:
+
+```text
+ask → scan → summarize → confirm → execute
+```
+
+No files should be changed before the user confirms the proposed bootstrap scope.
+
+## Localization and previews
+
+Localization source of truth:
+
+```text
+lib/l10n/localization.json
+```
+
+Generated ARB and localization Dart files must not be edited manually.
+
+```bash
+dart run tool/generate_arb.dart
+flutter gen-l10n
+```
+
+Supported locales:
 
 - English (`en`)
 - Thai (`th`)
@@ -122,260 +393,89 @@ Currently supported languages:
 - Russian (`ru`)
 - Myanmar (`my`)
 
-## MCP Server and Agent Skills
+Preview options:
 
-### What is the MCP Server
+- Widgetbook: `flutter run -t lib/widgetbook.dart -d chrome`
+- Standalone Widget V3: `flutter run -t lib/widgets/v3/<category>/preview_v3_<widget>.dart -d <device>`
+- Browser preview: add `-d web-server --web-hostname 127.0.0.1 --web-port <port>`
 
-MCP (Model Context Protocol) is a standard that lets AI agents call external tools through a consistent structure — for example, searching widgets, reading metadata, pulling source code, or reading design-system rules directly from this repo.
-
-In this repo, the MCP server lives at `mcp-server/` and supports both:
-
-- `local stdio`
-  Best for people who clone the repo locally and want the agent to read the latest source directly from the working tree
-- `hosted streamable-http`
-  Best for zero-clone / remote access, letting clients connect via a URL instead of a local path
-
-### What are Agent Skills in the context of this repo
-
-In practice, this repo has two layers that help agents work better:
-
-1. `AGENTS.md` and `MEMORY.md`
-   Repo-specific operating rules / memory that describe file-reading order, source-of-truth, real commands to run, and project caveats
-2. `MCP tools`
-   Machine-callable tools agents use to query repo data without guessing the structure
-
-This approach makes it easier for agents such as Codex, Claude Code, Cursor, Antigravity, or Kiro to work from the same shared understanding, even though actual support levels vary by client.
-
-### What the MCP server can help with
-
-Key tools this repo exposes to agents include:
-
-- `list_categories`
-- `list_widgets`
-- `search_widgets`
-- `get_widget_details`
-- `get_widget_metadata`
-- `get_widget_code`
-- `get_widget_preview`
-- `get_design_system_info`
-- `get_color_token`
-- `get_codebase_patterns`
-- `generate_widget_code`
-
-As a result, agents can:
-
-- Search for existing widgets before creating duplicates
-- Read preview/doc/widget metadata straight from the repo
-- Pull component code to reuse or reference
-- Understand design-system rules and codebase patterns before generating code
-- Use this design system's data to build new components more accurately in a target project
-
-When used through the `hosted streamable-http` endpoint, agents don't even need to clone this repo locally — they can still:
-
-- Search for the widget closest to what they need
-- Read metadata, props, previews, and implementation guidance
-- Pull the source code of existing widgets
-- Apply the same patterns/tokens/theme rules to generate components for their own project
-
-In short, this repo can act as a `remote source of truth` for a UI library, where external projects or AI agents connect via MCP and pull widget components directly into a target project — even without cloning this repo locally.
-
-## Setup MCP for Codex, Claude Code, Kiro
-
-This section only covers `remote` configuration, assuming you already have a hosted MCP endpoint, such as:
-
-- `https://flutter-widget-wallet-mcp.onrender.com/mcp`
-- and an access token for that endpoint's reverse proxy / gateway
-
-The repo's main reference config lives at `mcp-server/examples/remote.generic.mcp.json`
-
-### 1. Codex
-
-Use the remote MCP URL with an `Authorization` header:
-
-```json
-{
-  "mcpServers": {
-    "flutter-widget-wallet-mcp": {
-      "url": "https://flutter-widget-wallet-mcp.onrender.com/mcp",
-      "headers": {
-        "Authorization": "Bearer <EDGE_ACCESS_TOKEN>"
-      }
-    }
-  }
-}
-```
-
-### 2. Claude Code
-
-**Option A — CLI (recommended)**
-
-```bash
-claude mcp add --transport http flutter-widget-wallet-mcp \
-  https://flutter-widget-wallet-mcp.onrender.com/mcp \
-  --header "Authorization: Bearer <EDGE_ACCESS_TOKEN>"
-```
-
-**Option B — JSON config**
-
-```json
-{
-  "mcpServers": {
-    "flutter-widget-wallet-mcp": {
-      "url": "https://flutter-widget-wallet-mcp.onrender.com/mcp",
-      "headers": {
-        "Authorization": "Bearer <EDGE_ACCESS_TOKEN>"
-      }
-    }
-  }
-}
-```
-
-### 3. Kiro
-
-If the version of Kiro you're using supports remote MCP with a `url` + `headers` shape, you can use the same generic shape:
-
-```json
-{
-  "mcpServers": {
-    "flutter-widget-wallet-mcp": {
-      "url": "https://flutter-widget-wallet-mcp.onrender.com/mcp",
-      "headers": {
-        "Authorization": "Bearer <EDGE_ACCESS_TOKEN>"
-      }
-    }
-  }
-}
-```
-
-Notes:
-
-- The repo's remote example is `mcp-server/examples/remote.generic.mcp.json`
-- The `streamable-http` remote protocol is fully supported in this repo
-- Direct host-app remote integration for `Claude Code` and `Codex` is still `best-effort / unverified` per `mcp-server/COMPATIBILITY_POLICY.md`
-- `Kiro` has no template generated directly by the repo, so treat it as a generic remote example as well
-- To verify the actually deployed endpoint, use `cd mcp-server && npm run verify:mcp:remote`
-
-## Install Skills V3 (Recommended)
-
-After connecting to the MCP endpoint, install the **Skills V3** pack into your target project. Skills act as workflow guides that tell the agent _how_ to use the MCP tools correctly — searching before creating, using V3 theme tokens, respecting Light/Dark parity, running previews, and never overwriting existing widgets.
-
-Without skills, the agent has raw MCP tools but no guardrails. With skills, the agent follows a structured workflow every time.
-
-### What the 8 skills do
-
-| Skill | Purpose |
-|---|---|
-| `flutter-widget-v3-beginner` | Bootstrap a Flutter project to consume widgets from this library (ask → scan → confirm → execute) |
-| `flutter-widget-v3-search` | Search the widget catalog before building anything new |
-| `flutter-widget-v3-install` | Pull a widget's source + preview into your project |
-| `flutter-widget-v3-adapt` | Adapt an installed widget to match your project's theme tokens |
-| `flutter-widget-v3-preview` | Run a standalone Light/Dark preview of any widget in a browser |
-| `flutter-widget-v3-figma-to-code` | Convert a Figma component into a V3 widget using token mappings |
-| `flutter-widget-v3-audit` | Check an existing widget for legacy imports, raw colors, missing tokens |
-| `flutter-widget-v3-upgrade` | Compare a local widget against the latest source-of-truth and upgrade |
-
-### Installation per agent
-
-Skills V3 packs live in `skills-v3/` in this repo. Copy the appropriate folder into **your target project root**:
-
-**Codex**
-
-```bash
-cp -r skills-v3/codex/.codex <YOUR_PROJECT_ROOT>/
-```
-
-This places `.codex/skills/flutter-widget-v3-*` in your project so Codex auto-discovers them.
-
-**Claude Code**
-
-```bash
-cp -r skills-v3/claude-code/.claude <YOUR_PROJECT_ROOT>/
-```
-
-This places `.claude/skills/flutter-widget-v3-*` in your project. Invoke with `/flutter-widget-v3-beginner` or let Claude match from natural language.
-
-**Kiro**
-
-```bash
-cp -r skills-v3/kiro/.kiro <YOUR_PROJECT_ROOT>/
-```
-
-This places `.kiro/skills/flutter-widget-v3-*` in your project for Kiro to discover.
-
-### Notes
-
-- Skills V3 work with the **same MCP endpoint and Bearer token** you already configured above
-- Skills only operate on `lib/widgets/v3/**` — they never touch legacy widgets
-- `flutter-widget-v3-beginner` will not create Theme V3 foundation; it expects `lib/config/themes/v3/generated/` to already exist (use `flutter-widget-v3-install` to pull it)
-- Remote MCP exposes only read-only tools; skills that generate code do so locally in your project
-- For the full canonical spec, see `docs/v3/V3_SKILLS_SPEC.md`
-
-## Why using MCP + Skills from this repo is useful
-
-### 1. Less guessing about repo structure
-
-Agents don't need to guess where widgets live, how themes are used, or which file holds the localization source, because both repo rules and machine-callable tools already describe it.
-
-### 2. Fewer duplicate components
-
-Instead of generating a new widget every time, agents can `search_widgets` and `get_widget_metadata` first to check whether something reusable already exists.
-
-### 3. Pull real code straight from the source-of-truth
-
-Agents can pull code examples, previews, metadata, and design-system patterns directly from the real repo, instead of relying only on broad descriptions.
-
-### 4. Build widgets into a target project without cloning the repo
-
-If the MCP endpoint is already hosted, agents can connect via a remote URL, read the widget catalog, pull code/metadata, and create or adapt components directly in a target project — without cloning this design-system repo first.
-
-### 5. More consistent work across multiple agents
-
-When the same repo has both MCP tools and agent context docs, moving work between Codex, Claude Code, Cursor, or other clients has less chance of drifting.
-
-### 6. Fits a Figma-to-Flutter workflow
-
-Because this repo positions itself as a collection of design components converted into Flutter widgets with proper foundations, agents can use it as a base for generating/comparing/refactoring work from design specs.
-
-## Useful Commands
-
-### Flutter
-
-```bash
-flutter pub get
-flutter analyze
-flutter test
-flutter run
-flutter run -t lib/widgetbook.dart -d chrome
-```
-
-### Localization
-
-```bash
-dart run tool/generate_arb.dart
-flutter gen-l10n
-```
-
-### Widgetbook / Generated files
+`lib/widgetbook.directories.g.dart` is generated and must not be edited manually. Regenerate when annotation sources change:
 
 ```bash
 dart run build_runner build --delete-conflicting-outputs
 ```
 
-### MCP Server
+## Verification commands
+
+### Flutter and V3 boundaries
+
+```bash
+flutter analyze
+flutter test
+npm run check:v3-boundaries
+npm run test:v3-boundaries
+npm run validate:v3-skills
+```
+
+### MCP local and hosted transport
 
 ```bash
 cd mcp-server
-npm install
-npm start
-npm run start:http
+npm ci
+npm run check:mcp-syntax
+npm test
 npm run verify:mcp
 npm run verify:mcp:http
-npm run verify:mcp:remote
-npm run validate:onboarding
 ```
 
-## Notes
+### Deployed Render endpoint
 
-- If overview docs disagree with the source code, trust `AGENTS.md`, `MEMORY.md`, and the live source files first
-- Generated files such as localization outputs, Widgetbook generated directories, and `docs/schema.json` should not be edited by hand
-- If you plan to use an AI agent with this repo seriously, read `AGENTS.md` and `MEMORY.md` first every time
+Remote verification requires a valid private Bearer token:
+
+```bash
+cd mcp-server
+
+MCP_REMOTE_BASE_URL="https://flutter-widget-wallet-mcp.onrender.com/mcp" \
+MCP_REMOTE_BEARER_TOKEN="${MCP_BEARER_TOKEN}" \
+npm run verify:mcp:remote
+
+MCP_REMOTE_BASE_URL="https://flutter-widget-wallet-mcp.onrender.com/mcp" \
+MCP_REMOTE_BEARER_TOKEN="${MCP_BEARER_TOKEN}" \
+npm run verify:mcp:remote:v3
+```
+
+## Legacy compatibility
+
+V3 does not replace or silently migrate the legacy system:
+
+- Legacy theme files under `lib/config/themes/` remain stable.
+- Legacy widgets outside `lib/widgets/v3/` remain supported and are not migrated automatically.
+- Legacy MCP tool names, schemas, response fields, and error behavior remain protected by regression tests.
+- Legacy skills under `skills/**` remain unchanged; V3 skills live separately under `skills-v3/**`.
+- Existing MCP integration files change only additively when registering V3 tools.
+- Remote generation/write tools remain excluded.
+
+New implementation work should use V3 unless a task explicitly targets legacy compatibility or maintenance.
+
+## Sources of truth
+
+Read sources in this order when they disagree:
+
+1. `AGENTS.md`
+2. `MEMORY.md`
+3. Live source code and build scripts
+4. Widget-local V3 guide/context files
+5. Broad overview documentation, including this README
+
+Key V3 documents:
+
+- Architecture: `docs/V3_THEME_MCP_SKILLS_PLAN.md`
+- Execution status: `task/V3_THEME_MCP_SKILLS_TASKS.md`
+- Theme guideline: `lib/config/themes/v3/V3_THEME_GUIDELINE.mdx`
+- Widget creation context: `lib/widgets/v3/V3_WIDGETS_CONTEXT.md`
+- Widget conventions: `docs/v3/V3_WIDGET_CONVENTIONS.md`
+- Skills specification: `docs/v3/V3_SKILLS_SPEC.md`
+- Remote onboarding: `docs/v3/V3_REMOTE_MCP_GUIDE.md`
+- Review checklist: `docs/v3/V3_REVIEW_CHECKLIST.md`
+
+Generated files such as localization output, Theme V3 generated Dart, Widgetbook directories, and `docs/schema.json` must be regenerated from their source inputs rather than edited manually.
