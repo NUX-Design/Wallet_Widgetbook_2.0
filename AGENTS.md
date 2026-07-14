@@ -42,6 +42,7 @@ Operational rules for agents working in this repository. This repo is a Flutter 
 - Widget V3 zero-Flutter consumer preview successor plan: `docs/V3_ZERO_FLUTTER_PREVIEW_PLAN.md`
 - Widget V3 zero-Flutter consumer preview backlog: `task/V3_ZERO_FLUTTER_PREVIEW_TASKS.md`
 - Widget V3 zero-Flutter preview frozen contract: `mcp-server/v3/bundle_contract.js` (machine) + `docs/v3/V3_ZERO_FLUTTER_PREVIEW_CONTRACT.md` (human); rollout/rollback: `docs/v3/V3_ZERO_FLUTTER_PREVIEW_ROLLOUT.md`
+- Widget V3 preview publishing/scale guide: `docs/v3/V3_WIDGET_PREVIEW_PUBLISHING_GUIDE.md` — canonical operational workflow for making a new Widget V3 discoverable by the local host, hosted MCP, preview bundle, and `flutter-widget-v3-preview` skill.
 - Widget V3 zero-Flutter preview tooling: `scripts/v3-preview-bundle/` (`pack-v3-preview-bundle.mjs` packer, `launch-v3-preview.mjs` repo-independent launcher, `zero-flutter-acceptance.mjs` + `browser-verify.mjs` verifiers); CI `.github/workflows/v3-preview-bundle.yml`; MCP delivery in `mcp-server/v3/bundle_store.js` + `bundle_catalog.js` + `http-server.js` route `/v3/preview-bundle/*`. Generated bundle output `dist/` is gitignored.
 - Localization source: `lib/l10n/localization.json`
 - Generated localization artifacts: `lib/l10n/*.arb`, `lib/generated/intl/`
@@ -111,6 +112,7 @@ Reason: repo-level overview docs may lag behind the live Flutter structure.
 - Use the local widget markdown as the nearest documentation source-of-truth for that widget.
 - Standalone previews are valid debug entrypoints and can be run directly with `flutter run -t path/to/preview_file.dart`.
 - Widget V3 previews are auto-discovered by `dart run tool/generate_v3_preview_registry.dart`, which scans `lib/widgets/v3/**/preview_v3_*.dart` and regenerates `lib/preview_v3/preview_registry.g.dart` so they are reachable through the local web preview host at `http://127.0.0.1:8090/#/<category>/<WidgetClass>`. It derives the class name from the filename (`preview_v3_<widget>.dart` -> `class V3<Widget>Preview` must exist in the file) — no manual registration step. Run the generator after adding or renaming a preview file, and never hand-edit `preview_registry.g.dart`.
+- Before adding, renaming, publishing, or troubleshooting a Widget V3 preview, read `docs/v3/V3_WIDGET_PREVIEW_PUBLISHING_GUIDE.md`. A widget is not available to the published preview skill until its source/preview/generated registry are merged to `main`, bundle CI publishes successfully, and the existing Render service reports freshness for the same full commit SHA.
 
 ### Documentation Schema Pipeline
 
@@ -171,12 +173,13 @@ Use these default execution recipes unless the user explicitly asks for a differ
 
 #### Widget V3 Local Web Preview Change Playbook
 
-1. Read `docs/V3_WEB_PREVIEW_PLAN.md`.
-2. Read `task/V3_WEB_PREVIEW_TASKS.md` and select the smallest unchecked task whose dependencies are complete.
+1. Read `docs/v3/V3_WIDGET_PREVIEW_PUBLISHING_GUIDE.md` for new-widget onboarding, publishing, or preview troubleshooting.
+2. Read `docs/V3_WEB_PREVIEW_PLAN.md` and `task/V3_WEB_PREVIEW_TASKS.md` when changing preview-host architecture or historical migration scope.
 3. Preview routing/testable classes live in `lib/preview_v3/preview_app.dart`; `lib/preview_v3/main.dart` stays a thin entrypoint (only `setUrlStrategy(null)` + `runApp`) because it imports `flutter_web_plugins`, which is incompatible with VM-based `flutter test`.
 4. New Widget V3 previews are picked up automatically by naming convention (`preview_v3_<widget>.dart` with `class V3<Widget>Preview`); after adding or renaming one, run `dart run tool/generate_v3_preview_registry.dart` to regenerate `lib/preview_v3/preview_registry.g.dart`. Never hand-edit that file or `lib/preview_v3/preview_registry.dart`'s consumption of it.
 5. Validate with `flutter analyze`, `dart run tool/generate_v3_preview_registry.dart --check`, targeted `flutter test test/preview_v3/ test/tool/`, `flutter build web --release -t lib/preview_v3/main.dart`, and a real run via `scripts/serve-v3-preview.sh` plus `curl -I` against the served bundle.
-6. Update the V3 web preview task timestamp and evidence only after verification succeeds.
+6. For published consumer availability, merge to `main`, confirm bundle CI/release success, deploy the same commit on the existing Render service, keep `MCP_REMOTE_COMMIT_SHA` equal to that commit, and require `/info.previewBundle` plus `verify:mcp:remote:v3` to pass before claiming the Skill can show the new widget.
+7. Update the V3 web preview task timestamp and evidence only when the task actually changes that completed backlog; ordinary new-widget onboarding should not rewrite historical VP-01–VP-10 evidence.
 
 #### Documentation / Schema Change Playbook
 
