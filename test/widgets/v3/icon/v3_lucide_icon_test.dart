@@ -24,18 +24,12 @@ void main() {
   ) async {
     await pumpTestApp(tester, const V3LucideIcon(LucideIcons.house));
 
-    expect(
-      tester.getSize(find.byType(V3LucideIcon)),
-      const Size.square(24),
-    );
+    expect(tester.getSize(find.byType(V3LucideIcon)), const Size.square(24));
     expect(
       glyphStyle(tester).fontFamily,
       'packages/lucide_icons_flutter/Lucide',
     );
-    expect(
-      glyphText(tester),
-      String.fromCharCode(LucideIcons.house.codePoint),
-    );
+    expect(glyphText(tester), String.fromCharCode(LucideIcons.house.codePoint));
   });
 
   testWidgets('explicit size wins over ambient IconTheme', (tester) async {
@@ -96,7 +90,11 @@ void main() {
         tester,
         V3LucideIcon(LucideIcons.house, stroke: entry.key),
       );
-      expect(glyphStyle(tester).fontFamily, entry.value, reason: entry.key.name);
+      expect(
+        glyphStyle(tester).fontFamily,
+        entry.value,
+        reason: entry.key.name,
+      );
       expect(
         glyphText(tester),
         String.fromCharCode(LucideIcons.house.codePoint),
@@ -118,74 +116,83 @@ void main() {
     expect(find.bySemanticsLabel('หน้าแรก'), findsOneWidget);
   });
 
-  testWidgets('svgAsset present renders SvgPicture instead of the package font', (
-    tester,
-  ) async {
-    const assetPath = 'lib/assets/icons/v3/lucide/house.svg';
-    await pumpTestApp(
-      tester,
-      const IconTheme(
-        data: IconThemeData(color: Colors.blue, size: 20),
-        child: V3LucideIcon(LucideIcons.house, svgAsset: assetPath),
-      ),
-      assetStrategy: TestAssetStrategy.placeholderAssets,
-      assetBundle: PlaceholderAssetBundle(assetPaths: const [assetPath]),
-    );
+  testWidgets(
+    'svgAsset present renders SvgPicture instead of the package font',
+    (tester) async {
+      const assetPath = 'lib/assets/icons/v3/lucide/house.svg';
+      await pumpTestApp(
+        tester,
+        const IconTheme(
+          data: IconThemeData(color: Colors.blue, size: 20),
+          child: V3LucideIcon(LucideIcons.house, svgAsset: assetPath),
+        ),
+        assetStrategy: TestAssetStrategy.placeholderAssets,
+        assetBundle: PlaceholderAssetBundle(assetPaths: const [assetPath]),
+      );
 
-    expect(find.byType(RichText), findsNothing);
-    final svg = tester.widget<SvgPicture>(find.byType(SvgPicture));
-    expect(svg.width, 20);
-    expect(svg.height, 20);
-  });
+      expect(find.byType(RichText), findsNothing);
+      final svg = tester.widget<SvgPicture>(find.byType(SvgPicture));
+      expect(svg.width, 20);
+      expect(svg.height, 20);
+    },
+  );
 
   group('package renderer vs checked-in SVG override parity (real asset)', () {
     const verifiedOverride = 'lib/assets/icons/v3/lucide/scan-line.svg';
 
-    testWidgets('both renderers occupy the same size under the same IconTheme', (
-      tester,
-    ) async {
-      await pumpTestApp(
-        tester,
-        IconTheme(
-          data: IconThemeData(color: Colors.teal, size: V3IconSize.large.value),
-          child: const V3LucideIcon(LucideIcons.scanLine),
-        ),
-      );
-      final packageSize = tester.getSize(find.byType(V3LucideIcon));
-
-      await pumpTestApp(
-        tester,
-        IconTheme(
-          data: IconThemeData(color: Colors.teal, size: V3IconSize.large.value),
-          child: const V3LucideIcon(
-            LucideIcons.scanLine,
-            svgAsset: verifiedOverride,
+    testWidgets(
+      'both renderers occupy the same size under the same IconTheme',
+      (tester) async {
+        await pumpTestApp(
+          tester,
+          IconTheme(
+            data: IconThemeData(
+              color: Colors.teal,
+              size: V3IconSize.large.value,
+            ),
+            child: const V3LucideIcon(LucideIcons.scanLine),
           ),
-        ),
-      );
-      final svgSize = tester.getSize(find.byType(V3LucideIcon));
+        );
+        final packageSize = tester.getSize(find.byType(V3LucideIcon));
 
-      expect(svgSize, packageSize);
-      expect(tester.takeException(), isNull);
-    });
-
-    testWidgets('SVG override loads and renders the real checked-in asset offline', (
-      tester,
-    ) async {
-      await pumpTestApp(
-        tester,
-        const IconTheme(
-          data: IconThemeData(color: Colors.teal, size: 32),
-          child: V3LucideIcon(
-            LucideIcons.scanLine,
-            svgAsset: verifiedOverride,
+        await pumpTestApp(
+          tester,
+          IconTheme(
+            data: IconThemeData(
+              color: Colors.teal,
+              size: V3IconSize.large.value,
+            ),
+            child: const V3LucideIcon(
+              LucideIcons.scanLine,
+              svgAsset: verifiedOverride,
+            ),
           ),
-        ),
-      );
-      await tester.pumpAndSettle();
+        );
+        final svgSize = tester.getSize(find.byType(V3LucideIcon));
 
-      expect(find.byType(SvgPicture), findsOneWidget);
-      expect(tester.takeException(), isNull);
-    });
+        expect(svgSize, packageSize);
+        expect(tester.takeException(), isNull);
+      },
+    );
+
+    testWidgets(
+      'SVG override loads and renders the real checked-in asset offline',
+      (tester) async {
+        await pumpTestApp(
+          tester,
+          const IconTheme(
+            data: IconThemeData(color: Colors.teal, size: 32),
+            child: V3LucideIcon(
+              LucideIcons.scanLine,
+              svgAsset: verifiedOverride,
+            ),
+          ),
+        );
+        await tester.pumpAndSettle();
+
+        expect(find.byType(SvgPicture), findsOneWidget);
+        expect(tester.takeException(), isNull);
+      },
+    );
   });
 }

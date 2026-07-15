@@ -221,10 +221,7 @@ void main() {
       );
       expect(
         tester.getSize(
-          find.descendant(
-            of: scanAction,
-            matching: find.byType(V3LucideIcon),
-          ),
+          find.descendant(of: scanAction, matching: find.byType(V3LucideIcon)),
         ),
         const Size.square(V3Spacing.space32),
       );
