@@ -32,31 +32,28 @@ class _V3NavigationPreviewState extends State<V3NavigationPreview> {
   int _selectedIndex = 0;
 
   // Lucide has no filled/outline icon pairs (stroke-only icon set), so the
-  // selected/inactive distinction mirrors the label's existing Bold/Medium
-  // pairing (see V3_NAVIGATION_GUIDE.md): selected destinations render at
-  // V3IconStroke.bold, inactive destinations at the V3IconStroke.regular
-  // default. Mapping recorded in V3_NAVIGATION_GUIDE.md's Figma-to-Lucide
-  // table.
+  // Icon strokes follow the per-destination mapping recorded in
+  // V3_NAVIGATION_GUIDE.md; label emphasis remains Bold/Medium by state.
   static const _destinations = [
     V3NavigationDestination(
       label: 'Home',
-      icon: V3LucideIcon(LucideIcons.house),
-      selectedIcon: V3LucideIcon(LucideIcons.house, stroke: V3IconStroke.bold),
+      icon: V3LucideIcon(LucideIcons.house, stroke: V3IconStroke.light),
+      selectedIcon: V3LucideIcon(LucideIcons.house, stroke: V3IconStroke.light),
     ),
     V3NavigationDestination(
       label: 'Card',
-      icon: V3LucideIcon(LucideIcons.creditCard),
+      icon: V3LucideIcon(LucideIcons.creditCard, stroke: V3IconStroke.light),
       selectedIcon: V3LucideIcon(
         LucideIcons.creditCard,
-        stroke: V3IconStroke.bold,
+        stroke: V3IconStroke.light,
       ),
     ),
     V3NavigationDestination(
       label: 'Services',
-      icon: V3LucideIcon(LucideIcons.layoutGrid),
+      icon: V3LucideIcon(LucideIcons.layoutGrid, stroke: V3IconStroke.light),
       selectedIcon: V3LucideIcon(
         LucideIcons.layoutGrid,
-        stroke: V3IconStroke.bold,
+        stroke: V3IconStroke.light,
       ),
     ),
     V3NavigationDestination(

@@ -123,6 +123,28 @@ void main() {
     ]);
   });
 
+  testWidgets('shows the full Services label without ellipsis', (tester) async {
+    await pumpNavigation(
+      tester,
+      selectedIndex: 2,
+      onDestinationSelected: (_) {},
+    );
+
+    final label = tester.widget<Text>(
+      find.byKey(const ValueKey('v3-navigation-label-2')),
+    );
+    expect(label.data, 'Services');
+    expect(label.maxLines, 1);
+    expect(label.softWrap, isFalse);
+    expect(label.overflow, isNull);
+    expect(
+      tester
+          .getSize(find.byKey(const ValueKey('v3-navigation-destination-2')))
+          .width,
+      greaterThan(48),
+    );
+  });
+
   testWidgets('invokes destination and Scan callbacks independently', (
     tester,
   ) async {
@@ -197,7 +219,7 @@ void main() {
   });
 
   testWidgets(
-    'Lucide pilot renders destinations at 24px, Scan at 32px, and bolds the selected icon',
+    'Lucide pilot renders destinations at 24px, Scan at 32px, and keeps every destination at 1.5px',
     (tester) async {
       await pumpTestApp(
         tester,
@@ -246,9 +268,35 @@ void main() {
       );
       expect(
         selectedStyle.fontFamily,
-        'packages/lucide_icons_flutter/Lucide600',
+        'packages/lucide_icons_flutter/Lucide300',
       );
-      expect(inactiveStyle.fontFamily, 'packages/lucide_icons_flutter/Lucide');
+      expect(
+        inactiveStyle.fontFamily,
+        'packages/lucide_icons_flutter/Lucide300',
+      );
+
+      final destinationIcons = List.generate(4, (index) {
+        return tester.widget<V3LucideIcon>(
+          find.descendant(
+            of: find.byKey(ValueKey('v3-navigation-icon-theme-$index')),
+            matching: find.byType(V3LucideIcon),
+          ),
+        );
+      });
+      expect(
+        destinationIcons.map((icon) => icon.stroke),
+        everyElement(V3IconStroke.light),
+      );
+
+      await tester.tap(
+        find.byKey(const ValueKey('v3-navigation-destination-1')),
+      );
+      await tester.pump();
+      final inactiveHomeStyle = glyphStyleFor(destination0IconTheme);
+      expect(
+        inactiveHomeStyle.fontFamily,
+        'packages/lucide_icons_flutter/Lucide300',
+      );
 
       final menuIcon = tester.widget<V3LucideIcon>(
         find.descendant(
