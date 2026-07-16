@@ -109,9 +109,6 @@ class V3Navigation extends StatelessWidget {
             minimumSize: const WidgetStatePropertyAll(
               Size(_destinationExtent, _destinationExtent),
             ),
-            maximumSize: const WidgetStatePropertyAll(
-              Size(_destinationExtent, _destinationExtent),
-            ),
             padding: const WidgetStatePropertyAll(EdgeInsets.zero),
             foregroundColor: WidgetStatePropertyAll(foreground),
             overlayColor: WidgetStatePropertyAll(
@@ -139,7 +136,7 @@ class V3Navigation extends StatelessWidget {
                   destination.label,
                   key: ValueKey('v3-navigation-label-$index'),
                   maxLines: 1,
-                  overflow: TextOverflow.ellipsis,
+                  softWrap: false,
                   style: textStyle,
                 ),
               ],

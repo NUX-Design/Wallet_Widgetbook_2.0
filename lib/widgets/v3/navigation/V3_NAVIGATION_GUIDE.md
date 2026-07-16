@@ -11,7 +11,7 @@ Bottom navigation สำหรับ mobile app ตาม Figma component `Navig
 - Surface ใช้ `background/white`, top border `border/primary` และ backdrop blur 15px
 - Top border ใช้ความหนา 1px ตาม Figma และวาดเป็น foreground เหนือ backdrop blur เพื่อไม่ให้เส้นถูก blur กลบ
 - Scan gradient ใช้ primitive `gold/400 → gold/800` ตาม Figma โดยตรง เพราะไม่มี semantic gradient token
-- Menu ใช้ Lucide `settings-2` ขนาด 24px และ stroke 1.5px ทั้ง inactive/selected ตาม SVG ใน Figma node `58:12711`; active state เปลี่ยนสีโดยไม่เพิ่มความหนาเส้น
+- Navigation icons ทุกตัวใช้ stroke 1.5px; destination active state เปลี่ยนสีโดยไม่เพิ่มความหนาเส้น
 
 ## Lucide Icon Audit
 
@@ -19,10 +19,10 @@ Bottom navigation สำหรับ mobile app ตาม Figma component `Navig
 
 | Slot | Figma layer | Lucide name | Dart constant | Size | Stroke | Renderer | Verification |
 |---|---|---|---|---:|---|---|---|
-| Home | `Home Icon` · `58:12730` | `house` | `LucideIcons.house` | 24px | `regular` inactive / `bold` selected | package font | ชื่อ icon ระบุใน Figma component description; ยังไม่ได้เทียบ SVG path ราย state |
-| Card | `Card Icon` · `58:12752` | `credit-card` | `LucideIcons.creditCard` | 24px | `regular` inactive / `bold` selected | package font | ชื่อ icon ระบุใน Figma component description; ยังไม่ได้เทียบ SVG path ราย state |
-| Scan | `Icon` · `110:5050` | `scan-line` | `LucideIcons.scanLine` | 32px | ตาม checked-in SVG | `lib/assets/icons/v3/lucide/scan-line.svg` | ใช้ SVG override; ต้อง recheck path กับ live Figma ก่อนถอด override |
-| Services | `Services Icon` · `58:12708` | `layout-grid` | `LucideIcons.layoutGrid` | 24px | `regular` inactive / `bold` selected | package font | ชื่อ icon ระบุใน Figma component description; ยังไม่ได้เทียบ SVG path ราย state |
+| Home | `Home Icon` · `58:12730` | `house` | `LucideIcons.house` | 24px | `light` (1.5px) inactive / selected | package font | active state เปลี่ยนสีโดยไม่เพิ่มความหนาเส้น ตาม preview review |
+| Card | `Card Icon` · `58:12752` | `credit-card` | `LucideIcons.creditCard` | 24px | `light` (1.5px) inactive / selected | package font | active state เปลี่ยนสีโดยไม่เพิ่มความหนาเส้น ตาม preview review |
+| Scan | `Icon` · `110:5050` | `scan-line` | `LucideIcons.scanLine` | 32px | 1.5px | `lib/assets/icons/v3/lucide/scan-line.svg` | checked-in SVG override กำหนด `stroke-width="1.5"` |
+| Services | `Services Icon` · `58:12708` | `layout-grid` | `LucideIcons.layoutGrid` | 24px | `light` (1.5px) inactive / selected | package font | active state เปลี่ยนสีโดยไม่เพิ่มความหนาเส้น ตาม preview review |
 | Menu | `Menu Icon` · `58:12711` | `settings-2` | `LucideIcons.settings2` | 24px | `light` (1.5px) inactive / selected | package font | Verified จาก live Figma SVG: path และ stroke ตรง; selected เปลี่ยนเฉพาะ semantic color |
 
 ข้อควรระวัง: label `Menu` เป็นชื่อ destination ไม่ใช่ชื่อ icon; ห้าม map กลับไปใช้ Lucide `menu` ซึ่งเป็นรูปเส้นแนวนอนสามเส้น
@@ -36,18 +36,36 @@ V3Navigation(
   destinations: [
     V3NavigationDestination(
       label: homeLabel,
-      icon: const V3LucideIcon(LucideIcons.house),
-      selectedIcon: const V3LucideIcon(LucideIcons.house, stroke: V3IconStroke.bold),
+      icon: const V3LucideIcon(
+        LucideIcons.house,
+        stroke: V3IconStroke.light,
+      ),
+      selectedIcon: const V3LucideIcon(
+        LucideIcons.house,
+        stroke: V3IconStroke.light,
+      ),
     ),
     V3NavigationDestination(
       label: cardLabel,
-      icon: const V3LucideIcon(LucideIcons.creditCard),
-      selectedIcon: const V3LucideIcon(LucideIcons.creditCard, stroke: V3IconStroke.bold),
+      icon: const V3LucideIcon(
+        LucideIcons.creditCard,
+        stroke: V3IconStroke.light,
+      ),
+      selectedIcon: const V3LucideIcon(
+        LucideIcons.creditCard,
+        stroke: V3IconStroke.light,
+      ),
     ),
     V3NavigationDestination(
       label: servicesLabel,
-      icon: const V3LucideIcon(LucideIcons.layoutGrid),
-      selectedIcon: const V3LucideIcon(LucideIcons.layoutGrid, stroke: V3IconStroke.bold),
+      icon: const V3LucideIcon(
+        LucideIcons.layoutGrid,
+        stroke: V3IconStroke.light,
+      ),
+      selectedIcon: const V3LucideIcon(
+        LucideIcons.layoutGrid,
+        stroke: V3IconStroke.light,
+      ),
     ),
     V3NavigationDestination(
       label: menuLabel,
@@ -89,8 +107,9 @@ V3Navigation(
 
 - ความสูง bar 96px; standard icons 24px และ Scan button 56px ตาม Figma
 - destination และ Scan action มี interactive target อย่างน้อย 48×48px
+- destination ขยายความกว้างตาม label และไม่ตัดข้อความด้วย ellipsis
 - รองรับ keyboard activation ผ่าน Material buttons และประกาศ selected/enabled semantics
-- label จำกัดหนึ่งบรรทัดพร้อม ellipsis; caller ควรใช้คำสั้นและตรวจ localization จริง
+- label จำกัดหนึ่งบรรทัดและขยายตามข้อความโดยไม่ใช้ ellipsis; caller ควรใช้คำสั้นและตรวจ localization จริง
 - ใช้ semantic palette ผ่าน `V3ThemeScope` จึงรองรับ Light/Dark โดยไม่รับ mode จาก caller
 - Figma shadow ของ surface ไม่มี primitive effect ที่ตรงกัน จึงเก็บค่าที่ตรวจจาก node `110:5385` ไว้เฉพาะใน component; Scan shadow ใช้ `gold/alpha-30`
 
